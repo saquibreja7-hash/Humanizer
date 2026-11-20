@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { completeHipOnce, humanizeDocument, splitIntoChunks } from "@/lib/hip-engine";
 
 // The engine must talk to the raw base-model endpoint only.
-process.env.CEREBELLUM_API_KEY = "cb_sk_test_key";
+process.env.CEREBELLUM_API_KEY = "test-key-not-a-secret";
 process.env.HIP_BACKEND_URL = "https://api.cerebellumlabs.ai";
 process.env.HIP_BACKEND_MODE = "openai";
 process.env.HIP_MODEL_NAME = "jamsaq-v1";

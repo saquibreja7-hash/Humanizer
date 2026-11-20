@@ -12,3 +12,10 @@ __pycache__/
 *.pyc
 .venv/
 tsconfig.tsbuildinfo
+
+# ml/ training artifacts — data, checkpoints and eval caches are never committed
+ml/data/
+ml/checkpoints/
+ml/merged/
+ml/eval/
+ml/samples/

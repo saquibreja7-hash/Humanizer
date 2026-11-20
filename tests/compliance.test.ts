@@ -9,12 +9,18 @@ import path from "node:path";
  */
 const PUBLIC_FILES = [
   "src/app/page.tsx",
+  "src/app/about/page.tsx",
+  "src/app/demo/page.tsx",
+  "src/app/features/page.tsx",
+  "src/app/pricing/page.tsx",
   "src/app/layout.tsx",
   "src/app/terms/page.tsx",
   "src/app/privacy/page.tsx",
   "src/app/refunds/page.tsx",
   "src/app/docs/page.tsx",
   "src/app/login/page.tsx",
+  "src/components/PublicHeader.tsx",
+  "src/components/PublicFooter.tsx",
   "src/components/BeforeAfter.tsx",
   "src/components/PricingSection.tsx",
   "src/components/LegalLayout.tsx",

@@ -1,10 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
 import { BRAND } from "@/lib/brand";
 import BeforeAfter from "@/components/BeforeAfter";
 import PricingSection from "@/components/PricingSection";
 import Reveal from "@/components/Reveal";
 import AnimatedRing from "@/components/AnimatedRing";
+import PublicHeader, { BrandAsterisk } from "@/components/PublicHeader";
+import PublicFooter from "@/components/PublicFooter";
 
 const STEPS = [
   {
@@ -70,78 +71,10 @@ const FAQ = [
   },
 ];
 
-function BrandAsterisk({ size = 14 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">
-      <line x1="12" y1="3" x2="12" y2="21" />
-      <line x1="4.2" y1="7.5" x2="19.8" y2="16.5" />
-      <line x1="19.8" y1="7.5" x2="4.2" y2="16.5" />
-    </svg>
-  );
-}
-
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Architectural Top Bar */}
-      <header
-        className="sticky top-0 z-40 pf-glass border-b"
-        style={{ borderColor: "color-mix(in srgb, var(--pf-border) 80%, transparent)" }}
-      >
-        <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-6">
-            <Link
-              href="/"
-              className="inline-flex items-center rounded-md overflow-hidden border shadow-2xs"
-              style={{ borderColor: "var(--pf-border)", background: "var(--pf-surface-2)" }}
-            >
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 font-bold text-sm tracking-tight">
-                <span
-                  className="inline-flex items-center justify-center w-5 h-5 rounded"
-                  style={{ background: "var(--pf-espresso)", color: "#f4f1ea" }}
-                >
-                  <BrandAsterisk size={12} />
-                </span>
-                <span>{BRAND.name.toLowerCase()}.</span>
-              </span>
-              <span
-                className="px-2.5 py-2 text-[11px] font-mono hidden sm:inline-flex items-center"
-                style={{ background: "var(--pf-espresso)", color: "#f4f1ea" }}
-                aria-hidden="true"
-              >
-                =
-              </span>
-            </Link>
-
-            <nav className="hidden md:flex items-center gap-6 text-sm font-medium pf-muted">
-              <a href="#about" className="hover:text-[var(--pf-text)] transition-colors">
-                About
-              </a>
-              <a href="#demo" className="hover:text-[var(--pf-text)] transition-colors">
-                Live Demo
-              </a>
-              <a href="#features" className="hover:text-[var(--pf-text)] transition-colors">
-                Features
-              </a>
-              <a href="#pricing" className="hover:text-[var(--pf-text)] transition-colors">
-                Pricing
-              </a>
-              <a href="/docs" className="hover:text-[var(--pf-text)] transition-colors">
-                API Docs
-              </a>
-            </nav>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <a href="/login" className="pf-btn pf-btn-primary text-xs sm:text-sm px-4 py-2">
-              Log in
-            </a>
-            <a href="/login?mode=signup" className="pf-btn pf-btn-ghost text-xs sm:text-sm px-4 py-2">
-              Sign up
-            </a>
-          </div>
-        </div>
-      </header>
+      <PublicHeader />
 
       <main className="flex-1">
         {/* Hero on Warm Limestone with Animated Pipeline Pulses + Seamless Pebble Photograph */}
@@ -750,62 +683,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer
-        className="border-t"
-        style={{ borderColor: "var(--pf-border)", background: "var(--pf-surface)" }}
-      >
-        <div className="max-w-6xl mx-auto px-5 py-12 grid gap-8 md:grid-cols-4 text-sm">
-          <div>
-            <div className="font-bold text-lg flex items-center gap-2">
-              <span
-                className="inline-flex items-center justify-center w-5 h-5 rounded"
-                style={{ background: "var(--pf-accent)", color: "#fff" }}
-              >
-                <BrandAsterisk size={11} />
-              </span>
-              {BRAND.name.toLowerCase()}.
-            </div>
-            <p className="pf-muted mt-2.5 leading-relaxed">
-              {BRAND.tagline}. Clear, authentic prose — with every fact, quote, and figure preserved.
-            </p>
-          </div>
-          <div>
-            <div className="font-semibold mb-3">Product</div>
-            <ul className="pf-muted space-y-2.5">
-              <li><a href="#demo" className="hover:text-[var(--pf-text)]">Live Demo</a></li>
-              <li><a href="#pricing" className="hover:text-[var(--pf-text)]">Pricing</a></li>
-              <li><a href="/docs" className="hover:text-[var(--pf-text)]">Developer API</a></li>
-              <li><a href="/login" className="hover:text-[var(--pf-text)]">Log in</a></li>
-            </ul>
-          </div>
-          <div>
-            <div className="font-semibold mb-3">Legal</div>
-            <ul className="pf-muted space-y-2.5">
-              <li><a href="/terms" className="hover:text-[var(--pf-text)]">Terms of Service</a></li>
-              <li><a href="/privacy" className="hover:text-[var(--pf-text)]">Privacy Policy</a></li>
-              <li><a href="/refunds" className="hover:text-[var(--pf-text)]">Refund Policy</a></li>
-            </ul>
-          </div>
-          <div>
-            <div className="font-semibold mb-3">Support</div>
-            <ul className="pf-muted space-y-2.5">
-              <li>
-                <a href={`mailto:${BRAND.supportEmail}`} className="hover:text-[var(--pf-text)]">
-                  {BRAND.supportEmail}
-                </a>
-              </li>
-              <li className="text-xs">7-day fair refund guarantee</li>
-            </ul>
-          </div>
-        </div>
-        <div
-          className="border-t py-5 text-center text-xs pf-muted"
-          style={{ borderColor: "var(--pf-border)" }}
-        >
-          © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
-        </div>
-      </footer>
+      <PublicFooter />
     </div>
   );
 }

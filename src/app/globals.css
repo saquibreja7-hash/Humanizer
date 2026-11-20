@@ -1,34 +1,43 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-serif: Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-serif), Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 :root {
-  --pf-bg: #faf8f4;
+  --pf-bg: #faf9f5;
   --pf-surface: #ffffff;
-  --pf-surface-2: #f4f0e8;
-  --pf-border: #e5dfd3;
-  --pf-text: #1f1b16;
-  --pf-muted: #6b6357;
-  --pf-accent: #b45309;
-  --pf-accent-soft: #fdf0e0;
+  --pf-surface-2: #f3f0e8;
+  --pf-border: #e5e0d5;
+  --pf-text: #181816;
+  --pf-muted: #625d54;
+  --pf-accent: #0f766e;
+  --pf-accent-hover: #0d5e58;
+  --pf-accent-soft: #e6f5f2;
+  --pf-warm: #d97706;
+  --pf-warm-soft: #fef3e2;
+  --pf-ink: #111615;
   --pf-good: #15803d;
-  --pf-warn: #a16207;
+  --pf-warn: #b45309;
   --pf-bad: #b91c1c;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --pf-bg: #14130f;
-    --pf-surface: #1c1a15;
-    --pf-surface-2: #24211a;
-    --pf-border: #34302a;
-    --pf-text: #ece7dd;
-    --pf-muted: #a49b8c;
-    --pf-accent: #d97706;
-    --pf-accent-soft: #2b2117;
+    --pf-bg: #0d0f0e;
+    --pf-surface: #151816;
+    --pf-surface-2: #1c201e;
+    --pf-border: #282d2a;
+    --pf-text: #f0eee8;
+    --pf-muted: #9ca39d;
+    --pf-accent: #2dd4bf;
+    --pf-accent-hover: #5eead4;
+    --pf-accent-soft: #112926;
+    --pf-warm: #f59e0b;
+    --pf-warm-soft: #2b2112;
+    --pf-ink: #080a09;
     --pf-good: #4ade80;
     --pf-warn: #facc15;
     --pf-bad: #f87171;
@@ -44,16 +53,53 @@ body {
   color: var(--pf-text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 .pf-serif {
   font-family: var(--font-serif);
 }
 
+.pf-mono {
+  font-family: var(--font-mono);
+}
+
+.pf-glass {
+  background: color-mix(in srgb, var(--pf-bg) 82%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.pf-hero-bg {
+  background-image:
+    radial-gradient(ellipse 70% 50% at 50% -10%, color-mix(in srgb, var(--pf-accent) 14%, transparent), transparent 70%),
+    radial-gradient(ellipse 45% 35% at 85% 15%, color-mix(in srgb, var(--pf-warm) 10%, transparent), transparent 65%),
+    radial-gradient(color-mix(in srgb, var(--pf-border) 90%, transparent) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 26px 26px;
+}
+
 .pf-card {
   background: var(--pf-surface);
   border: 1px solid var(--pf-border);
-  border-radius: 14px;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.pf-card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.pf-card-hover:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--pf-accent) 45%, var(--pf-border));
+  box-shadow: 0 14px 34px -16px rgba(15, 118, 110, 0.22);
+}
+
+.pf-dark-card {
+  background: linear-gradient(155deg, #121a18 0%, #0b0f0e 100%);
+  color: #f3f4f2;
+  border: 1px solid #22302c;
+  border-radius: 18px;
 }
 
 .pf-muted {
@@ -69,9 +115,9 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border-radius: 10px;
+  border-radius: 11px;
   font-weight: 600;
-  transition: transform 0.06s ease, opacity 0.15s ease, background 0.15s ease;
+  transition: transform 0.12s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease, opacity 0.15s ease;
   cursor: pointer;
 }
 
@@ -81,12 +127,20 @@ body {
 
 .pf-btn-primary {
   background: var(--pf-accent);
-  color: #fff;
-  padding: 0.7rem 1.4rem;
+  color: #ffffff;
+  padding: 0.72rem 1.45rem;
+  box-shadow: 0 6px 18px -6px color-mix(in srgb, var(--pf-accent) 60%, transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+  .pf-btn-primary {
+    color: #071311;
+  }
 }
 
 .pf-btn-primary:hover {
-  opacity: 0.9;
+  background: var(--pf-accent-hover);
+  box-shadow: 0 10px 24px -6px color-mix(in srgb, var(--pf-accent) 70%, transparent);
 }
 
 .pf-btn-primary:disabled {
@@ -95,14 +149,15 @@ body {
 }
 
 .pf-btn-ghost {
-  background: transparent;
+  background: var(--pf-surface);
   color: var(--pf-text);
   border: 1px solid var(--pf-border);
-  padding: 0.7rem 1.4rem;
+  padding: 0.72rem 1.45rem;
 }
 
 .pf-btn-ghost:hover {
   background: var(--pf-surface-2);
+  border-color: color-mix(in srgb, var(--pf-text) 22%, var(--pf-border));
 }
 
 .pf-input {
@@ -123,16 +178,37 @@ body {
 .pf-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
   font-size: 0.75rem;
   font-weight: 600;
   border-radius: 999px;
-  padding: 0.2rem 0.7rem;
+  padding: 0.25rem 0.75rem;
   border: 1px solid var(--pf-border);
 }
 
 .pf-link {
   color: var(--pf-accent);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
+}
+
+@keyframes pfPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.86); }
+}
+
+.pf-pulse-dot {
+  animation: pfPulse 2.2s ease-in-out infinite;
+}
+
+details.pf-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+details.pf-faq[open] .pf-faq-icon {
+  transform: rotate(45deg);
+}
+
+.pf-faq-icon {
+  transition: transform 0.2s ease;
 }

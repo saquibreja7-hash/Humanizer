@@ -5,6 +5,7 @@ import BeforeAfter from "@/components/BeforeAfter";
 import PricingSection from "@/components/PricingSection";
 import PublicHeader from "@/components/PublicHeader";
 import PublicFooter from "@/components/PublicFooter";
+import HeroLiveDemo from "@/components/HeroLiveDemo";
 
 const STEPS = [
   {
@@ -60,35 +61,66 @@ export default function HomePage() {
       <PublicHeader />
 
       <main className="flex-1">
-        {/* Clean White Hero + Fountain Pen Visual */}
-        <section className="max-w-5xl mx-auto px-5 pt-14 md:pt-20 pb-12 text-center">
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-[-0.035em] leading-[1.04]">
-            Smarter Natural Writing Refinement
-          </h1>
+        {/* Animated White Hero with Architectural Pulses + Fountain Pen + Live Streamer */}
+        <section className="relative overflow-hidden">
+          <svg
+            className="pointer-events-none absolute inset-0 w-full h-full"
+            viewBox="0 0 1440 760"
+            fill="none"
+            preserveAspectRatio="xMidYMid slice"
+            aria-hidden="true"
+          >
+            <g stroke="var(--pf-border)" strokeWidth="1" opacity="0.65">
+              <path d="M0 160 H180 V280 H460" />
+              <path d="M0 420 H220 V520 H440" />
+              <path d="M1440 150 H1220 V270 H960" />
+              <path d="M1440 430 H1180 V530 H960" />
+            </g>
+            <g stroke="var(--pf-accent)" strokeWidth="1.8" strokeLinecap="round" opacity="0.65">
+              <path d="M0 160 H180 V280 H460" className="pf-flow-line" />
+              <path d="M1440 150 H1220 V270 H960" className="pf-flow-line-slow" />
+              <path d="M0 420 H220 V520 H440" className="pf-flow-line-slow" />
+              <path d="M1440 430 H1180 V530 H960" className="pf-flow-line" />
+            </g>
+          </svg>
 
-          <p className="pf-muted mt-5 text-base md:text-lg leading-relaxed max-w-md mx-auto">
-            Clear, natural prose with every fact preserved.
-          </p>
+          <div className="relative max-w-5xl mx-auto px-5 pt-14 md:pt-20 pb-14">
+            <div className="text-center max-w-3xl mx-auto pf-fade-in">
+              <h1 className="text-4xl sm:text-6xl font-bold tracking-[-0.035em] leading-[1.04]">
+                Smarter Natural Writing Refinement
+              </h1>
 
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-            <Link href="/login?mode=signup" className="pf-btn pf-btn-primary text-sm px-6 py-3">
-              Get started free
-            </Link>
-            <a href="#demo" className="pf-btn pf-btn-ghost text-sm px-6 py-3">
-              See live demo
-            </a>
-          </div>
+              <p className="pf-muted mt-5 text-base md:text-lg leading-relaxed max-w-md mx-auto">
+                Clear, natural prose with every fact preserved.
+              </p>
 
-          <div className="mt-10 flex justify-center">
-            <div className="w-[240px] sm:w-[290px]">
-              <Image
-                src="/images/hero-writing.jpg"
-                alt="Hand holding a crimson fountain pen with gold nib on white background"
-                width={840}
-                height={934}
-                priority
-                className="w-full h-auto block select-none"
-              />
+              <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+                <Link href="/login?mode=signup" className="pf-btn pf-btn-primary text-sm px-6 py-3">
+                  Get started free
+                </Link>
+                <a href="#demo" className="pf-btn pf-btn-ghost text-sm px-6 py-3">
+                  See live demo
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-10 md:mt-12 grid lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-5 flex justify-center">
+                <div className="w-[230px] sm:w-[270px] lg:w-[300px] pf-float">
+                  <Image
+                    src="/images/hero-writing.jpg"
+                    alt="Hand holding a crimson fountain pen with gold nib on white background"
+                    width={840}
+                    height={934}
+                    priority
+                    className="w-full h-auto block select-none"
+                  />
+                </div>
+              </div>
+
+              <div className="lg:col-span-7">
+                <HeroLiveDemo />
+              </div>
             </div>
           </div>
         </section>

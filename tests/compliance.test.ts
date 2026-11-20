@@ -22,6 +22,7 @@ const PUBLIC_FILES = [
   "src/components/PublicHeader.tsx",
   "src/components/PublicFooter.tsx",
   "src/components/BeforeAfter.tsx",
+  "src/components/HeroLiveDemo.tsx",
   "src/components/PricingSection.tsx",
   "src/components/LegalLayout.tsx",
   "src/lib/brand.ts",

@@ -20,14 +20,14 @@ export default function PricingSection() {
     <section id="pricing" className="max-w-6xl mx-auto px-5 py-20 md:py-24">
       <div className="text-center max-w-2xl mx-auto mb-12">
         <span
-          className="pf-badge mb-4"
-          style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)", borderColor: "transparent" }}
+          className="pf-badge mb-4 uppercase tracking-wider text-[11px]"
+          style={{ background: "var(--pf-surface-pure)", color: "var(--pf-accent)" }}
         >
-          Transparent pricing
+          ✳ Transparent pricing
         </span>
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-          Start free. Scale when your{" "}
-          <span className="pf-serif italic font-medium pf-accent">drafts grow.</span>
+        <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.03em]">
+          Simple pricing{" "}
+          <span className="pf-muted font-medium">that scales with your writing</span>
         </h2>
         <p className="pf-muted mt-4 text-base md:text-lg">
           Every plan includes zero text retention, Fidelity Shield fact checks, and one-click cancellation.
@@ -35,15 +35,15 @@ export default function PricingSection() {
 
         <div className="mt-8 flex items-center justify-center gap-3 flex-wrap">
           <div
-            className="inline-flex gap-1 rounded-full border p-1 shadow-xs"
-            style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
+            className="inline-flex gap-1 rounded-lg border p-1"
+            style={{ background: "var(--pf-surface-pure)", borderColor: "var(--pf-border)" }}
           >
             {(["monthly", "annual"] as BillingInterval[]).map((i) => (
               <button
                 key={i}
                 type="button"
                 onClick={() => setInterval(i)}
-                className={`pf-btn text-sm px-4 py-1.5 rounded-full ${
+                className={`pf-btn text-sm px-4 py-1.5 ${
                   interval === i ? "pf-btn-primary" : ""
                 }`}
                 style={interval === i ? undefined : { color: "var(--pf-muted)" }}
@@ -51,10 +51,10 @@ export default function PricingSection() {
                 {i === "monthly" ? "Monthly" : "Annual"}
                 {i === "annual" && (
                   <span
-                    className="text-[11px] font-bold px-2 py-0.5 rounded-full"
+                    className="text-[11px] font-bold px-2 py-0.5 rounded"
                     style={
-                      interval === "annual"
-                        ? { background: "rgba(255,255,255,0.22)", color: "inherit" }
+                      interval === i
+                        ? { background: "rgba(255,255,255,0.18)", color: "inherit" }
                         : { background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }
                     }
                   >
@@ -66,15 +66,15 @@ export default function PricingSection() {
           </div>
 
           <div
-            className="inline-flex gap-1 rounded-full border p-1 shadow-xs"
-            style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
+            className="inline-flex gap-1 rounded-lg border p-1"
+            style={{ background: "var(--pf-surface-pure)", borderColor: "var(--pf-border)" }}
           >
             {(["USD", "INR"] as Currency[]).map((c) => (
               <button
                 key={c}
                 type="button"
                 onClick={() => setCurrency(c)}
-                className={`pf-btn text-sm px-3.5 py-1.5 rounded-full ${
+                className={`pf-btn text-sm px-3.5 py-1.5 ${
                   currency === c ? "pf-btn-primary" : ""
                 }`}
                 style={currency === c ? undefined : { color: "var(--pf-muted)" }}
@@ -94,25 +94,26 @@ export default function PricingSection() {
           return (
             <div
               key={plan.id}
-              className={`pf-card pf-card-hover p-6 flex flex-col relative ${
-                isPro ? "lg:-translate-y-2 shadow-xl shadow-teal-900/10" : ""
+              className={`pf-card-pure pf-card-hover p-6 flex flex-col relative ${
+                isPro ? "lg:-translate-y-2 shadow-xl shadow-stone-900/15" : ""
               }`}
               style={
                 isPro
                   ? {
+                      background: "var(--pf-espresso)",
+                      color: "#f4f1ea",
                       borderColor: "var(--pf-accent)",
                       borderWidth: 2,
-                      background: "linear-gradient(180deg, color-mix(in srgb, var(--pf-accent-soft) 45%, var(--pf-surface)) 0%, var(--pf-surface) 38%)",
                     }
                   : undefined
               }
             >
               {isPro && (
                 <span
-                  className="pf-badge absolute -top-3.5 left-1/2 -translate-x-1/2 shadow-sm"
+                  className="pf-badge absolute -top-3.5 left-1/2 -translate-x-1/2 shadow-sm uppercase tracking-wider text-[10px]"
                   style={{
                     background: "var(--pf-accent)",
-                    color: "#fff",
+                    color: "#ffffff",
                     borderColor: "var(--pf-accent)",
                   }}
                 >
@@ -123,8 +124,12 @@ export default function PricingSection() {
               <div className="flex items-center justify-between gap-2">
                 <h3 className="text-lg font-bold">{plan.name}</h3>
                 <span
-                  className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full pf-mono"
-                  style={{ background: "var(--pf-surface-2)", color: "var(--pf-muted)" }}
+                  className="text-[10px] font-semibold px-2 py-0.5 rounded pf-mono"
+                  style={
+                    isPro
+                      ? { background: "rgba(255,255,255,0.08)", color: "#d7c3be" }
+                      : { background: "var(--pf-surface-2)", color: "var(--pf-muted)" }
+                  }
                 >
                   {plan.features[0]}
                 </span>
@@ -134,10 +139,18 @@ export default function PricingSection() {
                 <span className="text-4xl font-bold tracking-tight">
                   {formatPrice(monthly, currency)}
                 </span>
-                <span className="pf-muted text-sm">/ month</span>
+                <span
+                  className="text-sm"
+                  style={{ color: isPro ? "var(--pf-espresso-muted)" : "var(--pf-muted)" }}
+                >
+                  / month
+                </span>
               </div>
 
-              <p className="pf-muted text-xs mt-1.5 min-h-[18px]">
+              <p
+                className="text-xs mt-1.5 min-h-[18px]"
+                style={{ color: isPro ? "var(--pf-espresso-muted)" : "var(--pf-muted)" }}
+              >
                 {interval === "annual" && id !== "free"
                   ? `${annualTotal(plan, currency)} billed yearly`
                   : id === "free"
@@ -145,14 +158,21 @@ export default function PricingSection() {
                     : "Billed monthly · cancel anytime"}
               </p>
 
-              <div className="my-5 border-t" style={{ borderColor: "var(--pf-border)" }} />
+              <div
+                className="my-5 border-t"
+                style={{ borderColor: isPro ? "var(--pf-espresso-border)" : "var(--pf-border)" }}
+              />
 
               <ul className="space-y-3 text-sm flex-1">
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-2.5">
                     <span
-                      className="mt-0.5 inline-flex items-center justify-center w-4 h-4 rounded-full shrink-0 text-[10px] font-bold"
-                      style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }}
+                      className="mt-0.5 inline-flex items-center justify-center w-4 h-4 rounded shrink-0 text-[10px] font-bold"
+                      style={
+                        isPro
+                          ? { background: "var(--pf-accent)", color: "#ffffff" }
+                          : { background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }
+                      }
                     >
                       ✓
                     </span>
@@ -171,7 +191,7 @@ export default function PricingSection() {
                   isPro ? "pf-btn-primary" : "pf-btn-ghost"
                 }`}
               >
-                {id === "free" ? "Start free" : `Get ${plan.name} →`}
+                {id === "free" ? "Start free" : `Choose ${plan.name} →`}
               </a>
             </div>
           );

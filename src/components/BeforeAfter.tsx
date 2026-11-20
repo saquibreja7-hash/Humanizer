@@ -88,17 +88,17 @@ export default function BeforeAfter() {
   const afterText = variant === "A" ? sample.optionA : sample.optionB;
 
   return (
-    <div className="pf-card overflow-hidden shadow-xl shadow-black/5">
+    <div className="pf-card-pure overflow-hidden shadow-xl shadow-stone-900/10">
       {/* Studio window top bar */}
       <div
         className="flex flex-wrap items-center justify-between gap-3 px-4 md:px-6 py-3.5 border-b"
-        style={{ background: "var(--pf-surface-2)", borderColor: "var(--pf-border)" }}
+        style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
       >
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-wrap">
           <div className="flex items-center gap-1.5" aria-hidden="true">
-            <span className="w-2.5 h-2.5 rounded-full bg-rose-400/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#7c3539" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#a8918c" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#cfc8ba" }} />
           </div>
           <div className="flex flex-wrap gap-1.5">
             {SAMPLES.map((s) => {
@@ -108,11 +108,11 @@ export default function BeforeAfter() {
                   key={s.id}
                   type="button"
                   onClick={() => setSampleId(s.id)}
-                  className="px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer"
+                  className="px-3 py-1 rounded-md text-xs font-semibold transition-all cursor-pointer"
                   style={
                     active
-                      ? { background: "var(--pf-accent)", color: "#fff" }
-                      : { background: "var(--pf-surface)", color: "var(--pf-muted)", border: "1px solid var(--pf-border)" }
+                      ? { background: "var(--pf-accent)", color: "#ffffff" }
+                      : { background: "var(--pf-surface-pure)", color: "var(--pf-muted)", border: "1px solid var(--pf-border)" }
                   }
                 >
                   {s.label}
@@ -122,76 +122,86 @@ export default function BeforeAfter() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <div
-            className="inline-flex rounded-lg p-0.5 border text-xs font-semibold"
-            style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
+        <div
+          className="inline-flex rounded-md p-0.5 border text-xs font-semibold"
+          style={{ background: "var(--pf-surface-pure)", borderColor: "var(--pf-border)" }}
+        >
+          <button
+            type="button"
+            onClick={() => setView("split")}
+            className="px-2.5 py-1 rounded cursor-pointer transition-colors"
+            style={
+              view === "split"
+                ? { background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }
+                : { color: "var(--pf-muted)" }
+            }
           >
-            <button
-              type="button"
-              onClick={() => setView("split")}
-              className="px-2.5 py-1 rounded-md cursor-pointer transition-colors"
-              style={view === "split" ? { background: "var(--pf-accent-soft)", color: "var(--pf-accent)" } : { color: "var(--pf-muted)" }}
-            >
-              Side-by-side
-            </button>
-            <button
-              type="button"
-              onClick={() => setView("rhythm")}
-              className="px-2.5 py-1 rounded-md cursor-pointer transition-colors"
-              style={view === "rhythm" ? { background: "var(--pf-accent-soft)", color: "var(--pf-accent)" } : { color: "var(--pf-muted)" }}
-            >
-              Sentence rhythm
-            </button>
-          </div>
+            Side-by-side
+          </button>
+          <button
+            type="button"
+            onClick={() => setView("rhythm")}
+            className="px-2.5 py-1 rounded cursor-pointer transition-colors"
+            style={
+              view === "rhythm"
+                ? { background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }
+                : { color: "var(--pf-muted)" }
+            }
+          >
+            Sentence rhythm
+          </button>
         </div>
       </div>
 
       {/* Main studio body */}
       {view === "split" ? (
-        <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x" style={{ borderColor: "var(--pf-border)" }}>
-          {/* Before pane */}
+        <div
+          className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x"
+          style={{ borderColor: "var(--pf-border)" }}
+        >
           <div className="p-6 md:p-7 flex flex-col">
             <div className="flex items-center justify-between mb-4">
               <span className="text-xs font-bold uppercase tracking-wider pf-muted">
                 Before · Raw AI Draft
               </span>
               <span
-                className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full"
-                style={{ background: "var(--pf-warm-soft)", color: "var(--pf-warm)" }}
+                className="text-[11px] font-semibold px-2.5 py-0.5 rounded"
+                style={{ background: "var(--pf-surface-2)", color: "var(--pf-muted)" }}
               >
                 Flat cadence · Clichés
               </span>
             </div>
             <p className="pf-serif text-[16px] leading-[1.78] pf-muted flex-1">{sample.before}</p>
-            <div className="mt-5 pt-4 border-t flex items-center justify-between text-xs pf-muted" style={{ borderColor: "var(--pf-border)" }}>
+            <div
+              className="mt-5 pt-4 border-t flex items-center justify-between text-xs pf-muted"
+              style={{ borderColor: "var(--pf-border)" }}
+            >
               <span>{sample.tag}</span>
               <span>Uniform ~16w sentences</span>
             </div>
           </div>
 
-          {/* After pane */}
           <div
             className="p-6 md:p-7 flex flex-col"
-            style={{ background: "color-mix(in srgb, var(--pf-accent-soft) 28%, var(--pf-surface))" }}
+            style={{ background: "color-mix(in srgb, var(--pf-accent-soft) 32%, var(--pf-surface-pure))" }}
           >
             <div className="flex items-center justify-between gap-2 mb-4">
               <span className="text-xs font-bold uppercase tracking-wider pf-accent">
                 After · Refined with ProseFlow
               </span>
               <div
-                className="inline-flex rounded-full p-0.5 border text-[11px] font-semibold"
-                style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
+                className="inline-flex rounded-md p-0.5 border text-[11px] font-semibold"
+                style={{ background: "var(--pf-surface-pure)", borderColor: "var(--pf-border)" }}
               >
                 {(["A", "B"] as const).map((opt) => (
                   <button
                     key={opt}
                     type="button"
                     onClick={() => setVariant(opt)}
-                    className="px-2.5 py-0.5 rounded-full cursor-pointer transition-all"
+                    className="px-2.5 py-0.5 rounded cursor-pointer transition-all"
                     style={
                       variant === opt
-                        ? { background: "var(--pf-accent)", color: "#fff" }
+                        ? { background: "var(--pf-accent)", color: "#ffffff" }
                         : { color: "var(--pf-muted)" }
                     }
                   >
@@ -201,10 +211,11 @@ export default function BeforeAfter() {
               </div>
             </div>
             <p className="pf-serif text-[16px] leading-[1.78] flex-1">{afterText}</p>
-            <div className="mt-5 pt-4 border-t flex items-center justify-between text-xs" style={{ borderColor: "var(--pf-border)" }}>
-              <span className="font-semibold" style={{ color: "var(--pf-good)" }}>
-                Natural varied cadence
-              </span>
+            <div
+              className="mt-5 pt-4 border-t flex items-center justify-between text-xs"
+              style={{ borderColor: "var(--pf-border)" }}
+            >
+              <span className="font-semibold pf-accent">Natural varied cadence</span>
               <span className="pf-muted pf-mono">{sample.stats.time}</span>
             </div>
           </div>
@@ -222,10 +233,10 @@ export default function BeforeAfter() {
               {sample.beforeLens.map((len, i) => (
                 <div key={i} className="flex items-center gap-3 text-xs">
                   <span className="w-8 pf-mono pf-muted">S{i + 1}</span>
-                  <div className="flex-1 h-3 rounded-full overflow-hidden" style={{ background: "var(--pf-surface-2)" }}>
+                  <div className="flex-1 h-3 rounded overflow-hidden" style={{ background: "var(--pf-surface-2)" }}>
                     <div
-                      className="h-full rounded-full transition-all duration-500"
-                      style={{ width: `${Math.min(100, (len / 38) * 100)}%`, background: "var(--pf-warm)" }}
+                      className="h-full rounded transition-all duration-500"
+                      style={{ width: `${Math.min(100, (len / 38) * 100)}%`, background: "#9b8f84" }}
                     />
                   </div>
                   <span className="w-10 text-right pf-mono pf-muted">{len}w</span>
@@ -236,7 +247,7 @@ export default function BeforeAfter() {
 
           <div>
             <div className="text-xs font-bold uppercase tracking-wider pf-accent mb-1">
-              After · Natural Human Burstiness
+              After · Natural Editorial Cadence
             </div>
             <p className="text-xs pf-muted mb-5">
               ProseFlow mixes short punchy lines with longer flowing thoughts—just like real editors write.
@@ -245,9 +256,9 @@ export default function BeforeAfter() {
               {sample.afterLens.map((len, i) => (
                 <div key={i} className="flex items-center gap-3 text-xs">
                   <span className="w-8 pf-mono pf-muted">S{i + 1}</span>
-                  <div className="flex-1 h-3 rounded-full overflow-hidden" style={{ background: "var(--pf-surface-2)" }}>
+                  <div className="flex-1 h-3 rounded overflow-hidden" style={{ background: "var(--pf-surface-2)" }}>
                     <div
-                      className="h-full rounded-full transition-all duration-500"
+                      className="h-full rounded transition-all duration-500"
                       style={{ width: `${Math.min(100, (len / 38) * 100)}%`, background: "var(--pf-accent)" }}
                     />
                   </div>
@@ -262,7 +273,7 @@ export default function BeforeAfter() {
       {/* Fidelity Shield footer bar */}
       <div
         className="px-4 md:px-6 py-3.5 border-t flex flex-wrap items-center justify-between gap-3 text-xs"
-        style={{ background: "var(--pf-surface-2)", borderColor: "var(--pf-border)" }}
+        style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
       >
         <div className="flex flex-wrap items-center gap-2">
           <span className="font-bold uppercase tracking-wider text-[11px] pf-muted mr-1">
@@ -274,16 +285,10 @@ export default function BeforeAfter() {
           >
             ✓ {sample.stats.rebuilt}
           </span>
-          <span
-            className="pf-badge"
-            style={{ background: "var(--pf-surface)", color: "var(--pf-good)" }}
-          >
+          <span className="pf-badge" style={{ background: "var(--pf-surface-pure)", color: "var(--pf-good)" }}>
             ✓ {sample.stats.quotes}
           </span>
-          <span
-            className="pf-badge"
-            style={{ background: "var(--pf-surface)", color: "var(--pf-good)" }}
-          >
+          <span className="pf-badge" style={{ background: "var(--pf-surface-pure)", color: "var(--pf-good)" }}>
             ✓ {sample.stats.numbers}
           </span>
         </div>

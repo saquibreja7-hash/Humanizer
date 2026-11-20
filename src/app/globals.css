@@ -7,39 +7,47 @@
 }
 
 :root {
-  --pf-bg: #faf9f5;
-  --pf-surface: #ffffff;
-  --pf-surface-2: #f3f0e8;
-  --pf-border: #e5e0d5;
-  --pf-text: #181816;
-  --pf-muted: #625d54;
-  --pf-accent: #0f766e;
-  --pf-accent-hover: #0d5e58;
-  --pf-accent-soft: #e6f5f2;
-  --pf-warm: #d97706;
-  --pf-warm-soft: #fef3e2;
-  --pf-ink: #111615;
-  --pf-good: #15803d;
-  --pf-warn: #b45309;
-  --pf-bad: #b91c1c;
+  --pf-bg: #e4e1d2;
+  --pf-surface: #f7f5ee;
+  --pf-surface-pure: #ffffff;
+  --pf-surface-2: #d8d4c8;
+  --pf-border: #cbc5b7;
+  --pf-text: #1a1311;
+  --pf-muted: #7b7069;
+  --pf-accent: #7c3539;
+  --pf-accent-hover: #65292c;
+  --pf-accent-soft: #f1e3e4;
+  --pf-espresso: #341815;
+  --pf-espresso-deep: #24100e;
+  --pf-espresso-border: #4f2a26;
+  --pf-espresso-muted: #a8918c;
+  --pf-warm: #8e4c3f;
+  --pf-warm-soft: #efe2de;
+  --pf-good: #2d6a4f;
+  --pf-warn: #9a4a18;
+  --pf-bad: #9f2525;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --pf-bg: #0d0f0e;
-    --pf-surface: #151816;
-    --pf-surface-2: #1c201e;
-    --pf-border: #282d2a;
-    --pf-text: #f0eee8;
-    --pf-muted: #9ca39d;
-    --pf-accent: #2dd4bf;
-    --pf-accent-hover: #5eead4;
-    --pf-accent-soft: #112926;
-    --pf-warm: #f59e0b;
-    --pf-warm-soft: #2b2112;
-    --pf-ink: #080a09;
-    --pf-good: #4ade80;
-    --pf-warn: #facc15;
+    --pf-bg: #160d0c;
+    --pf-surface: #221412;
+    --pf-surface-pure: #291816;
+    --pf-surface-2: #2f1c19;
+    --pf-border: #432724;
+    --pf-text: #f4f1ea;
+    --pf-muted: #aa9590;
+    --pf-accent: #c96d72;
+    --pf-accent-hover: #db8287;
+    --pf-accent-soft: #3a1d1f;
+    --pf-espresso: #23100e;
+    --pf-espresso-deep: #180b09;
+    --pf-espresso-border: #492622;
+    --pf-espresso-muted: #aa9590;
+    --pf-warm: #d4897c;
+    --pf-warm-soft: #381f1b;
+    --pf-good: #6ee7b7;
+    --pf-warn: #fbbf24;
     --pf-bad: #f87171;
   }
 }
@@ -65,24 +73,23 @@ body {
 }
 
 .pf-glass {
-  background: color-mix(in srgb, var(--pf-bg) 82%, transparent);
+  background: color-mix(in srgb, var(--pf-bg) 86%, transparent);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-}
-
-.pf-hero-bg {
-  background-image:
-    radial-gradient(ellipse 70% 50% at 50% -10%, color-mix(in srgb, var(--pf-accent) 14%, transparent), transparent 70%),
-    radial-gradient(ellipse 45% 35% at 85% 15%, color-mix(in srgb, var(--pf-warm) 10%, transparent), transparent 65%),
-    radial-gradient(color-mix(in srgb, var(--pf-border) 90%, transparent) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 26px 26px;
 }
 
 .pf-card {
   background: var(--pf-surface);
   border: 1px solid var(--pf-border);
-  border-radius: 16px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(26, 19, 17, 0.04);
+}
+
+.pf-card-pure {
+  background: var(--pf-surface-pure);
+  border: 1px solid var(--pf-border);
+  border-radius: 14px;
+  box-shadow: 0 2px 6px rgba(26, 19, 17, 0.05);
 }
 
 .pf-card-hover {
@@ -91,15 +98,21 @@ body {
 
 .pf-card-hover:hover {
   transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--pf-accent) 45%, var(--pf-border));
-  box-shadow: 0 14px 34px -16px rgba(15, 118, 110, 0.22);
+  border-color: color-mix(in srgb, var(--pf-accent) 55%, var(--pf-border));
+  box-shadow: 0 16px 36px -18px rgba(52, 24, 21, 0.24);
+}
+
+.pf-espresso-band {
+  background: var(--pf-espresso);
+  color: #f4f1ea;
 }
 
 .pf-dark-card {
-  background: linear-gradient(155deg, #121a18 0%, #0b0f0e 100%);
-  color: #f3f4f2;
-  border: 1px solid #22302c;
-  border-radius: 18px;
+  background: linear-gradient(160deg, #3a1b18 0%, #2c1311 100%);
+  color: #f4f1ea;
+  border: 1px solid var(--pf-espresso-border);
+  border-radius: 14px;
+  box-shadow: 0 16px 38px -18px rgba(26, 11, 10, 0.55);
 }
 
 .pf-muted {
@@ -115,7 +128,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border-radius: 11px;
+  border-radius: 7px;
   font-weight: 600;
   transition: transform 0.12s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease, opacity 0.15s ease;
   cursor: pointer;
@@ -128,19 +141,19 @@ body {
 .pf-btn-primary {
   background: var(--pf-accent);
   color: #ffffff;
-  padding: 0.72rem 1.45rem;
-  box-shadow: 0 6px 18px -6px color-mix(in srgb, var(--pf-accent) 60%, transparent);
+  padding: 0.7rem 1.45rem;
+  box-shadow: 0 6px 18px -6px rgba(124, 53, 57, 0.55);
 }
 
 @media (prefers-color-scheme: dark) {
   .pf-btn-primary {
-    color: #071311;
+    color: #1a0b0a;
   }
 }
 
 .pf-btn-primary:hover {
   background: var(--pf-accent-hover);
-  box-shadow: 0 10px 24px -6px color-mix(in srgb, var(--pf-accent) 70%, transparent);
+  box-shadow: 0 10px 24px -6px rgba(124, 53, 57, 0.65);
 }
 
 .pf-btn-primary:disabled {
@@ -149,22 +162,22 @@ body {
 }
 
 .pf-btn-ghost {
-  background: var(--pf-surface);
+  background: var(--pf-surface-pure);
   color: var(--pf-text);
   border: 1px solid var(--pf-border);
-  padding: 0.72rem 1.45rem;
+  padding: 0.7rem 1.45rem;
 }
 
 .pf-btn-ghost:hover {
-  background: var(--pf-surface-2);
-  border-color: color-mix(in srgb, var(--pf-text) 22%, var(--pf-border));
+  background: var(--pf-surface);
+  border-color: color-mix(in srgb, var(--pf-accent) 40%, var(--pf-border));
 }
 
 .pf-input {
   width: 100%;
-  background: var(--pf-surface);
+  background: var(--pf-surface-pure);
   border: 1px solid var(--pf-border);
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 0.65rem 0.9rem;
   color: var(--pf-text);
   outline: none;
@@ -181,8 +194,8 @@ body {
   gap: 0.4rem;
   font-size: 0.75rem;
   font-weight: 600;
-  border-radius: 999px;
-  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  padding: 0.25rem 0.7rem;
   border: 1px solid var(--pf-border);
 }
 

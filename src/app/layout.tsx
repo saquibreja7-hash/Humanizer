@@ -46,7 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       className={`${dmSans.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-screen">{children}</body>
+      <body className="min-h-dvh">{children}</body>
     </html>
   );
 }

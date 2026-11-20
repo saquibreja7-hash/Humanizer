@@ -39,31 +39,21 @@ export default function PublicHeader() {
   return (
     <header
       className="sticky top-0 z-40 pf-glass border-b"
-      style={{ borderColor: "color-mix(in srgb, var(--pf-border) 80%, transparent)" }}
+      style={{ borderColor: "var(--pf-border)" }}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-5 h-16 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-6 shrink-0">
+      <div className="max-w-5xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
+        <div className="flex items-center gap-8 shrink-0">
           <Link
             href="/"
-            className="inline-flex items-center rounded-md overflow-hidden border shadow-2xs shrink-0"
-            style={{ borderColor: "var(--pf-border)", background: "var(--pf-surface-2)" }}
+            className="inline-flex items-center gap-2 font-bold text-base tracking-tight whitespace-nowrap"
           >
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 font-bold text-sm tracking-tight whitespace-nowrap">
-              <span
-                className="inline-flex items-center justify-center w-5 h-5 rounded shrink-0"
-                style={{ background: "var(--pf-espresso)", color: "#f4f1ea" }}
-              >
-                <BrandAsterisk size={12} />
-              </span>
-              <span>{BRAND.name.toLowerCase()}.</span>
-            </span>
             <span
-              className="px-2.5 py-2 text-[11px] font-mono hidden sm:inline-flex items-center"
-              style={{ background: "var(--pf-espresso)", color: "#f4f1ea" }}
-              aria-hidden="true"
+              className="inline-flex items-center justify-center w-6 h-6 rounded-md shrink-0"
+              style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}
             >
-              =
+              <BrandAsterisk size={13} />
             </span>
+            <span>{BRAND.name}</span>
           </Link>
 
           <nav
@@ -76,7 +66,7 @@ export default function PublicHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`transition-colors whitespace-nowrap ${
+                  className={`transition-colors whitespace-nowrap py-2 ${
                     active
                       ? "text-[var(--pf-accent)] font-semibold"
                       : "hover:text-[var(--pf-text)]"
@@ -89,23 +79,23 @@ export default function PublicHeader() {
           </nav>
         </div>
 
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-2.5 shrink-0">
           <Link
             href="/login"
-            className="pf-btn pf-btn-primary text-xs sm:text-sm px-3.5 sm:px-4 py-2 whitespace-nowrap"
+            className="pf-btn pf-btn-ghost text-xs sm:text-sm px-4 py-2 min-h-[38px] whitespace-nowrap"
           >
             Log in
           </Link>
           <Link
             href="/login?mode=signup"
-            className="pf-btn pf-btn-ghost text-xs sm:text-sm px-4 py-2 whitespace-nowrap hidden sm:inline-flex"
+            className="pf-btn pf-btn-primary text-xs sm:text-sm px-4 py-2 min-h-[38px] whitespace-nowrap hidden sm:inline-flex"
           >
             Sign up
           </Link>
           <button
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
-            className="md:hidden pf-btn pf-btn-ghost text-sm px-3 py-2 whitespace-nowrap"
+            className="md:hidden pf-btn pf-btn-ghost text-sm px-3 py-2 min-h-[38px] min-w-[38px] whitespace-nowrap"
             aria-label="Toggle navigation menu"
             aria-expanded={mobileOpen}
           >
@@ -116,8 +106,8 @@ export default function PublicHeader() {
 
       {mobileOpen && (
         <div
-          className="md:hidden border-t px-4 py-3 space-y-1 text-sm"
-          style={{ borderColor: "var(--pf-border)", background: "var(--pf-surface)" }}
+          className="md:hidden border-t px-5 py-3 space-y-1 text-sm"
+          style={{ borderColor: "var(--pf-border)", background: "var(--pf-bg)" }}
         >
           {NAV_LINKS.map((item) => {
             const active = pathname === item.href;
@@ -134,13 +124,13 @@ export default function PublicHeader() {
               </Link>
             );
           })}
-          <div className="pt-2 mt-2 border-t flex gap-2" style={{ borderColor: "var(--pf-border)" }}>
+          <div className="pt-2 mt-2 border-t" style={{ borderColor: "var(--pf-border)" }}>
             <Link
               href="/login?mode=signup"
               onClick={() => setMobileOpen(false)}
               className="pf-btn pf-btn-primary text-xs w-full py-2.5 whitespace-nowrap"
             >
-              Create free account
+              Sign up free
             </Link>
           </div>
         </div>

@@ -44,7 +44,7 @@ export default function PrivacyPage() {
           <table className="w-full text-left text-xs sm:text-sm">
             <thead>
               <tr
-                className="border-b text-[11px] uppercase tracking-wider pf-muted"
+                className="border-b text-xs pf-muted"
                 style={{ borderColor: "var(--pf-border)", background: "var(--pf-surface)" }}
               >
                 <th className="py-3 px-4 font-semibold">Category</th>

@@ -40,7 +40,7 @@ export function DocsCodeTabs({
               className="px-3 py-1 rounded text-xs font-semibold cursor-pointer transition-colors"
               style={
                 lang === t.id
-                  ? { background: "var(--pf-accent)", color: "#ffffff" }
+                  ? { background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }
                   : { color: "var(--pf-espresso-muted)" }
               }
             >
@@ -56,14 +56,17 @@ export function DocsCodeTabs({
             setCopied(true);
             setTimeout(() => setCopied(false), 1800);
           }}
-          className="text-xs font-semibold px-3 py-1.5 rounded-md border text-[#f4f1ea] hover:bg-white/10 cursor-pointer"
-          style={{ borderColor: "var(--pf-espresso-border)" }}
+          className="text-xs font-semibold px-3 py-1.5 rounded-md border hover:bg-white/10 cursor-pointer"
+          style={{ borderColor: "var(--pf-espresso-border)", color: "var(--pf-espresso-ink)" }}
         >
           {copied ? "✓ Copied" : "Copy example"}
         </button>
       </div>
 
-      <pre className="p-5 text-xs sm:text-[13px] leading-relaxed overflow-x-auto pf-mono text-[#efe7e2]">
+      <pre
+        className="p-5 text-xs sm:text-[13px] leading-relaxed overflow-x-auto pf-mono"
+        style={{ color: "var(--pf-espresso-ink)" }}
+      >
         <code>{map[lang]}</code>
       </pre>
     </div>
@@ -124,7 +127,7 @@ export function DocsResponseTabs() {
               className="px-3 py-1 rounded text-xs font-semibold cursor-pointer transition-colors"
               style={
                 tab === t.id
-                  ? { background: "var(--pf-accent)", color: "#ffffff" }
+                  ? { background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }
                   : { color: "var(--pf-espresso-muted)" }
               }
             >
@@ -140,14 +143,17 @@ export function DocsResponseTabs() {
             setCopied(true);
             setTimeout(() => setCopied(false), 1800);
           }}
-          className="text-xs font-semibold px-3 py-1.5 rounded-md border text-[#f4f1ea] hover:bg-white/10 cursor-pointer"
-          style={{ borderColor: "var(--pf-espresso-border)" }}
+          className="text-xs font-semibold px-3 py-1.5 rounded-md border hover:bg-white/10 cursor-pointer"
+          style={{ borderColor: "var(--pf-espresso-border)", color: "var(--pf-espresso-ink)" }}
         >
           {copied ? "✓ Copied" : "Copy JSON"}
         </button>
       </div>
 
-      <pre className="p-5 text-xs sm:text-[13px] leading-relaxed overflow-x-auto pf-mono text-[#efe7e2]">
+      <pre
+        className="p-5 text-xs sm:text-[13px] leading-relaxed overflow-x-auto pf-mono"
+        style={{ color: "var(--pf-espresso-ink)" }}
+      >
         <code>{samples[tab]}</code>
       </pre>
     </div>

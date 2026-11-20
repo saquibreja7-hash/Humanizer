@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+.env
+.env.local
+.env.*.local
+*.db
+*.db-wal
+*.db-shm
+logs/
+__pycache__/
+*.pyc
+.venv/

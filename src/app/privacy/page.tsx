@@ -1,114 +1,114 @@
 import type { Metadata } from "next";
-import LegalLayout, { LegalH2 } from "@/components/LegalLayout";
+import LegalLayout, { LegalCallout, LegalH2 } from "@/components/LegalLayout";
 import { BRAND } from "@/lib/brand";
 
 export const metadata: Metadata = { title: "Privacy Policy" };
 
 export default function PrivacyPage() {
   return (
-    <LegalLayout title="Privacy Policy" updated="November 2026">
-      <p>
-        {BRAND.name} is built on a strict <strong>zero-text-retention</strong> principle: your
-        writing is processed in memory and never stored. This page explains exactly what we
-        collect, what we never collect, and the choices you have.
-      </p>
+    <LegalLayout
+      title="Privacy Policy"
+      updated="November 2026"
+      eyebrow="Zero Text Retention"
+      subtitle={`Plain-English privacy terms for ${BRAND.name}. Your writing stays strictly yours—never logged, never stored, and never used for training.`}
+      highlights={[
+        { value: "0 bytes", label: "Draft text stored in DB" },
+        { value: "RAM only", label: "Discarded after response" },
+        { value: "No training", label: "Never trains future models" },
+      ]}
+    >
+      <LegalCallout title="Our Core Promise">
+        We <strong>never store your text</strong>. Every draft, paragraph, and uploaded Word
+        document is processed exclusively in volatile server memory during your request and
+        discarded the instant your response finishes.
+      </LegalCallout>
 
-      <LegalH2>The short version</LegalH2>
-      <ul className="list-disc pl-6 space-y-2">
-        <li>
-          <strong>We never store your text.</strong> Neither your input drafts nor the refined
-          output are written to our database or logs.
-        </li>
-        <li>
-          <strong>We never train on your writing.</strong> Your documents are not used to train
-          any model, ours or anyone else&apos;s.
-        </li>
-        <li>
-          <strong>We keep the bare minimum</strong> needed to run your account: email, password
-          hash, plan, word counts, timestamps, and fidelity metrics.
-        </li>
-        <li>
-          <strong>You can delete everything at any time</strong> — just email us.
-        </li>
-      </ul>
+      <section className="space-y-3">
+        <LegalH2>1. Zero Text Retention</LegalH2>
+        <p className="pf-muted">
+          When you refine text in the {BRAND.name} Studio or call{" "}
+          <code className="pf-mono">POST /api/v1/rewrite</code>, your input and refined output live
+          solely in temporary RAM for the lifetime of that request. We do not write draft content to
+          databases, analytics tools, error trackers, or disk backups.
+        </p>
+        <p className="pf-muted">
+          Uploaded <code className="pf-mono">.docx</code> files are parsed in memory to extract
+          headings and paragraphs and discarded immediately—no uploaded document is ever archived on
+          our servers.
+        </p>
+      </section>
 
-      <LegalH2>What we collect and why</LegalH2>
-      <p>
-        <strong>Account data.</strong> Email address and a salted hash of your password. Used for
-        login and receipts. Passwords are never stored in plain text.
-      </p>
-      <p>
-        <strong>Usage metrics (anonymous).</strong> For each rewrite we store only: word count,
-        mode used, number of rounds, elapsed time, and the fidelity metrics (percentage of phrases
-        rebuilt, counts of quotes and numbers preserved). There is no text column anywhere in our
-        database — this is enforced at the schema level and verified in our automated tests.
-      </p>
-      <p>
-        <strong>Billing records.</strong> Plan, purchase history, and payment provider event
-        identifiers — handled by our payment processors (see below), who may collect what their
-        policies require to process your payment.
-      </p>
-      <p>
-        <strong>API keys.</strong> If you use the developer API, we store only a cryptographic
-        hash of each key. The full key is shown exactly once at creation and cannot be recovered.
-      </p>
+      <section className="space-y-3">
+        <LegalH2>2. What We Store vs. What We Never Store</LegalH2>
+        <div className="overflow-x-auto rounded-xl border" style={{ borderColor: "var(--pf-border)" }}>
+          <table className="w-full text-left text-xs sm:text-sm">
+            <thead>
+              <tr
+                className="border-b text-[11px] uppercase tracking-wider pf-muted"
+                style={{ borderColor: "var(--pf-border)", background: "var(--pf-surface)" }}
+              >
+                <th className="py-3 px-4 font-semibold">Category</th>
+                <th className="py-3 px-4 font-semibold">Stored?</th>
+                <th className="py-3 px-4 font-semibold">Purpose</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y" style={{ borderColor: "var(--pf-border)" }}>
+              <tr>
+                <td className="py-3 px-4 font-semibold">Your drafts &amp; refined output</td>
+                <td className="py-3 px-4 pf-mono font-bold" style={{ color: "var(--pf-good)" }}>Never</td>
+                <td className="py-3 px-4 pf-muted">Processed in memory only; never saved or trained on.</td>
+              </tr>
+              <tr>
+                <td className="py-3 px-4 font-semibold">Account email &amp; password hash</td>
+                <td className="py-3 px-4 pf-mono">Yes</td>
+                <td className="py-3 px-4 pf-muted">Sign-in authentication (salted scrypt hash only).</td>
+              </tr>
+              <tr>
+                <td className="py-3 px-4 font-semibold">Anonymous word count ledger</td>
+                <td className="py-3 px-4 pf-mono">Yes</td>
+                <td className="py-3 px-4 pf-muted">Accurate monthly credit balance &amp; billing receipts.</td>
+              </tr>
+              <tr>
+                <td className="py-3 px-4 font-semibold">API key prefix &amp; SHA-256 hash</td>
+                <td className="py-3 px-4 pf-mono">Yes</td>
+                <td className="py-3 px-4 pf-muted">Authenticating and revoking developer API keys.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-      <LegalH2>What we never collect</LegalH2>
-      <p>
-        We do not store, log, or retain: your input text, your refined output text, your uploaded
-        documents, or the contents of any file you run through the .docx pipeline. Documents are
-        parsed in memory, streamed to the model, and discarded. We do not use cookies for
-        advertising or third-party tracking.
-      </p>
+      <section className="space-y-3">
+        <LegalH2>3. Payments &amp; Third-Party Processors</LegalH2>
+        <p className="pf-muted">
+          We never see or store your card numbers or UPI credentials. Global USD payments are
+          processed by <strong>Dodo Payments</strong> (Merchant of Record, handling global VAT/GST),
+          and India INR payments are processed by <strong>Razorpay</strong>. We only store your
+          active plan tier and subscription status reference.
+        </p>
+      </section>
 
-      <LegalH2>Processing by our model provider</LegalH2>
-      <p>
-        To refine your text, it must be sent to the language-model service we run our engine on.
-        The text transits encrypted (TLS) to that service and is used solely to generate your
-        result; it is not stored by us afterward, and we do not send any identifying information
-        along with it.
-      </p>
+      <section className="space-y-3">
+        <LegalH2>4. Cookies &amp; Session Security</LegalH2>
+        <p className="pf-muted">
+          {BRAND.name} uses a single <code className="pf-mono">HttpOnly</code>,{" "}
+          <code className="pf-mono">SameSite=Lax</code> session cookie strictly to keep you signed
+          in. We do not load third-party ad trackers or cross-site behavioral pixels inside the
+          Writing Studio.
+        </p>
+      </section>
 
-      <LegalH2>Data retention and deletion</LegalH2>
-      <p>
-        Account and billing records are kept while your account is active. Sessions expire after
-        30 days. You may request full deletion of your account and all associated records at any
-        time by emailing{" "}
-        <a className="pf-link" href={`mailto:${BRAND.supportEmail}`}>
-          {BRAND.supportEmail}
-        </a>
-        ; we action verified requests within 30 days.
-      </p>
-
-      <LegalH2>Security</LegalH2>
-      <p>
-        Traffic is encrypted in transit. Passwords are hashed with scrypt and unique salts. Session
-        cookies are signed, HTTP-only, and SameSite-protected. API keys are stored only as SHA-256
-        hashes.
-      </p>
-
-      <LegalH2>Children&apos;s privacy</LegalH2>
-      <p>
-        {BRAND.name} is not directed at children under 13 (or 16 in the EEA), and we do not
-        knowingly collect their personal data.
-      </p>
-
-      <LegalH2>Your rights</LegalH2>
-      <p>
-        Depending on your jurisdiction (GDPR, CCPA, India&apos;s DPDP Act, and others), you may
-        have rights to access, correct, export, or delete your personal data. Because we store so
-        little, most requests resolve to account deletion. Contact{" "}
-        <a className="pf-link" href={`mailto:${BRAND.supportEmail}`}>
-          {BRAND.supportEmail}
-        </a>{" "}
-        and we will help.
-      </p>
-
-      <LegalH2>Changes to this policy</LegalH2>
-      <p>
-        We will post any changes on this page with an updated date. Material changes will also be
-        announced in-app.
-      </p>
+      <section className="space-y-3">
+        <LegalH2>5. Account Deletion &amp; Contact</LegalH2>
+        <p className="pf-muted">
+          You may request complete deletion of your account email, session records, and credit
+          ledger at any time by emailing{" "}
+          <a href={`mailto:${BRAND.supportEmail}`} className="pf-link font-semibold">
+            {BRAND.supportEmail}
+          </a>
+          . We complete deletion requests within 7 days.
+        </p>
+      </section>
     </LegalLayout>
   );
 }

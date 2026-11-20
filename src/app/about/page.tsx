@@ -118,15 +118,10 @@ export default function AboutPage() {
         {/* Why We Built ProseFlow */}
         <section className="max-w-6xl mx-auto px-5 py-16 md:py-20 grid lg:grid-cols-12 gap-10 items-center">
           <Reveal className="lg:col-span-6 space-y-5">
-            <span
-              className="pf-badge uppercase tracking-wider text-[11px]"
-              style={{ background: "var(--pf-surface-pure)", color: "var(--pf-accent)" }}
-            >
-              ✳ Editorial Philosophy
-            </span>
+            <div className="pf-eyebrow">01 · Editorial Philosophy</div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-[-0.03em] leading-[1.12]">
               Good writing breathes.{" "}
-              <span className="pf-muted font-medium">Mechanical drafts don&apos;t.</span>
+              <span className="pf-serif italic font-normal">Mechanical drafts don&apos;t.</span>
             </h2>
             <p className="pf-muted text-[15px] leading-relaxed">
               Modern drafts often arrive with predictable sentence lengths, stiff transitions, and
@@ -210,12 +205,7 @@ export default function AboutPage() {
         {/* Built For Real Writers */}
         <section className="max-w-6xl mx-auto px-5 py-16 md:py-20">
           <Reveal className="text-center max-w-2xl mx-auto mb-12">
-            <span
-              className="pf-badge uppercase tracking-wider text-[11px] mb-3"
-              style={{ background: "var(--pf-surface-pure)", color: "var(--pf-accent)" }}
-            >
-              ✳ Built For Honest Writers
-            </span>
+            <div className="pf-eyebrow mb-3">03 · Writers</div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-[-0.03em]">
               Who writes with {BRAND.name}
             </h2>

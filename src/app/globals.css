@@ -199,6 +199,15 @@ body {
   border: 1px solid var(--pf-border);
 }
 
+.pf-eyebrow {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pf-accent);
+}
+
 .pf-link {
   color: var(--pf-accent);
   text-decoration: underline;
@@ -207,11 +216,11 @@ body {
 
 /* Seamless feathered mask so hero hand rises naturally out of the limestone canvas */
 .pf-hero-photo-mask {
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, black 14%, black 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 20%, black 100%);
   -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, black 14%, black 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 20%, black 100%);
   mask-composite: intersect;
 }
 

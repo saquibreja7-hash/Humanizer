@@ -110,12 +110,8 @@ export default function HomePage() {
           <div className="relative max-w-6xl mx-auto px-5 pt-14 md:pt-20 pb-0">
             {/* Headline & CTAs */}
             <div className="max-w-3xl mx-auto text-center pf-fade-in">
-              <div
-                className="inline-flex items-center gap-2 text-xs font-semibold mb-6 px-3 py-1.5 rounded-md border"
-                style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
-              >
-                <span className="w-2 h-2 rounded-full pf-pulse-dot" style={{ background: "var(--pf-accent)" }} />
-                <span>Iterative Base-Model Engine · Live Parallel Streaming</span>
+              <div className="pf-eyebrow mb-4">
+                Natural Voice Studio · Zero Text Retention
               </div>
 
               <h1 className="text-4xl sm:text-6xl md:text-[66px] font-bold tracking-[-0.035em] leading-[1.03]">
@@ -237,13 +233,9 @@ export default function HomePage() {
         <section id="about" className="pf-espresso-band pt-20 md:pt-24 pb-16 md:pb-20 scroll-mt-16">
           <div className="max-w-5xl mx-auto px-5 text-center">
             <Reveal>
-              <span
-                className="inline-flex items-center gap-2 px-3 py-1 rounded text-[11px] font-bold uppercase tracking-widest mb-8"
-                style={{ background: "#dfdacc", color: "#1a1311" }}
-              >
-                <BrandAsterisk size={11} />
-                <span>About {BRAND.name}</span>
-              </span>
+              <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#e5a6aa] mb-6">
+                About {BRAND.name}
+              </div>
 
               <h2 className="text-2xl sm:text-4xl md:text-[42px] font-medium leading-[1.2] tracking-[-0.025em] max-w-4xl mx-auto text-[#f4f1ea]">
                 {BRAND.name}{" "}
@@ -327,15 +319,10 @@ export default function HomePage() {
         <section id="demo" className="max-w-5xl mx-auto px-5 py-20 md:py-24 scroll-mt-16">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-10">
-              <span
-                className="pf-badge mb-4 uppercase tracking-wider text-[11px]"
-                style={{ background: "var(--pf-surface-pure)", color: "var(--pf-accent)" }}
-              >
-                ✳ Interactive Studio
-              </span>
+              <div className="pf-eyebrow mb-3">01 · Interactive Studio</div>
               <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.03em]">
                 See the difference{" "}
-                <span className="pf-muted font-medium">line by line</span>
+                <span className="pf-serif italic font-normal">line by line</span>
               </h2>
               <p className="pf-muted mt-3 text-base">
                 Switch writing genres, compare Option A vs Option B, or inspect the sentence rhythm graph.
@@ -356,30 +343,25 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto px-5">
             <Reveal>
               <div className="max-w-2xl">
-                <span
-                  className="pf-badge mb-4 uppercase tracking-wider text-[11px]"
-                  style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)", borderColor: "transparent" }}
-                >
-                  How it works
-                </span>
+                <div className="pf-eyebrow mb-3">02 · Workflow</div>
                 <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em]">
-                  Three calm steps{" "}
-                  <span className="pf-muted font-medium">from rough draft to natural prose.</span>
+                  Three calm steps from rough draft to{" "}
+                  <span className="pf-serif italic font-normal">natural prose.</span>
                 </h2>
               </div>
             </Reveal>
 
-            <div className="mt-10 grid gap-5 md:grid-cols-3">
+            <div
+              className="mt-10 grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x border-t border-b"
+              style={{ borderColor: "var(--pf-border)" }}
+            >
               {STEPS.map((s, idx) => (
                 <Reveal key={s.num} delayMs={idx * 90}>
-                  <div className="pf-card-pure pf-card-hover p-6 md:p-7 flex flex-col h-full">
-                    <span
-                      className="pf-mono text-xs font-bold px-2.5 py-1 rounded self-start"
-                      style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }}
-                    >
-                      STEP {s.num}
+                  <div className="py-7 md:px-7 first:md:pl-0 last:md:pr-0 flex flex-col h-full">
+                    <span className="pf-mono text-xs font-bold pf-accent tracking-wider">
+                      {s.num}
                     </span>
-                    <h3 className="text-xl font-bold mt-4">{s.title}</h3>
+                    <h3 className="text-xl font-bold mt-3">{s.title}</h3>
                     <p className="pf-muted mt-2.5 text-sm leading-relaxed">{s.body}</p>
                   </div>
                 </Reveal>
@@ -392,15 +374,10 @@ export default function HomePage() {
         <section id="features" className="max-w-6xl mx-auto px-5 py-20 md:py-24 scroll-mt-16">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <span
-                className="pf-badge mb-4 uppercase tracking-wider text-[11px]"
-                style={{ background: "var(--pf-surface-pure)", color: "var(--pf-accent)" }}
-              >
-                ✳ Crafted for real writers
-              </span>
+              <div className="pf-eyebrow mb-3">03 · Capabilities</div>
               <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.03em]">
                 Keep your facts.{" "}
-                <span className="pf-muted font-medium">Keep your voice.</span>
+                <span className="pf-serif italic font-normal">Keep your voice.</span>
               </h2>
             </div>
           </Reveal>

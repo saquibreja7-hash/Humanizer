@@ -94,14 +94,10 @@ export default function DemoPage() {
         {/* Interactive Before/After Studio */}
         <section id="interactive-studio" className="max-w-5xl mx-auto px-5 py-16 md:py-20 scroll-mt-20">
           <Reveal className="text-center max-w-2xl mx-auto mb-10">
-            <span
-              className="pf-badge uppercase tracking-wider text-[11px] mb-3"
-              style={{ background: "var(--pf-surface-pure)", color: "var(--pf-accent)" }}
-            >
-              ✳ Line-by-Line Comparison
-            </span>
+            <div className="pf-eyebrow mb-3">01 · Line-by-Line Comparison</div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em]">
-              Compare original vs. refined output
+              Compare original vs.{" "}
+              <span className="pf-serif italic font-normal">refined output</span>
             </h2>
             <p className="pf-muted mt-2.5 text-sm sm:text-base">
               Notice how short and long sentences mix naturally while numbers, quotes, and meaning stay locked.

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Newsreader, JetBrains_Mono } from "next/font/google";
+import { DM_Sans, Newsreader, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { BRAND } from "@/lib/brand";
 
-const plusJakarta = Plus_Jakarta_Sans({
+const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${plusJakarta.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
+      className={`${dmSans.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
     >
       <body className="min-h-screen">{children}</body>
     </html>

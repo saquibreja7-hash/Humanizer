@@ -236,10 +236,10 @@ export default function HomePage() {
 
                 <div className="relative w-[300px] sm:w-[360px] lg:w-[400px] -mb-1">
                   <Image
-                    src="/images/hero-pebble.jpg"
-                    alt="Sculpted sage-olive ProseFlow emblem held in hand on warm limestone"
-                    width={1024}
-                    height={1024}
+                    src="/images/hero-writing.jpg"
+                    alt="Hand holding a matte oxblood-burgundy fountain pen with brushed gold nib on warm limestone"
+                    width={840}
+                    height={934}
                     priority
                     className="w-full h-auto block pf-hero-photo-mask select-none"
                   />
@@ -359,10 +359,10 @@ export default function HomePage() {
                 style={{ borderColor: "var(--pf-espresso-border)" }}
               >
                 <Image
-                  src="/images/editorial-prism.jpg"
-                  alt="Sculpted deep espresso architectural arch and oxblood glass prism refracting warm light"
-                  width={1376}
-                  height={768}
+                  src="/images/editorial-desk.jpg"
+                  alt="Open cream linen notebook with an oxblood-burgundy fountain pen on a dark walnut writer desk in warm sunlight"
+                  width={1280}
+                  height={714}
                   className="w-full h-[220px] sm:h-[320px] md:h-[400px] object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
                 />
                 <div
@@ -378,7 +378,7 @@ export default function HomePage() {
                       Iterative Base-Model Craft
                     </div>
                     <div className="text-lg sm:text-xl font-medium text-[#f4f1ea] mt-0.5">
-                      Refract stiff machine rhythm into effortless human cadence.
+                      Craft effortless human cadence on every page.
                     </div>
                   </div>
                   <a href="#demo" className="pf-btn pf-btn-primary text-xs px-4 py-2">

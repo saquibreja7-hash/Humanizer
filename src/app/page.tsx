@@ -1,9 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import { BRAND } from "@/lib/brand";
 import BeforeAfter from "@/components/BeforeAfter";
 import PricingSection from "@/components/PricingSection";
-import Reveal from "@/components/Reveal";
-import PublicHeader, { BrandAsterisk } from "@/components/PublicHeader";
+import PublicHeader from "@/components/PublicHeader";
 import PublicFooter from "@/components/PublicFooter";
 
 const STEPS = [
@@ -25,22 +25,10 @@ const STEPS = [
 ];
 
 const PERSONAS = [
-  {
-    role: "Researchers",
-    desc: "Citations, dates, and quotes stay locked.",
-  },
-  {
-    role: "Bloggers",
-    desc: "Natural pacing and varied sentence rhythm.",
-  },
-  {
-    role: "Marketing Teams",
-    desc: "Cleaner briefs, or automate via REST API.",
-  },
-  {
-    role: "ESL Writers",
-    desc: "Idiomatic English in your own voice.",
-  },
+  { role: "Researchers", desc: "Citations, dates, and quotes stay locked." },
+  { role: "Bloggers", desc: "Natural pacing and varied sentence rhythm." },
+  { role: "Marketing Teams", desc: "Cleaner briefs, or automate via REST API." },
+  { role: "ESL Writers", desc: "Idiomatic English in your own voice." },
 ];
 
 const FAQ = [
@@ -68,495 +56,279 @@ const FAQ = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <PublicHeader />
 
       <main className="flex-1">
-        {/* Hero on Warm Limestone with Animated Pipeline Pulses + Seamless Pebble Photograph */}
-        <section className="relative overflow-hidden">
-          {/* Architectural pipeline SVG with animated burgundy pulses */}
-          <svg
-            className="pointer-events-none absolute inset-0 w-full h-full"
-            viewBox="0 0 1440 820"
-            fill="none"
-            preserveAspectRatio="xMidYMid slice"
-            aria-hidden="true"
-          >
-            <g stroke="var(--pf-border)" strokeWidth="1.2" opacity="0.75">
-              <path d="M0 190 H190 V310 H520" />
-              <path d="M0 370 H270 V490 H540" />
-              <path d="M1440 180 H1210 V310 H920" />
-              <path d="M1440 380 H1160 V500 H900" />
-              <path d="M310 0 V210 H500" />
-              <path d="M1130 0 V220 H940" />
-              <rect x="166" y="296" width="48" height="28" rx="6" fill="var(--pf-surface)" />
-              <rect x="1220" y="368" width="52" height="24" rx="6" fill="var(--pf-surface)" />
-              <rect x="82" y="358" width="38" height="24" rx="6" fill="var(--pf-surface)" />
-            </g>
-            {/* Animated oxblood burgundy light pulses flowing along the paths */}
-            <g stroke="var(--pf-accent)" strokeWidth="2" strokeLinecap="round" opacity="0.7">
-              <path d="M0 190 H190 V310 H520" className="pf-flow-line" />
-              <path d="M1440 180 H1210 V310 H920" className="pf-flow-line-slow" />
-              <path d="M0 370 H270 V490 H540" className="pf-flow-line-slow" />
-              <path d="M1440 380 H1160 V500 H900" className="pf-flow-line" />
-            </g>
-          </svg>
+        {/* Clean White Hero + Fountain Pen Visual */}
+        <section className="max-w-5xl mx-auto px-5 pt-14 md:pt-20 pb-12 text-center">
+          <h1 className="text-4xl sm:text-6xl font-bold tracking-[-0.035em] leading-[1.04]">
+            Smarter Natural{" "}
+            <span className="pf-muted font-medium">Writing Refinement</span>
+          </h1>
 
-          <div className="relative max-w-6xl mx-auto px-5 pt-14 md:pt-20 pb-0">
-            {/* Headline & CTAs */}
-            <div className="max-w-3xl mx-auto text-center pf-fade-in">
-              <h1 className="text-4xl sm:text-6xl md:text-[66px] font-bold tracking-[-0.035em] leading-[1.03]">
-                Smarter{" "}
-                <span className="pf-muted font-medium">Natural</span>
-                <br />
-                Writing Refinement
-              </h1>
+          <p className="pf-muted mt-5 text-base md:text-lg leading-relaxed max-w-md mx-auto">
+            Clear, natural prose with every fact preserved.
+          </p>
 
-              <p className="pf-muted mt-5 text-base md:text-lg leading-relaxed max-w-md mx-auto">
-                Clear, natural prose with every fact preserved.
-              </p>
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+            <Link href="/login?mode=signup" className="pf-btn pf-btn-primary text-sm px-6 py-3">
+              Get started free
+            </Link>
+            <a href="#demo" className="pf-btn pf-btn-ghost text-sm px-6 py-3">
+              See live demo
+            </a>
+          </div>
 
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <a href="/login?mode=signup" className="pf-btn pf-btn-primary text-sm px-6 py-3">
-                  Get started free
-                </a>
-                <a href="#demo" className="pf-btn pf-btn-ghost text-sm px-6 py-3">
-                  See live demo
-                </a>
-              </div>
-            </div>
-
-            {/* Iconic Reference Composition: Editorial left copy + Seamless Hero Hand/Pebble Center + 2 Espresso Ring Cards */}
-            <div className="mt-8 md:mt-6 grid lg:grid-cols-12 gap-6 items-end relative">
-              {/* Left editorial blurb */}
-              <div className="lg:col-span-4 pb-8 md:pb-12 order-2 lg:order-1">
-                <div className="inline-flex items-center gap-1.5 text-xs font-semibold pf-muted mb-3">
-                  <BrandAsterisk size={11} />
-                  <span>Natural Voice Engine</span>
-                </div>
-                <p className="text-xl md:text-[22px] font-medium leading-snug tracking-[-0.02em]">
-                  Remove stiff phrasing and restore natural cadence,{" "}
-                  <span className="pf-muted">
-                    while keeping every quote and figure intact.
-                  </span>
-                </p>
-              </div>
-
-              {/* Center Hero Photograph rising flush out of the Espresso band */}
-              <div className="lg:col-span-4 order-1 lg:order-2 flex justify-center relative">
-                <div className="relative w-[300px] sm:w-[360px] lg:w-[400px] -mb-1">
-                  <Image
-                    src="/images/hero-writing.jpg"
-                    alt="Hand holding a matte crimson fountain pen with brushed gold nib on white background"
-                    width={840}
-                    height={934}
-                    priority
-                    className="w-full h-auto block select-none"
-                  />
-                </div>
-              </div>
-
-              {/* Right Deep Espresso capability cards */}
-              <div className="lg:col-span-4 pb-8 md:pb-10 order-3 space-y-4">
-                <div className="pf-dark-card pf-card-hover p-5">
-                  <div className="flex items-center justify-between text-xs" style={{ color: "var(--pf-espresso-muted)" }}>
-                    <span>Phrasing rebuilt</span>
-                    <span
-                      className="px-2 py-0.5 rounded text-[11px] font-semibold"
-                      style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}
-                    >
-                      5 passes
-                    </span>
-                  </div>
-                  <div className="mt-2.5">
-                    <div className="text-3xl font-bold tracking-tight pf-mono" style={{ color: "var(--pf-espresso-ink)" }}>
-                      96.4%
-                    </div>
-                    <div className="mt-1.5 text-xs" style={{ color: "var(--pf-espresso-muted)" }}>
-                      Rebuilt in ~7.4s via parallel cloud streaming
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pf-dark-card pf-card-hover p-5">
-                  <div className="flex items-center justify-between text-xs" style={{ color: "var(--pf-espresso-muted)" }}>
-                    <span>Fidelity Shield &amp; privacy</span>
-                    <span
-                      className="px-2 py-0.5 rounded text-[11px] font-semibold"
-                      style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}
-                    >
-                      RAM only
-                    </span>
-                  </div>
-                  <div className="mt-2.5">
-                    <div className="text-3xl font-bold tracking-tight pf-mono" style={{ color: "var(--pf-espresso-ink)" }}>
-                      100% kept
-                    </div>
-                    <div className="mt-1.5 text-xs" style={{ color: "var(--pf-espresso-muted)" }}>
-                      Every quote &amp; figure checked, 0 bytes saved
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div className="mt-10 flex justify-center">
+            <div className="w-[240px] sm:w-[290px]">
+              <Image
+                src="/images/hero-writing.jpg"
+                alt="Hand holding a crimson fountain pen with gold nib on white background"
+                width={840}
+                height={934}
+                priority
+                className="w-full h-auto block select-none"
+              />
             </div>
           </div>
         </section>
 
-        {/* Full-Width Deep Espresso (#341815) Manifesto Band + Sculpted Editorial Prism Visual */}
-        <section id="about" className="pf-espresso-band pt-20 md:pt-24 pb-16 md:pb-20 scroll-mt-16">
-          <div className="max-w-5xl mx-auto px-5 text-center">
-            <Reveal>
-              <h2
-                className="text-2xl sm:text-4xl md:text-[42px] font-medium leading-[1.2] tracking-[-0.025em] max-w-3xl mx-auto"
-                style={{ color: "var(--pf-espresso-ink)" }}
-              >
-                {BRAND.name}{" "}
-                <span
-                  className="inline-flex items-center align-middle mx-1 rounded-md overflow-hidden border"
-                  style={{ borderColor: "var(--pf-espresso-border)" }}
-                  aria-hidden="true"
-                >
-                  <span className="px-1.5 py-1" style={{ background: "var(--pf-espresso-deep)", color: "var(--pf-espresso-ink)" }}><BrandAsterisk size={14} /></span>
-                  <span className="px-1.5 py-1" style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}><BrandAsterisk size={14} /></span>
-                  <span className="px-1.5 py-1" style={{ background: "var(--pf-bg)", color: "var(--pf-text)" }}><BrandAsterisk size={14} /></span>
-                </span>{" "}
-                turns mechanical drafts into natural prose{" "}
-                <span style={{ color: "var(--pf-espresso-muted)" }}>
-                  across essays, briefs, and documents.
-                </span>
+        {/* Emulate-inspired Cliché Highlighter Comparison */}
+        <section
+          id="about"
+          className="border-y py-16 md:py-20 scroll-mt-16"
+          style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
+        >
+          <div className="max-w-5xl mx-auto px-5">
+            <div className="max-w-2xl mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em]">
+                AI drafts write in clichés.
               </h2>
-            </Reveal>
+              <p className="pf-muted mt-2.5 text-base">
+                The same recycled openers and tidy three-part summaries give robotic text away in one sentence.
+              </p>
+            </div>
 
-            <Reveal delayMs={120}>
-              <div
-                className="mt-14 pt-10 border-t grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-0 sm:divide-x"
-                style={{ borderColor: "var(--pf-espresso-border)" }}
-              >
-                {[
-                  { big: "~8s", sub: "Parallel Cloud Streaming" },
-                  { big: "95%+", sub: "Stiff Phrasing Rebuilt" },
-                  { big: "0 bytes", sub: "Draft Text Ever Stored" },
-                ].map((stat) => (
-                  <div key={stat.sub} className="px-6" style={{ borderColor: "var(--pf-espresso-border)" }}>
-                    <div
-                      className="text-3xl md:text-4xl font-semibold tracking-tight pf-mono"
-                      style={{ color: "var(--pf-espresso-ink)" }}
-                    >
-                      {stat.big}
-                    </div>
-                    <div className="text-xs mt-2" style={{ color: "var(--pf-espresso-muted)" }}>
-                      {stat.sub}
-                    </div>
-                  </div>
-                ))}
+            <div className="grid md:grid-cols-2 gap-5">
+              <div className="pf-card-pure p-6 sm:p-7">
+                <div className="text-xs font-semibold pf-muted mb-3">Raw AI Draft</div>
+                <p className="pf-serif text-[16px] leading-[1.78] pf-muted">
+                  <mark
+                    className="px-1 rounded"
+                    style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }}
+                  >
+                    In today&apos;s rapidly evolving landscape,
+                  </mark>{" "}
+                  remote work has transformed modern teams.{" "}
+                  <mark
+                    className="px-1 rounded"
+                    style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }}
+                  >
+                    It is of paramount importance
+                  </mark>{" "}
+                  to foster cross-functional alignment,{" "}
+                  <mark
+                    className="px-1 rounded"
+                    style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }}
+                  >
+                    ultimately unlocking unprecedented value
+                  </mark>{" "}
+                  across every department.
+                </p>
               </div>
-            </Reveal>
 
-            {/* Bespoke Writer Desk Visual */}
-            <Reveal delayMs={200} className="mt-14">
-              <div
-                className="relative rounded-2xl overflow-hidden border"
-                style={{ borderColor: "var(--pf-espresso-border)" }}
-              >
-                <Image
-                  src="/images/editorial-desk.jpg"
-                  alt="Open cream linen notebook with an oxblood-burgundy fountain pen on a dark walnut writer desk in warm sunlight"
-                  width={1280}
-                  height={714}
-                  className="w-full h-[220px] sm:h-[320px] md:h-[400px] object-cover"
-                />
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(36, 16, 14, 0.82) 0%, rgba(36, 16, 14, 0.15) 45%, transparent 100%)",
-                  }}
-                />
-                <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex flex-wrap items-end justify-between gap-3 text-left">
-                  <div>
-                    <div className="text-xs font-semibold" style={{ color: "var(--pf-espresso-rose)" }}>
-                      Iterative Base-Model Engine
-                    </div>
-                    <div className="text-lg sm:text-xl font-medium mt-0.5" style={{ color: "var(--pf-espresso-ink)" }}>
-                      Clear human cadence on every page.
-                    </div>
-                  </div>
-                  <a href="#demo" className="pf-btn pf-btn-primary text-xs px-4 py-2">
-                    Try the live studio
-                  </a>
-                </div>
+              <div className="pf-card-pure p-6 sm:p-7" style={{ borderColor: "var(--pf-accent)" }}>
+                <div className="text-xs font-semibold pf-accent mb-3">Refined with {BRAND.name}</div>
+                <p className="pf-serif text-[16px] leading-[1.78]">
+                  Remote work changed how most teams run their day. People skip the commute and
+                  keep their own hours. The harder part is knowing when to log off, so clear habits
+                  matter more than long playbooks.
+                </p>
               </div>
-            </Reveal>
+            </div>
           </div>
         </section>
 
         {/* Interactive Studio Demo */}
-        <section id="demo" className="max-w-5xl mx-auto px-5 py-20 md:py-24 scroll-mt-16">
-          <Reveal>
-            <div className="text-center max-w-xl mx-auto mb-10">
-              <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.03em]">
-                Compare line by line
-              </h2>
-              <p className="pf-muted mt-3 text-base">
-                Switch genres, Option A/B, or sentence rhythm.
-              </p>
-            </div>
-          </Reveal>
-          <Reveal delayMs={100}>
-            <BeforeAfter />
-          </Reveal>
+        <section id="demo" className="max-w-5xl mx-auto px-5 py-16 md:py-20 scroll-mt-16">
+          <div className="text-center max-w-xl mx-auto mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em]">
+              Compare line by line
+            </h2>
+            <p className="pf-muted mt-2.5 text-base">
+              Switch genres, Option A/B, or sentence rhythm.
+            </p>
+          </div>
+          <BeforeAfter />
         </section>
 
-        {/* How it works — 3 editorial steps */}
+        {/* 3 Calm Steps (Hairline Editorial Index) */}
         <section
           id="how"
-          className="border-y py-20"
+          className="border-y py-16 md:py-20"
           style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
         >
-          <div className="max-w-6xl mx-auto px-5">
-            <Reveal>
-              <div className="max-w-2xl">
-                <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em]">
-                  Three calm steps from rough draft to natural prose.
-                </h2>
-              </div>
-            </Reveal>
+          <div className="max-w-5xl mx-auto px-5">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] mb-10">
+              Three calm steps from draft to natural prose.
+            </h2>
 
             <div
-              className="mt-10 grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x border-t border-b"
+              className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x border-t border-b"
               style={{ borderColor: "var(--pf-border)" }}
             >
-              {STEPS.map((s, idx) => (
-                <Reveal key={s.num} delayMs={idx * 90}>
-                  <div className="py-7 md:px-7 first:md:pl-0 last:md:pr-0 flex flex-col h-full">
-                    <span className="pf-mono text-xs font-bold pf-accent">
-                      {s.num}
-                    </span>
-                    <h3 className="text-xl font-bold mt-3">{s.title}</h3>
-                    <p className="pf-muted mt-2.5 text-sm leading-relaxed">{s.body}</p>
-                  </div>
-                </Reveal>
+              {STEPS.map((s) => (
+                <div key={s.num} className="py-7 md:px-7 first:md:pl-0 last:md:pr-0">
+                  <span className="pf-mono text-xs font-bold pf-accent">{s.num}</span>
+                  <h3 className="text-lg font-bold mt-2.5">{s.title}</h3>
+                  <p className="pf-muted mt-2 text-sm leading-relaxed">{s.body}</p>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Asymmetric Bento Grid Features */}
-        <section id="features" className="max-w-6xl mx-auto px-5 py-20 md:py-24 scroll-mt-16">
-          <Reveal>
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.03em]">
-                Keep your facts. Keep your voice.
+        {/* Alternating 2-Column Feature Rows (All-Light White Rhythm) */}
+        <section id="features" className="max-w-5xl mx-auto px-5 py-16 md:py-20 space-y-16 scroll-mt-16">
+          {/* Row 1: Fidelity Shield */}
+          <div className="grid md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-5 space-y-3">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.025em]">
+                Never lose a quote or statistic.
               </h2>
+              <p className="pf-muted text-sm md:text-base leading-relaxed">
+                Fidelity Shield checks quotes, dates, and numbers automatically. Regenerate any
+                paragraph in one click.
+              </p>
             </div>
-          </Reveal>
+            <div className="md:col-span-7 pf-card p-6 space-y-4">
+              <div className="flex flex-wrap gap-2 text-xs">
+                <span className="pf-badge" style={{ background: "var(--pf-surface-pure)", color: "var(--pf-good)" }}>
+                  ✓ 96.4% phrases rebuilt
+                </span>
+                <span className="pf-badge" style={{ background: "var(--pf-surface-pure)", color: "var(--pf-good)" }}>
+                  ✓ Quotes 3/3 kept
+                </span>
+                <span className="pf-badge" style={{ background: "var(--pf-surface-pure)", color: "var(--pf-good)" }}>
+                  ✓ Numbers 7/7 kept
+                </span>
+              </div>
+              <div
+                className="rounded-lg border p-4 text-xs flex items-center justify-between gap-3"
+                style={{ background: "var(--pf-surface-pure)", borderColor: "var(--pf-border)" }}
+              >
+                <span className="pf-muted">Paragraph 2 verified against source draft</span>
+                <span className="font-semibold pf-accent">↻ Regenerate paragraph</span>
+              </div>
+            </div>
+          </div>
 
-          <div className="grid gap-5 md:grid-cols-6">
-            <Reveal className="md:col-span-4" delayMs={40}>
-              <div className="pf-card-pure pf-card-hover p-6 md:p-7 h-full flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-semibold pf-accent">
-                      Fidelity Shield
-                    </span>
-                    <span
-                      className="pf-badge text-[11px]"
-                      style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)", borderColor: "transparent" }}
-                    >
-                      Live Fact Verification
-                    </span>
-                  </div>
-                  <h3 className="text-2xl font-bold mt-2">
-                    Never lose a quote or statistic.
-                  </h3>
-                  <p className="pf-muted mt-2 text-sm leading-relaxed max-w-md">
-                    Fidelity Shield checks quotes, dates, and numbers automatically. Regenerate any paragraph in one click.
-                  </p>
-                </div>
-
-                <div
-                  className="mt-6 rounded-lg border p-4 flex flex-wrap items-center justify-between gap-3 text-xs"
-                  style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
-                >
-                  <div className="flex flex-wrap gap-2">
-                    <span className="pf-badge" style={{ background: "var(--pf-surface-pure)", color: "var(--pf-good)" }}>
-                      ✓ 96.4% phrases rebuilt
-                    </span>
-                    <span className="pf-badge" style={{ background: "var(--pf-surface-pure)", color: "var(--pf-good)" }}>
-                      ✓ Quotes 3/3 kept
-                    </span>
-                    <span className="pf-badge" style={{ background: "var(--pf-surface-pure)", color: "var(--pf-good)" }}>
-                      ✓ Numbers 7/7 kept
-                    </span>
-                  </div>
+          {/* Row 2: .docx & Option A/B */}
+          <div className="grid md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-7 order-2 md:order-1 pf-card p-6 space-y-3">
+              <div
+                className="rounded-lg border p-4 text-xs flex items-center justify-between gap-3"
+                style={{ background: "var(--pf-surface-pure)", borderColor: "var(--pf-border)" }}
+              >
+                <div className="flex items-center gap-3">
                   <span
-                    className="font-semibold px-2.5 py-1 rounded border"
-                    style={{ background: "var(--pf-surface-pure)", borderColor: "var(--pf-border)" }}
+                    className="px-2 py-1 rounded font-bold pf-mono text-[11px]"
+                    style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}
                   >
-                    ↻ Regenerate paragraph
+                    DOCX
                   </span>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal className="md:col-span-2" delayMs={110}>
-              <div className="pf-dark-card pf-card-hover p-6 md:p-7 h-full flex flex-col justify-between">
-                <div>
-                  <span className="text-xs font-semibold" style={{ color: "var(--pf-espresso-rose)" }}>
-                    Privacy by Design
-                  </span>
-                  <h3 className="text-2xl font-bold mt-2 text-white">Zero text retention.</h3>
-                  <p className="mt-2 text-sm leading-relaxed" style={{ color: "var(--pf-espresso-muted)" }}>
-                    Drafts run in memory only and never touch disk.
-                  </p>
-                </div>
-                <div
-                  className="mt-6 rounded-lg p-3.5 pf-mono text-xs space-y-1.5 border"
-                  style={{ background: "rgba(0,0,0,0.22)", borderColor: "var(--pf-espresso-border)" }}
-                >
-                  <div className="flex justify-between">
-                    <span style={{ color: "var(--pf-espresso-muted)" }}>Draft input</span>
-                    <span className="text-white">RAM only</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span style={{ color: "var(--pf-espresso-muted)" }}>Stored in DB</span>
-                    <span className="font-bold" style={{ color: "var(--pf-espresso-rose)" }}>0 bytes</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span style={{ color: "var(--pf-espresso-muted)" }}>Model training</span>
-                    <span className="font-bold" style={{ color: "var(--pf-espresso-rose)" }}>Never</span>
+                  <div>
+                    <div className="font-semibold">research-review-draft.docx</div>
+                    <div className="pf-muted">32 headings preserved, 14 blocks streamed</div>
                   </div>
                 </div>
-              </div>
-            </Reveal>
-
-            <Reveal className="md:col-span-3" delayMs={60}>
-              <div className="pf-card-pure pf-card-hover p-6 md:p-7 h-full">
-                <span className="text-xs font-semibold pf-accent">
-                  Dual Variations
+                <span className="font-semibold" style={{ color: "var(--pf-good)" }}>
+                  Ready
                 </span>
-                <h3 className="text-xl font-bold mt-2">Compare Option A &amp; Option B</h3>
-                <p className="pf-muted mt-2 text-sm leading-relaxed">
-                  Generate two natural takes at once and pick the voice you prefer.
-                </p>
-                <div className="mt-5 grid grid-cols-2 gap-2.5 text-xs">
-                  <div
-                    className="rounded-lg border p-3"
-                    style={{ background: "var(--pf-accent-soft)", borderColor: "var(--pf-accent)" }}
-                  >
-                    <div className="font-bold pf-accent mb-1">Option A: Crisp</div>
-                    <div className="pf-muted leading-snug">Direct opening, varied mid-sentence turn.</div>
-                  </div>
-                  <div
-                    className="rounded-lg border p-3"
-                    style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
-                  >
-                    <div className="font-bold mb-1">Option B: Conversational</div>
-                    <div className="pf-muted leading-snug">Warmer editorial flow with natural pacing.</div>
-                  </div>
-                </div>
               </div>
-            </Reveal>
-
-            <Reveal className="md:col-span-3" delayMs={130}>
-              <div className="pf-card-pure pf-card-hover p-6 md:p-7 h-full">
-                <span className="text-xs font-semibold pf-accent">
-                  Document Workflow
-                </span>
-                <h3 className="text-xl font-bold mt-2">Upload &amp; export .docx</h3>
-                <p className="pf-muted mt-2 text-sm leading-relaxed">
-                  Drop a Word file, keep headings intact, and export a clean .docx.
-                </p>
+              <div className="grid grid-cols-2 gap-3 text-xs">
                 <div
-                  className="mt-5 rounded-lg border p-3.5 text-xs flex items-center justify-between gap-3"
-                  style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
+                  className="rounded-lg border p-3.5"
+                  style={{ background: "var(--pf-accent-soft)", borderColor: "var(--pf-accent)" }}
                 >
-                  <div className="flex items-center gap-2.5">
-                    <span
-                      className="px-2 py-1 rounded font-bold pf-mono text-[11px]"
-                      style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}
-                    >
-                      DOCX
-                    </span>
-                    <div>
-                      <div className="font-semibold">research-review-draft.docx</div>
-                      <div className="pf-muted">32 headings preserved, 14 blocks streamed</div>
-                    </div>
-                  </div>
-                  <span className="font-semibold" style={{ color: "var(--pf-good)" }}>
-                    Ready
-                  </span>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal className="md:col-span-6" delayMs={80}>
-              <div className="pf-dark-card p-6 md:p-8 grid md:grid-cols-5 gap-6 items-center">
-                <div className="md:col-span-2">
-                  <span className="text-xs font-semibold" style={{ color: "var(--pf-espresso-rose)" }}>
-                    Developer REST API
-                  </span>
-                  <h3 className="text-2xl font-bold mt-2 text-white">
-                    Simple REST API.
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed" style={{ color: "var(--pf-espresso-muted)" }}>
-                    Scoped <code style={{ color: "var(--pf-espresso-pill)" }}>pf_sk_...</code> keys with predictable word-credit billing.
-                  </p>
-                  <a href="/docs" className="pf-btn pf-btn-primary mt-5 text-sm px-4 py-2.5">
-                    Read API Docs
-                  </a>
+                  <div className="font-bold pf-accent mb-1">Option A: Crisp</div>
+                  <div className="pf-muted">Direct opening, varied mid-sentence turn.</div>
                 </div>
                 <div
-                  className="md:col-span-3 rounded-lg p-4 pf-mono text-xs overflow-x-auto leading-relaxed border"
-                  style={{
-                    background: "rgba(0,0,0,0.34)",
-                    borderColor: "var(--pf-espresso-border)",
-                    color: "var(--pf-espresso-ink)",
-                  }}
+                  className="rounded-lg border p-3.5"
+                  style={{ background: "var(--pf-surface-pure)", borderColor: "var(--pf-border)" }}
                 >
-                  <div className="mb-2" style={{ color: "var(--pf-espresso-muted)" }}>
-                    # POST /api/v1/rewrite
-                  </div>
-                  <pre className="m-0">{`curl -X POST https://proseflow.app/api/v1/rewrite \\
+                  <div className="font-bold mb-1">Option B: Conversational</div>
+                  <div className="pf-muted">Warmer editorial flow with natural pacing.</div>
+                </div>
+              </div>
+            </div>
+            <div className="md:col-span-5 order-1 md:order-2 space-y-3">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.025em]">
+                Upload .docx and compare Option A &amp; B.
+              </h2>
+              <p className="pf-muted text-sm md:text-base leading-relaxed">
+                Drop a Word file, keep headings intact, compare two natural takes side by side, and
+                export a clean .docx.
+              </p>
+            </div>
+          </div>
+
+          {/* Row 3: Zero retention & REST API */}
+          <div className="grid md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-5 space-y-3">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.025em]">
+                Zero text retention. Simple REST API.
+              </h2>
+              <p className="pf-muted text-sm md:text-base leading-relaxed">
+                Drafts run in memory only and never touch disk. Automate pipelines with scoped{" "}
+                <code className="pf-mono text-xs">pf_sk_...</code> keys.
+              </p>
+              <div className="pt-1">
+                <Link href="/docs" className="pf-btn pf-btn-ghost text-xs px-4 py-2">
+                  Read API Docs
+                </Link>
+              </div>
+            </div>
+            <div
+              className="md:col-span-7 rounded-xl border p-5 pf-mono text-xs overflow-x-auto leading-relaxed"
+              style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
+            >
+              <pre className="m-0">{`curl -X POST https://proseflow.app/api/v1/rewrite \\
   -H "Authorization: Bearer pf_sk_live_..." \\
   -H "Content-Type: application/json" \\
   -d '{"text": "Your rough draft...", "mode": "standard"}'
 
-// Response (200 OK · 7.1s)
+// 200 OK · 0 bytes stored
 {
-  "rewritten": "Clear, natural prose...",
-  "fidelity": { "phrasesRebuiltPct": 96.2, "quotesKept": 2, "numbersKept": 4 }
+  "text": "Clear, natural prose...",
+  "fidelity": { "phrases_rebuilt_pct": 96.2, "quotes_kept": 2 }
 }`}</pre>
-                </div>
-              </div>
-            </Reveal>
+            </div>
           </div>
         </section>
 
-        {/* Who it's built for */}
+        {/* Built For Real Writers */}
         <section
           className="border-t py-16"
           style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
         >
-          <div className="max-w-6xl mx-auto px-5">
-            <Reveal>
-              <div className="text-center max-w-xl mx-auto mb-10">
-                <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.025em]">
-                  Built for real writers
-                </h2>
-                <p className="pf-muted mt-2 text-sm">
-                  For bloggers, researchers, marketers, founders, and ESL writers.
-                </p>
-              </div>
-            </Reveal>
+          <div className="max-w-5xl mx-auto px-5">
+            <div className="text-center max-w-xl mx-auto mb-10">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.025em]">
+                Built for real writers
+              </h2>
+              <p className="pf-muted mt-2 text-sm">
+                For bloggers, researchers, marketers, founders, and ESL writers.
+              </p>
+            </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {PERSONAS.map((p, idx) => (
-                <Reveal key={p.role} delayMs={idx * 70}>
-                  <div className="pf-card-pure pf-card-hover p-5 h-full">
-                    <h3 className="font-bold text-base">{p.role}</h3>
-                    <p className="pf-muted text-sm mt-2 leading-relaxed">{p.desc}</p>
-                  </div>
-                </Reveal>
+              {PERSONAS.map((p) => (
+                <div key={p.role} className="pf-card-pure p-5">
+                  <h3 className="font-bold text-base">{p.role}</h3>
+                  <p className="pf-muted text-sm mt-2 leading-relaxed">{p.desc}</p>
+                </div>
               ))}
             </div>
           </div>
@@ -566,65 +338,46 @@ export default function HomePage() {
         <PricingSection />
 
         {/* FAQ */}
-        <section className="max-w-3xl mx-auto px-5 py-16 md:py-20">
-          <Reveal>
-            <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.025em]">
-                Frequently asked questions
-              </h2>
-              <p className="pf-muted mt-2 text-sm">
-                Straight answers on privacy, accuracy, billing, and API access.
-              </p>
-            </div>
-          </Reveal>
-          <div className="space-y-3">
+        <section className="max-w-3xl mx-auto px-5 py-16">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.025em]">
+              Frequently asked questions
+            </h2>
+          </div>
+          <div className="divide-y border-t border-b" style={{ borderColor: "var(--pf-border)" }}>
             {FAQ.map((item) => (
-              <details key={item.q} className="pf-card-pure pf-faq p-5 group">
+              <details key={item.q} className="pf-faq py-5 group">
                 <summary className="font-semibold cursor-pointer flex items-center justify-between gap-4 list-none">
                   <span>{item.q}</span>
-                  <span
-                    className="pf-faq-icon inline-flex items-center justify-center w-6 h-6 rounded text-sm shrink-0"
-                    style={{ background: "var(--pf-surface-2)", color: "var(--pf-text)" }}
-                  >
-                    +
-                  </span>
+                  <span className="pf-faq-icon pf-muted font-mono text-lg shrink-0">+</span>
                 </summary>
-                <p className="pf-muted mt-3.5 text-sm leading-relaxed pr-6">{item.a}</p>
+                <p className="pf-muted mt-3 text-sm leading-relaxed pr-6">{item.a}</p>
               </details>
             ))}
           </div>
         </section>
 
-        {/* Final Deep Espresso CTA Band */}
-        <section className="pf-espresso-band py-20">
-          <Reveal>
-            <div className="max-w-3xl mx-auto px-5 text-center">
-              <h2
-                className="text-3xl md:text-5xl font-bold tracking-[-0.03em]"
-                style={{ color: "var(--pf-espresso-ink)" }}
-              >
-                Your ideas. Your facts.{" "}
-                <span style={{ color: "var(--pf-espresso-muted)" }} className="font-medium">
-                  Your natural voice.
-                </span>
-              </h2>
-              <p className="mt-4 text-base md:text-lg" style={{ color: "var(--pf-espresso-muted)" }}>
-                Start with 500 free words every month. Zero drafts stored.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <a href="/login?mode=signup" className="pf-btn pf-btn-primary text-sm px-6 py-3.5">
-                  Get started free
-                </a>
-                <a
-                  href="/docs"
-                  className="pf-btn text-sm px-6 py-3.5"
-                  style={{ background: "var(--pf-espresso-ink)", color: "var(--pf-text)" }}
-                >
-                  Explore Developer API
-                </a>
-              </div>
+        {/* Clean White/Neutral Bottom CTA */}
+        <section
+          className="border-t py-16"
+          style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
+        >
+          <div className="max-w-3xl mx-auto px-5 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em]">
+              Your ideas. Your voice.
+            </h2>
+            <p className="pf-muted mt-3 text-base">
+              Start with 500 free words every month. Zero drafts stored.
+            </p>
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+              <Link href="/login?mode=signup" className="pf-btn pf-btn-primary text-sm px-6 py-3">
+                Get started free
+              </Link>
+              <Link href="/docs" className="pf-btn pf-btn-ghost text-sm px-6 py-3">
+                Explore API
+              </Link>
             </div>
-          </Reveal>
+          </div>
         </section>
       </main>
 

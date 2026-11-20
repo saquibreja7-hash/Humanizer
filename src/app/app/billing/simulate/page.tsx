@@ -1,8 +1,9 @@
 "use client";
 
 import { Suspense, useState } from "react";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { PLANS, type BillingInterval, type PlanId } from "@/lib/brand";
+import { PLANS, formatPrice, planPrice, type BillingInterval, type Currency, type PlanId } from "@/lib/brand";
 
 const VALID: PlanId[] = ["starter", "pro", "business"];
 
@@ -11,13 +12,17 @@ function SimulateInner() {
   const router = useRouter();
   const plan = (params.get("plan") as PlanId) ?? "pro";
   const interval: BillingInterval = params.get("interval") === "annual" ? "annual" : "monthly";
+  const currency: Currency = params.get("currency") === "INR" ? "INR" : "USD";
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   if (!VALID.includes(plan)) {
     return (
-      <div className="max-w-lg mx-auto px-5 py-16">
-        <p>Unknown plan.</p>
+      <div className="max-w-lg mx-auto px-5 py-16 text-center">
+        <p className="font-semibold">Unknown plan selected.</p>
+        <Link href="/app/billing" className="pf-btn pf-btn-primary text-xs mt-4">
+          ← Back to Billing
+        </Link>
       </div>
     );
   }
@@ -37,6 +42,7 @@ function SimulateInner() {
         setBusy(false);
         return;
       }
+      window.dispatchEvent(new Event("proseflow:credits-updated"));
       router.replace("/app/billing?purchased=1");
     } catch {
       setError("Network error.");
@@ -45,54 +51,91 @@ function SimulateInner() {
   }
 
   const details = PLANS[plan];
+  const displayPrice = formatPrice(planPrice(details, interval, currency), currency);
 
   return (
-    <div className="max-w-lg mx-auto px-5 py-16">
-      <div className="pf-card p-8" style={{ borderColor: "var(--pf-accent)", borderWidth: 2 }}>
-        <span className="pf-badge" style={{ background: "var(--pf-accent-soft)" }}>
-          DEV BILLING SIMULATOR
-        </span>
-        <h1 className="text-2xl font-bold mt-4">Simulated checkout</h1>
-        <p className="pf-muted text-sm mt-2 leading-relaxed">
-          No live payment provider is configured, so this in-app simulator stands in for the real
-          Dodo Payments / Razorpay checkout. It applies the exact same plan-change and credit-grant
-          code path a real webhook would.
-        </p>
-        <div className="mt-6 text-sm space-y-2">
-          <div className="flex justify-between">
-            <span className="pf-muted">Plan</span>
-            <strong>{details.name}</strong>
+    <div className="max-w-xl mx-auto px-5 py-12 sm:py-16">
+      <div className="pf-card-pure overflow-hidden shadow-xl shadow-black/[0.06]">
+        <div className="pf-espresso-band p-6 sm:p-7">
+          <span
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-widest"
+            style={{ background: "var(--pf-accent)", color: "#ffffff" }}
+          >
+            ✳ Dev Billing Simulator
+          </span>
+          <h1 className="text-2xl font-bold text-[#f4f1ea] mt-3">
+            Confirm {details.name} Plan Upgrade
+          </h1>
+          <p className="text-xs sm:text-sm mt-1.5 leading-relaxed" style={{ color: "var(--pf-espresso-muted)" }}>
+            Sandbox preview mode: no live payment gateway is charged. Completing this step runs the
+            exact same subscription activation and credit-grant pipeline as a live Dodo / Razorpay
+            webhook.
+          </p>
+        </div>
+
+        <div className="p-6 sm:p-7 space-y-5">
+          <div
+            className="rounded-xl border p-4 space-y-3 text-sm"
+            style={{ borderColor: "var(--pf-border)", background: "var(--pf-surface)" }}
+          >
+            <div className="flex justify-between">
+              <span className="pf-muted">Selected Plan</span>
+              <strong>{details.name}</strong>
+            </div>
+            <div className="flex justify-between">
+              <span className="pf-muted">Billing Cycle</span>
+              <strong className="capitalize">{interval}</strong>
+            </div>
+            <div className="flex justify-between">
+              <span className="pf-muted">Monthly Word Credits</span>
+              <strong className="pf-mono">{details.wordsPerMonth.toLocaleString()} words</strong>
+            </div>
+            <div className="flex justify-between">
+              <span className="pf-muted">List Price ({currency})</span>
+              <span className="pf-mono pf-muted">{displayPrice} / mo</span>
+            </div>
+            <div
+              className="flex justify-between pt-3 border-t text-base"
+              style={{ borderColor: "var(--pf-border)" }}
+            >
+              <span className="font-semibold">Amount Charged Today</span>
+              <strong className="pf-mono pf-accent">$0.00 (Simulated)</strong>
+            </div>
           </div>
-          <div className="flex justify-between">
-            <span className="pf-muted">Billing</span>
-            <strong>{interval}</strong>
-          </div>
-          <div className="flex justify-between">
-            <span className="pf-muted">Words granted</span>
-            <strong>{details.wordsPerMonth.toLocaleString()}</strong>
-          </div>
-          <div className="flex justify-between">
-            <span className="pf-muted">Charge</span>
-            <strong>$0.00 (simulated)</strong>
+
+          {error && (
+            <div
+              role="alert"
+              className="rounded-lg border px-3.5 py-2.5 text-xs"
+              style={{
+                borderColor: "color-mix(in srgb, var(--pf-bad) 40%, var(--pf-border))",
+                color: "var(--pf-bad)",
+              }}
+            >
+              {error}
+            </div>
+          )}
+
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
+              onClick={() => void confirm()}
+              disabled={busy}
+              className="pf-btn pf-btn-primary flex-1 py-3 text-sm"
+            >
+              {busy ? "Activating plan..." : "Complete simulated payment →"}
+            </button>
+            <Link href="/app/billing" className="pf-btn pf-btn-ghost py-3 text-sm">
+              Cancel
+            </Link>
           </div>
         </div>
-        {error && (
-          <p className="text-sm mt-4" style={{ color: "var(--pf-bad)" }}>
-            {error}
-          </p>
-        )}
-        <button onClick={() => void confirm()} disabled={busy} className="pf-btn pf-btn-primary w-full mt-6">
-          {busy ? "Processing..." : "Complete simulated payment"}
-        </button>
-        <a href="/app/billing" className="block text-center text-sm pf-muted mt-3 hover:opacity-70">
-          Cancel
-        </a>
       </div>
     </div>
   );
 }
 
-export default function SimulatePage() {
+export default function SimulateCheckoutPage() {
   return (
     <Suspense>
       <SimulateInner />

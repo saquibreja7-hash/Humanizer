@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { BRAND } from "@/lib/brand";
 
 interface KeyRow {
   id: number;
@@ -9,6 +12,8 @@ interface KeyRow {
   revoked_at: string | null;
 }
 
+type Lang = "curl" | "python" | "node";
+
 export default function ApiKeysPage() {
   const [keys, setKeys] = useState<KeyRow[]>([]);
   const [usage, setUsage] = useState({ total_words: 0, calls: 0 });
@@ -16,11 +21,17 @@ export default function ApiKeysPage() {
   const [error, setError] = useState<string | null>(null);
   const [planBlocked, setPlanBlocked] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [creating, setCreating] = useState(false);
+  const [lang, setLang] = useState<Lang>("curl");
+  const [copiedSnippet, setCopiedSnippet] = useState(false);
 
   async function load() {
     const res = await fetch("/api/keys");
     if (res.ok) {
-      const data = (await res.json()) as { keys: KeyRow[]; usage: { total_words: number; calls: number } };
+      const data = (await res.json()) as {
+        keys: KeyRow[];
+        usage: { total_words: number; calls: number };
+      };
       setKeys(data.keys);
       setUsage(data.usage);
     }
@@ -32,16 +43,21 @@ export default function ApiKeysPage() {
 
   async function createKey() {
     setError(null);
-    const res = await fetch("/api/keys", { method: "POST" });
-    const data = (await res.json()) as { key?: string; error_message?: string };
-    if (!res.ok) {
-      setError(data.error_message ?? "Could not create key.");
-      if (res.status === 403) setPlanBlocked(true);
-      return;
+    setCreating(true);
+    try {
+      const res = await fetch("/api/keys", { method: "POST" });
+      const data = (await res.json()) as { key?: string; error_message?: string };
+      if (!res.ok) {
+        setError(data.error_message ?? "Could not create key.");
+        if (res.status === 403) setPlanBlocked(true);
+        return;
+      }
+      setNewKey(data.key!);
+      setCopied(false);
+      void load();
+    } finally {
+      setCreating(false);
     }
-    setNewKey(data.key!);
-    setCopied(false);
-    void load();
   }
 
   async function revoke(id: number) {
@@ -49,102 +65,349 @@ export default function ApiKeysPage() {
     void load();
   }
 
-  return (
-    <div className="max-w-4xl mx-auto px-5 py-8">
-      <h1 className="text-2xl font-bold mb-1">API Keys</h1>
-      <p className="pf-muted text-sm mb-6">
-        Create <code>pf_sk_...</code> keys to use the{" "}
-        <a href="/docs" className="pf-link">
-          REST API
-        </a>
-        . Keys are shown once and stored only as a hash.
-      </p>
+  const displayKey = newKey ?? "pf_sk_YOUR_API_KEY";
+  const snippets: Record<Lang, string> = {
+    curl: `curl -X POST https://${BRAND.domain}/api/v1/rewrite \\
+  -H "Authorization: Bearer ${displayKey}" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "text": "In today'\''s rapidly evolving digital landscape, leveraging clear habits unlocks stronger writing.",
+    "mode": "standard",
+    "creativity": "natural"
+  }'`,
+    python: `import requests
 
+resp = requests.post(
+    "https://${BRAND.domain}/api/v1/rewrite",
+    headers={"Authorization": "Bearer ${displayKey}"},
+    json={
+        "text": "Your rough draft text goes here.",
+        "mode": "standard",
+        "creativity": "natural",
+    },
+    timeout=120,
+)
+data = resp.json()
+print(data["text"])
+print(data["fidelity"])`,
+    node: `const res = await fetch("https://${BRAND.domain}/api/v1/rewrite", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer ${displayKey}",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    text: "Your rough draft text goes here.",
+    mode: "standard",
+    creativity: "natural",
+  }),
+});
+const data = await res.json();
+console.log(data.text, data.fidelity);`,
+  };
+
+  const activeCount = keys.filter((k) => !k.revoked_at).length;
+
+  return (
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-7">
+      {/* Deep Espresso Developer Banner with Nano Banana Desk Visual */}
+      <section
+        className="relative rounded-2xl overflow-hidden border pf-espresso-band shadow-xl shadow-black/20"
+        style={{ borderColor: "var(--pf-espresso-border)" }}
+      >
+        <Image
+          src="/images/docs-banner.jpg"
+          alt="Minimalist matte dark mechanical keyboard beside a cream grid notebook and burgundy fountain pen on walnut desk"
+          fill
+          priority
+          sizes="(max-width: 1200px) 100vw, 1200px"
+          className="object-cover object-right opacity-45"
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(95deg, rgba(36,16,14,0.97) 0%, rgba(36,16,14,0.88) 54%, rgba(36,16,14,0.48) 100%)",
+          }}
+        />
+
+        <div className="relative z-10 p-6 sm:p-8 lg:p-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-[#e5a6aa]">
+              <span>✳ Developer REST API Vault</span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-bold tracking-[-0.03em] text-[#f4f1ea] mt-2">
+              API Keys
+            </h1>
+            <p className="text-sm mt-2 leading-relaxed" style={{ color: "#d5c7c2" }}>
+              Authenticate programmatic calls to{" "}
+              <code className="px-1.5 py-0.5 rounded bg-white/10 text-[#f4f1ea] pf-mono text-xs">
+                POST /api/v1/rewrite
+              </code>{" "}
+              with Bearer <code className="pf-mono text-xs text-[#f3b6ba]">pf_sk_...</code> keys.
+              Keys are displayed once and stored exclusively as SHA-256 hashes.
+            </p>
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                disabled={creating}
+                onClick={() => void createKey()}
+                className="pf-btn pf-btn-primary text-xs sm:text-sm px-5 py-2.5"
+              >
+                {creating ? "Generating..." : "+ Generate new API key"}
+              </button>
+              <Link
+                href="/docs"
+                className="pf-btn text-xs sm:text-sm px-4 py-2.5 border text-[#f4f1ea] hover:bg-white/10"
+                style={{ borderColor: "var(--pf-espresso-border)", background: "rgba(255,255,255,0.05)" }}
+              >
+                Read full API docs ↗
+              </Link>
+            </div>
+          </div>
+
+          {/* Telemetry Cards */}
+          <div className="grid grid-cols-3 gap-3 min-w-[280px]">
+            {[
+              { label: "Active Keys", value: String(activeCount) },
+              { label: "API Calls", value: usage.calls.toLocaleString() },
+              { label: "Words Refined", value: usage.total_words.toLocaleString() },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-xl border p-4 backdrop-blur-md"
+                style={{
+                  background: "rgba(36, 16, 14, 0.82)",
+                  borderColor: "var(--pf-espresso-border)",
+                }}
+              >
+                <div className="text-[10px] uppercase tracking-wider font-semibold" style={{ color: "var(--pf-espresso-muted)" }}>
+                  {stat.label}
+                </div>
+                <div className="text-xl sm:text-2xl font-bold pf-mono text-[#f4f1ea] mt-1">
+                  {stat.value}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Plan Blocked Notice */}
+      {planBlocked && (
+        <div
+          className="rounded-xl border p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+          style={{
+            background: "var(--pf-accent-soft)",
+            borderColor: "color-mix(in srgb, var(--pf-accent) 40%, var(--pf-border))",
+          }}
+        >
+          <div>
+            <div className="font-bold text-sm">REST API keys require the Business &amp; API plan</div>
+            <p className="pf-muted text-xs sm:text-sm mt-0.5">
+              Unlock 250,000 monthly words, priority parallel streaming, and unlimited{" "}
+              <code className="pf-mono">pf_sk_...</code> keys.
+            </p>
+          </div>
+          <Link href="/app/billing" className="pf-btn pf-btn-primary text-xs px-5 py-2.5 shrink-0">
+            Upgrade to Business &amp; API →
+          </Link>
+        </div>
+      )}
+
+      {error && !planBlocked && (
+        <div
+          role="alert"
+          className="rounded-xl border px-4 py-3 text-sm"
+          style={{
+            borderColor: "color-mix(in srgb, var(--pf-bad) 40%, var(--pf-border))",
+            color: "var(--pf-bad)",
+            background: "color-mix(in srgb, var(--pf-bad) 8%, var(--pf-surface-pure))",
+          }}
+        >
+          {error}
+        </div>
+      )}
+
+      {/* One-time Secret Key Reveal */}
       {newKey && (
         <div
-          className="pf-card p-4 mb-6"
+          className="pf-card-pure p-5 sm:p-6 shadow-md"
           style={{ borderColor: "var(--pf-accent)", borderWidth: 2 }}
         >
-          <p className="text-sm font-semibold mb-2">
-            Copy your new key now — it will not be shown again:
-          </p>
-          <div className="flex gap-2 items-center">
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider pf-accent">
+              ✳ Save your secret key now — it will never be shown again
+            </span>
+            <button
+              type="button"
+              onClick={() => setNewKey(null)}
+              className="text-xs pf-muted hover:text-[var(--pf-text)] cursor-pointer"
+            >
+              Dismiss
+            </button>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2.5 items-stretch sm:items-center">
             <code
-              className="text-sm px-3 py-2 rounded-lg flex-1 overflow-x-auto"
-              style={{ background: "var(--pf-surface-2)" }}
+              className="pf-mono text-xs sm:text-sm px-3.5 py-2.5 rounded-lg flex-1 overflow-x-auto border"
+              style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
             >
               {newKey}
             </code>
             <button
-              className="pf-btn pf-btn-primary text-xs px-3 py-2"
-              onClick={async () => {
-                await navigator.clipboard.writeText(newKey);
+              type="button"
+              onClick={() => {
+                void navigator.clipboard.writeText(newKey);
                 setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
               }}
+              className="pf-btn pf-btn-primary text-xs px-5 py-2.5 shrink-0"
             >
-              {copied ? "Copied ✓" : "Copy"}
+              {copied ? "✓ Copied to clipboard" : "Copy secret key"}
             </button>
           </div>
         </div>
       )}
 
-      {error && (
-        <p className="text-sm mb-4" style={{ color: "var(--pf-bad)" }}>
-          {error}
-        </p>
-      )}
-
-      <div className="flex items-center justify-between mb-4">
-        <div className="text-sm pf-muted">
-          API usage: <strong>{usage.total_words.toLocaleString()}</strong> words across{" "}
-          <strong>{usage.calls}</strong> calls
-        </div>
-        {!planBlocked && (
-          <button onClick={() => void createKey()} className="pf-btn pf-btn-primary text-sm">
-            + Create key
-          </button>
-        )}
-      </div>
-
-      {planBlocked ? (
-        <div className="pf-card p-6 text-sm">
-          REST API keys are available on the <strong>Business &amp; API</strong> plan. Upgrade from
-          the{" "}
-          <a href="/app/billing" className="pf-link">
-            Billing
-          </a>{" "}
-          page to enable programmatic access.
-        </div>
-      ) : (
-        <div className="pf-card divide-y" style={{ borderColor: "var(--pf-border)" }}>
-          {keys.length === 0 ? (
-            <p className="p-6 pf-muted text-sm">
-              No keys yet. Create one to start using the REST API.
+      {/* Keys Table */}
+      <section className="pf-card-pure overflow-hidden">
+        <div
+          className="px-5 sm:px-6 py-4 border-b flex items-center justify-between gap-3"
+          style={{ borderColor: "var(--pf-border)", background: "var(--pf-surface)" }}
+        >
+          <div>
+            <h2 className="text-base font-bold">Your Keys</h2>
+            <p className="pf-muted text-xs mt-0.5">
+              Revoked keys stop working immediately across all endpoints.
             </p>
-          ) : (
-            keys.map((k) => (
-              <div key={k.id} className="p-4 flex items-center justify-between gap-3">
-                <div>
-                  <code className="text-sm font-semibold">{k.prefix}...</code>
-                  <div className="pf-muted text-xs mt-1">
-                    Created {k.created_at.slice(0, 10)}
-                    {k.revoked_at ? " · revoked" : ""}
-                  </div>
-                </div>
-                {!k.revoked_at && (
-                  <button
-                    onClick={() => void revoke(k.id)}
-                    className="pf-btn pf-btn-ghost text-xs px-3 py-1.5"
-                    style={{ color: "var(--pf-bad)" }}
-                  >
-                    Revoke
-                  </button>
-                )}
-              </div>
-            ))
-          )}
+          </div>
+          <span className="pf-badge pf-mono text-[11px]" style={{ background: "var(--pf-surface-pure)" }}>
+            {keys.length} total
+          </span>
         </div>
-      )}
+
+        {keys.length === 0 ? (
+          <div className="p-8 text-center">
+            <div className="text-sm font-semibold">No API keys created yet</div>
+            <p className="pf-muted text-xs mt-1">
+              Click &ldquo;Generate new API key&rdquo; above to mint your first{" "}
+              <code className="pf-mono">pf_sk_...</code> credential.
+            </p>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs sm:text-sm">
+              <thead>
+                <tr
+                  className="border-b text-[11px] uppercase tracking-wider pf-muted"
+                  style={{ borderColor: "var(--pf-border)" }}
+                >
+                  <th className="py-3 px-5 font-semibold">Key Prefix</th>
+                  <th className="py-3 px-5 font-semibold">Status</th>
+                  <th className="py-3 px-5 font-semibold">Created</th>
+                  <th className="py-3 px-5 font-semibold text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y" style={{ borderColor: "var(--pf-border)" }}>
+                {keys.map((k) => {
+                  const active = !k.revoked_at;
+                  return (
+                    <tr key={k.id}>
+                      <td className="py-3.5 px-5 pf-mono font-semibold">{k.prefix}••••••••</td>
+                      <td className="py-3.5 px-5">
+                        <span
+                          className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold"
+                          style={{
+                            background: active
+                              ? "color-mix(in srgb, var(--pf-good) 14%, transparent)"
+                              : "var(--pf-surface-2)",
+                            color: active ? "var(--pf-good)" : "var(--pf-muted)",
+                          }}
+                        >
+                          <span
+                            className="w-1.5 h-1.5 rounded-full"
+                            style={{ background: active ? "var(--pf-good)" : "var(--pf-muted)" }}
+                          />
+                          {active ? "Active" : "Revoked"}
+                        </span>
+                      </td>
+                      <td className="py-3.5 px-5 pf-muted pf-mono text-xs">
+                        {new Date(k.created_at).toLocaleString()}
+                      </td>
+                      <td className="py-3.5 px-5 text-right">
+                        {active ? (
+                          <button
+                            type="button"
+                            onClick={() => void revoke(k.id)}
+                            className="text-xs font-semibold hover:underline cursor-pointer"
+                            style={{ color: "var(--pf-bad)" }}
+                          >
+                            Revoke
+                          </button>
+                        ) : (
+                          <span className="text-xs pf-muted">—</span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+      {/* Instant Quickstart Snippets */}
+      <section className="pf-dark-card overflow-hidden">
+        <div
+          className="px-5 sm:px-6 py-4 border-b flex flex-wrap items-center justify-between gap-3"
+          style={{ borderColor: "var(--pf-espresso-border)" }}
+        >
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-bold text-[#f4f1ea]">Quickstart Request</span>
+            <div className="inline-flex rounded-md p-0.5 bg-white/10">
+              {(
+                [
+                  { id: "curl", label: "cURL" },
+                  { id: "python", label: "Python" },
+                  { id: "node", label: "Node.js" },
+                ] as const
+              ).map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setLang(t.id)}
+                  className="px-2.5 py-1 rounded text-xs font-semibold cursor-pointer transition-colors"
+                  style={
+                    lang === t.id
+                      ? { background: "var(--pf-accent)", color: "#ffffff" }
+                      : { color: "var(--pf-espresso-muted)" }
+                  }
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              void navigator.clipboard.writeText(snippets[lang]);
+              setCopiedSnippet(true);
+              setTimeout(() => setCopiedSnippet(false), 1800);
+            }}
+            className="text-xs font-semibold px-3 py-1.5 rounded-md border text-[#f4f1ea] hover:bg-white/10 cursor-pointer"
+            style={{ borderColor: "var(--pf-espresso-border)" }}
+          >
+            {copiedSnippet ? "✓ Copied" : "Copy snippet"}
+          </button>
+        </div>
+
+        <pre className="p-5 sm:p-6 text-xs sm:text-[13px] leading-relaxed overflow-x-auto pf-mono text-[#efe7e2]">
+          <code>{snippets[lang]}</code>
+        </pre>
+      </section>
     </div>
   );
 }

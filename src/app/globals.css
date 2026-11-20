@@ -7,13 +7,13 @@
 }
 
 :root {
-  --pf-bg: #e4e1d2;
-  --pf-surface: #f7f5ee;
+  --pf-bg: #dfdacc;
+  --pf-surface: #f5f2ea;
   --pf-surface-pure: #ffffff;
-  --pf-surface-2: #d8d4c8;
-  --pf-border: #cbc5b7;
+  --pf-surface-2: #d4cfc2;
+  --pf-border: #c6c0b2;
   --pf-text: #1a1311;
-  --pf-muted: #7b7069;
+  --pf-muted: #766b64;
   --pf-accent: #7c3539;
   --pf-accent-hover: #65292c;
   --pf-accent-soft: #f1e3e4;
@@ -93,13 +93,13 @@ body {
 }
 
 .pf-card-hover {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
 .pf-card-hover:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   border-color: color-mix(in srgb, var(--pf-accent) 55%, var(--pf-border));
-  box-shadow: 0 16px 36px -18px rgba(52, 24, 21, 0.24);
+  box-shadow: 0 18px 38px -18px rgba(52, 24, 21, 0.26);
 }
 
 .pf-espresso-band {
@@ -108,11 +108,11 @@ body {
 }
 
 .pf-dark-card {
-  background: linear-gradient(160deg, #3a1b18 0%, #2c1311 100%);
+  background: linear-gradient(160deg, #3a1b18 0%, #2a1210 100%);
   color: #f4f1ea;
   border: 1px solid var(--pf-espresso-border);
   border-radius: 14px;
-  box-shadow: 0 16px 38px -18px rgba(26, 11, 10, 0.55);
+  box-shadow: 0 18px 42px -18px rgba(26, 11, 10, 0.6);
 }
 
 .pf-muted {
@@ -130,7 +130,7 @@ body {
   gap: 0.5rem;
   border-radius: 7px;
   font-weight: 600;
-  transition: transform 0.12s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease, opacity 0.15s ease;
+  transition: transform 0.14s ease, box-shadow 0.2s ease, background 0.18s ease, border-color 0.18s ease, opacity 0.15s ease;
   cursor: pointer;
 }
 
@@ -205,13 +205,67 @@ body {
   text-underline-offset: 3px;
 }
 
+/* Seamless feathered mask so hero hand rises naturally out of the limestone canvas */
+.pf-hero-photo-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 14%, black 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 14%, black 100%);
+  mask-composite: intersect;
+}
+
+/* Smooth architectural animations */
 @keyframes pfPulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.45; transform: scale(0.86); }
 }
 
+@keyframes pfDashFlow {
+  from { stroke-dashoffset: 260; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes pfFloatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes pfFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0px); }
+}
+
 .pf-pulse-dot {
   animation: pfPulse 2.2s ease-in-out infinite;
+}
+
+.pf-flow-line {
+  stroke-dasharray: 44 216;
+  animation: pfDashFlow 4.2s linear infinite;
+}
+
+.pf-flow-line-slow {
+  stroke-dasharray: 36 224;
+  animation: pfDashFlow 5.6s linear infinite reverse;
+}
+
+.pf-float {
+  animation: pfFloatSlow 5.5s ease-in-out infinite;
+}
+
+.pf-float-delay {
+  animation: pfFloatSlow 6.2s ease-in-out 1.4s infinite;
+}
+
+.pf-fade-in {
+  animation: pfFadeIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-flow-line, .pf-flow-line-slow, .pf-float, .pf-float-delay, .pf-pulse-dot {
+    animation: none;
+  }
 }
 
 details.pf-faq summary::-webkit-details-marker {

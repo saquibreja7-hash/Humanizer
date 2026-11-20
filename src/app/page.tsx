@@ -9,64 +9,60 @@ import PublicFooter from "@/components/PublicFooter";
 const STEPS = [
   {
     num: "01",
-    title: "Drop a draft or .docx file",
-    body: "Bring rough AI notes, research essays, or full Word documents. Headings, section titles, and short lines stay untouched automatically.",
+    title: "Drop a draft or .docx",
+    body: "Paste text or upload Word files. Headings stay untouched.",
   },
   {
     num: "02",
-    title: "Multi-pass editorial refinement",
-    body: "Our base-model engine refines paragraphs in parallel across 3 to 7 gentle passes—rebuilding stiff phrasing into natural human cadence without breaking grammar.",
+    title: "Multi-pass refinement",
+    body: "Paragraphs run in parallel across 3 to 7 gentle passes.",
   },
   {
     num: "03",
-    title: "Verify with Fidelity Shield & export",
-    body: "Confirm every quote and figure stayed intact, compare Option A & B, regenerate any single paragraph, and export cleanly back to .docx.",
+    title: "Verify & export",
+    body: "Check quotes and figures, then export cleanly to .docx.",
   },
 ];
 
 const PERSONAS = [
   {
-    role: "Researchers & Academics",
-    desc: "Keep citations, dates, and exact quotes locked while smoothing out dry, repetitive first drafts.",
+    role: "Researchers",
+    desc: "Citations, dates, and quotes stay locked.",
   },
   {
-    role: "Bloggers & Columnists",
-    desc: "Restore conversational pacing, varied sentence rhythm, and a recognizable human voice to long-form posts.",
+    role: "Bloggers",
+    desc: "Natural pacing and varied sentence rhythm.",
   },
   {
-    role: "Marketing & Content Teams",
-    desc: "Eliminate overused filler clichés across briefs and landing pages—or automate via our REST API.",
+    role: "Marketing Teams",
+    desc: "Cleaner briefs, or automate via REST API.",
   },
   {
-    role: "Multilingual & ESL Writers",
-    desc: "Polish clear ideas into idiomatic, natural English without losing your personal tone or technical precision.",
+    role: "ESL Writers",
+    desc: "Idiomatic English in your own voice.",
   },
 ];
 
 const FAQ = [
   {
     q: "How is ProseFlow different from ordinary paraphrasing tools?",
-    a: "Ordinary paraphrasers swap individual words with awkward synonyms or inject broken grammar. ProseFlow uses an iterative base-model engine that rebuilds sentence rhythm and phrasing from the ground up while preserving clean, readable English.",
+    a: "It rebuilds sentence rhythm with an iterative base model instead of swapping awkward synonyms or breaking grammar.",
   },
   {
     q: "Do you store my drafts or train models on my writing?",
-    a: "Never. ProseFlow operates under strict zero text retention: your input and output live only in temporary memory during your request and are discarded immediately. We only record anonymous word counts and timestamps for your credit balance.",
+    a: "Never. Drafts stay in temporary RAM during your request and are discarded immediately.",
   },
   {
     q: "Will it change my numbers, dates, or direct quotes?",
-    a: "Every rewrite is checked automatically by Fidelity Shield, which tracks exact quotes and numeric figures against your source text and highlights any drift immediately—plus you can regenerate any individual paragraph with one click.",
+    a: "Fidelity Shield verifies every quote and number against your source draft, and you can regenerate any single paragraph.",
   },
   {
     q: "Does it work with full Word (.docx) documents?",
-    a: "Yes. Upload a .docx file directly in the editor—ProseFlow preserves headings and paragraph breaks, refines body sections in parallel, and exports a clean formatted .docx ready to open in Word or Google Docs.",
-  },
-  {
-    q: "Can I integrate ProseFlow into my own app or content pipeline?",
-    a: "Yes. Business & API plans include Bearer API keys (pf_sk_...) and a clean POST /api/v1/rewrite endpoint with full JSON responses and live Fidelity Shield metrics. See /docs for curl, Python, and JavaScript examples.",
+    a: "Yes. Upload a .docx file to refine body paragraphs while keeping headings intact, then export back to Word.",
   },
   {
     q: "What if I want a refund or want to cancel?",
-    a: "You can cancel in one click from your billing page anytime, and we offer a straightforward 7-day refund policy—no hoops or support tickets required.",
+    a: "Cancel in one click from Billing anytime, backed by a 7-day refund policy.",
   },
 ];
 
@@ -116,8 +112,8 @@ export default function HomePage() {
                 Writing Refinement
               </h1>
 
-              <p className="pf-muted mt-5 text-base md:text-lg leading-relaxed max-w-xl mx-auto">
-                Turn stiff AI drafts into clear prose, keeping every fact and quote intact.
+              <p className="pf-muted mt-5 text-base md:text-lg leading-relaxed max-w-md mx-auto">
+                Clear, natural prose with every fact preserved.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -139,9 +135,9 @@ export default function HomePage() {
                   <span>Natural Voice Engine</span>
                 </div>
                 <p className="text-xl md:text-[22px] font-medium leading-snug tracking-[-0.02em]">
-                  {BRAND.name} helps writers remove stiff phrasing, restore natural cadence,{" "}
+                  Remove stiff phrasing and restore natural cadence,{" "}
                   <span className="pf-muted">
-                    and keep every citation, quote, and figure locked in place.
+                    while keeping every quote and figure intact.
                   </span>
                 </p>
               </div>
@@ -211,7 +207,7 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto px-5 text-center">
             <Reveal>
               <h2
-                className="text-2xl sm:text-4xl md:text-[42px] font-medium leading-[1.2] tracking-[-0.025em] max-w-4xl mx-auto"
+                className="text-2xl sm:text-4xl md:text-[42px] font-medium leading-[1.2] tracking-[-0.025em] max-w-3xl mx-auto"
                 style={{ color: "var(--pf-espresso-ink)" }}
               >
                 {BRAND.name}{" "}
@@ -224,9 +220,9 @@ export default function HomePage() {
                   <span className="px-1.5 py-1" style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}><BrandAsterisk size={14} /></span>
                   <span className="px-1.5 py-1" style={{ background: "var(--pf-bg)", color: "var(--pf-text)" }}><BrandAsterisk size={14} /></span>
                 </span>{" "}
-                helps writers eliminate mechanical phrasing, restore authentic rhythm,{" "}
+                turns mechanical drafts into natural prose{" "}
                 <span style={{ color: "var(--pf-espresso-muted)" }}>
-                  and publish clearer, natural prose across every essay, brief, and document.
+                  across essays, briefs, and documents.
                 </span>
               </h2>
             </Reveal>
@@ -297,12 +293,12 @@ export default function HomePage() {
         {/* Interactive Studio Demo */}
         <section id="demo" className="max-w-5xl mx-auto px-5 py-20 md:py-24 scroll-mt-16">
           <Reveal>
-            <div className="text-center max-w-2xl mx-auto mb-10">
+            <div className="text-center max-w-xl mx-auto mb-10">
               <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.03em]">
-                See the difference line by line
+                Compare line by line
               </h2>
               <p className="pf-muted mt-3 text-base">
-                Switch writing genres, compare Option A vs Option B, or inspect the sentence rhythm graph.
+                Switch genres, Option A/B, or sentence rhythm.
               </p>
             </div>
           </Reveal>
@@ -371,12 +367,10 @@ export default function HomePage() {
                     </span>
                   </div>
                   <h3 className="text-2xl font-bold mt-2">
-                    Never lose a quote, statistic, or argument.
+                    Never lose a quote or statistic.
                   </h3>
-                  <p className="pf-muted mt-2.5 text-sm leading-relaxed max-w-xl">
-                    After every pass, ProseFlow checks your rewritten draft against your source
-                    text, verifying quotes, dates, and numbers automatically. Want a different take
-                    on one section? Regenerate just that single paragraph in one click.
+                  <p className="pf-muted mt-2 text-sm leading-relaxed max-w-md">
+                    Fidelity Shield checks quotes, dates, and numbers automatically. Regenerate any paragraph in one click.
                   </p>
                 </div>
 
@@ -412,9 +406,8 @@ export default function HomePage() {
                     Privacy by Design
                   </span>
                   <h3 className="text-2xl font-bold mt-2 text-white">Zero text retention.</h3>
-                  <p className="mt-2.5 text-sm leading-relaxed" style={{ color: "var(--pf-espresso-muted)" }}>
-                    Your unpublished essays, client briefs, and research drafts are processed
-                    strictly in memory and never written to disk or used for training.
+                  <p className="mt-2 text-sm leading-relaxed" style={{ color: "var(--pf-espresso-muted)" }}>
+                    Drafts run in memory only and never touch disk.
                   </p>
                 </div>
                 <div
@@ -442,10 +435,9 @@ export default function HomePage() {
                 <span className="text-xs font-semibold pf-accent">
                   Dual Variations
                 </span>
-                <h3 className="text-xl font-bold mt-2">Compare Option A &amp; Option B side by side</h3>
+                <h3 className="text-xl font-bold mt-2">Compare Option A &amp; Option B</h3>
                 <p className="pf-muted mt-2 text-sm leading-relaxed">
-                  Human writing is never one-size-fits-all. Generate two distinct natural takes in
-                  one run and pick the rhythm that sounds most like you.
+                  Generate two natural takes at once and pick the voice you prefer.
                 </p>
                 <div className="mt-5 grid grid-cols-2 gap-2.5 text-xs">
                   <div
@@ -471,10 +463,9 @@ export default function HomePage() {
                 <span className="text-xs font-semibold pf-accent">
                   Document Workflow
                 </span>
-                <h3 className="text-xl font-bold mt-2">Upload &amp; export formatted .docx files</h3>
+                <h3 className="text-xl font-bold mt-2">Upload &amp; export .docx</h3>
                 <p className="pf-muted mt-2 text-sm leading-relaxed">
-                  Stop copy-pasting one paragraph at a time. Drop a 3,000-word Word document: section
-                  headings stay untouched, body chunks run in parallel, and export returns a clean .docx.
+                  Drop a Word file, keep headings intact, and export a clean .docx.
                 </p>
                 <div
                   className="mt-5 rounded-lg border p-3.5 text-xs flex items-center justify-between gap-3"
@@ -506,12 +497,10 @@ export default function HomePage() {
                     Developer REST API
                   </span>
                   <h3 className="text-2xl font-bold mt-2 text-white">
-                    Embed natural voice refinement anywhere.
+                    Simple REST API.
                   </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed" style={{ color: "var(--pf-espresso-muted)" }}>
-                    Generate scoped <code style={{ color: "var(--pf-espresso-pill)" }}>pf_sk_...</code> API keys in
-                    seconds. Built for content platforms, editorial pipelines, and agency workflows
-                    with predictable word-credit billing.
+                  <p className="mt-2 text-sm leading-relaxed" style={{ color: "var(--pf-espresso-muted)" }}>
+                    Scoped <code style={{ color: "var(--pf-espresso-pill)" }}>pf_sk_...</code> keys with predictable word-credit billing.
                   </p>
                   <a href="/docs" className="pf-btn pf-btn-primary mt-5 text-sm px-4 py-2.5">
                     Read API Docs
@@ -553,11 +542,10 @@ export default function HomePage() {
             <Reveal>
               <div className="text-center max-w-xl mx-auto mb-10">
                 <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.025em]">
-                  Built for people who care how their words land
+                  Built for real writers
                 </h2>
                 <p className="pf-muted mt-2 text-sm">
-                  Trusted by bloggers, researchers, marketers, founders, and ESL writers who want
-                  authentic prose without losing precision.
+                  For bloggers, researchers, marketers, founders, and ESL writers.
                 </p>
               </div>
             </Reveal>

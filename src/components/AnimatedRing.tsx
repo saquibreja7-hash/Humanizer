@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 export default function AnimatedRing({
   percent,
-  stroke = "#f4f1ea",
-  track = "#4f2a26",
+  stroke = "var(--pf-espresso-ink)",
+  track = "var(--pf-espresso-border)",
   size = 48,
 }: {
   percent: number;

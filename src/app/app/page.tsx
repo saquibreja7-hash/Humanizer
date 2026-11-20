@@ -453,10 +453,13 @@ export default function EditorPage() {
           style={{ background: "rgba(36, 16, 14, 0.72)" }}
         >
           <div
-            className="rounded-2xl border-2 border-dashed px-10 py-12 text-center max-w-md text-[#f4f1ea]"
-            style={{ borderColor: "#e5a6aa", background: "var(--pf-espresso)" }}
+            className="rounded-2xl border-2 border-dashed px-10 py-12 text-center max-w-md"
+            style={{
+              borderColor: "var(--pf-espresso-rose)",
+              background: "var(--pf-espresso)",
+              color: "var(--pf-espresso-ink)",
+            }}
           >
-            <div className="text-3xl mb-3">✳</div>
             <div className="text-xl font-bold">Drop your .docx or .txt file</div>
             <p className="text-sm mt-2" style={{ color: "var(--pf-espresso-muted)" }}>
               Headings and paragraph breaks stay intact automatically.
@@ -465,52 +468,45 @@ export default function EditorPage() {
         </div>
       )}
 
-      {/* Deep Espresso Studio Header Band */}
-      <section className="pf-espresso-band border-b" style={{ borderColor: "var(--pf-espresso-border)" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-7 flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+      {/* Clean White Studio Header Strip */}
+      <section className="border-b" style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col lg:flex-row lg:items-center justify-between gap-5">
           <div>
-            <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-[#e5a6aa]">
-              <span className="w-2 h-2 rounded-full pf-pulse-dot" style={{ background: "#c96d72" }} />
-              <span>Natural Voice Studio · Zero Text Retention</span>
-            </div>
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-[-0.03em] text-[#f4f1ea] mt-1.5">
-              Editorial Refinement Desk
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-[-0.03em]">
+              Writing Studio
             </h1>
-            <p className="text-xs sm:text-sm mt-1" style={{ color: "var(--pf-espresso-muted)" }}>
-              Paste a draft or drop a Word document. Every pass runs in memory and leaves zero text behind.
+            <p className="pf-muted text-xs sm:text-sm mt-1">
+              Paste a draft or drop a Word file. Everything runs in memory with zero text stored.
             </p>
           </div>
 
-          {/* Right: Live Credit Bar + Upload CTA */}
           <div className="flex flex-wrap items-center gap-3">
             <div
               className="rounded-xl border px-4 py-3 min-w-[230px]"
               style={{
-                background: "rgba(36, 16, 14, 0.75)",
-                borderColor: "var(--pf-espresso-border)",
+                background: "var(--pf-surface-pure)",
+                borderColor: "var(--pf-border)",
               }}
             >
-              <div className="flex items-center justify-between text-[11px] mb-1.5">
-                <span style={{ color: "var(--pf-espresso-muted)" }}>
-                  {plan?.name ?? "Free"} Credits
-                </span>
-                <span className="pf-mono font-semibold text-[#f4f1ea]">
+              <div className="flex items-center justify-between text-xs mb-1.5">
+                <span className="pf-muted">{plan?.name ?? "Free"} Credits</span>
+                <span className="pf-mono font-semibold">
                   {balance.toLocaleString()} / {monthlyCap.toLocaleString()}
                 </span>
               </div>
-              <div className="h-1.5 rounded-full overflow-hidden bg-white/10">
+              <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "var(--pf-surface-2)" }}>
                 <div
-                  className="h-full rounded-full transition-all duration-500"
+                  className="h-full rounded-full transition-opacity duration-500"
                   style={{
                     width: `${creditPct}%`,
-                    background: creditPct > 20 ? "#c96d72" : "#fbbf24",
+                    background: creditPct > 20 ? "var(--pf-accent)" : "var(--pf-warn)",
                   }}
                 />
               </div>
-              <div className="flex items-center justify-between mt-1.5 text-[10px]" style={{ color: "var(--pf-espresso-muted)" }}>
+              <div className="flex items-center justify-between mt-1.5 text-[11px] pf-muted">
                 <span>Max {(plan?.max_words_per_request ?? 250).toLocaleString()} words / run</span>
-                <Link href="/app/billing" className="text-[#f3b6ba] hover:underline font-semibold">
-                  Upgrade →
+                <Link href="/app/billing" className="pf-link font-semibold">
+                  Upgrade
                 </Link>
               </div>
             </div>
@@ -528,8 +524,7 @@ export default function EditorPage() {
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="pf-btn text-xs sm:text-sm px-4 py-3 border text-[#f4f1ea] hover:bg-white/10"
-              style={{ borderColor: "var(--pf-espresso-border)", background: "rgba(255,255,255,0.04)" }}
+              className="pf-btn pf-btn-ghost text-xs sm:text-sm px-4 py-3"
             >
               <span>↑ Upload .docx / .txt</span>
             </button>
@@ -543,7 +538,7 @@ export default function EditorPage() {
           <div className="flex flex-wrap items-center gap-4">
             {/* Mode Selector */}
             <div>
-              <div className="text-[10px] font-bold uppercase tracking-wider pf-muted mb-1.5">
+              <div className="text-[11px] font-semibold pf-muted mb-1.5">
                 Refinement Depth
               </div>
               <div
@@ -560,17 +555,17 @@ export default function EditorPage() {
                       disabled={!allowed || running}
                       title={allowed ? MODE_META[m].hint : "Available on Pro & Business plans"}
                       onClick={() => setMode(m)}
-                      className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer disabled:opacity-45 disabled:cursor-not-allowed ${
-                        active ? "shadow-xs" : "pf-muted hover:text-[var(--pf-text)]"
+                      className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors cursor-pointer disabled:opacity-45 disabled:cursor-not-allowed ${
+                        active ? "" : "pf-muted hover:text-[var(--pf-text)]"
                       }`}
                       style={
                         active
-                          ? { background: "var(--pf-espresso)", color: "#f4f1ea" }
+                          ? { background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }
                           : undefined
                       }
                     >
                       <span>{MODE_META[m].title}</span>
-                      <span className="ml-1.5 opacity-70 pf-mono text-[10px]">
+                      <span className="ml-1.5 opacity-75 pf-mono text-[10px]">
                         {MODE_META[m].passes}
                       </span>
                       {!allowed && <span className="ml-1 text-[10px]">🔒</span>}
@@ -582,7 +577,7 @@ export default function EditorPage() {
 
             {/* Creativity Selector */}
             <div>
-              <div className="text-[10px] font-bold uppercase tracking-wider pf-muted mb-1.5">
+              <div className="text-[11px] font-semibold pf-muted mb-1.5">
                 Voice Cadence
               </div>
               <div
@@ -598,12 +593,12 @@ export default function EditorPage() {
                       disabled={running}
                       title={CREATIVITY_META[c].hint}
                       onClick={() => setCreativity(c)}
-                      className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer ${
-                        active ? "shadow-xs" : "pf-muted hover:text-[var(--pf-text)]"
+                      className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors cursor-pointer ${
+                        active ? "" : "pf-muted hover:text-[var(--pf-text)]"
                       }`}
                       style={
                         active
-                          ? { background: "var(--pf-accent)", color: "#ffffff" }
+                          ? { background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }
                           : undefined
                       }
                     >
@@ -619,7 +614,7 @@ export default function EditorPage() {
 
             {/* Dual Versions Switch */}
             <div className="pt-4 sm:pt-0">
-              <div className="text-[10px] font-bold uppercase tracking-wider pf-muted mb-1.5">
+              <div className="text-[11px] font-semibold pf-muted mb-1.5">
                 Comparison
               </div>
               <label
@@ -720,7 +715,7 @@ export default function EditorPage() {
               <div className="flex items-center gap-3 sm:w-64">
                 <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "var(--pf-surface-2)" }}>
                   <div
-                    className="h-full rounded-full transition-all duration-300"
+                    className="h-full rounded-full transition-opacity duration-300"
                     style={{ width: `${progressPct}%`, background: "var(--pf-accent)" }}
                   />
                 </div>
@@ -741,7 +736,7 @@ export default function EditorPage() {
               style={{ borderColor: "var(--pf-border)", background: "var(--pf-surface)" }}
             >
               <div className="flex items-center gap-2.5">
-                <span className="text-xs font-bold uppercase tracking-wider">Source Draft</span>
+                <span className="text-xs font-bold">Source Draft</span>
                 {docxName && (
                   <span
                     className="px-2 py-0.5 rounded text-[11px] font-semibold pf-mono"
@@ -829,7 +824,7 @@ export default function EditorPage() {
               style={{ borderColor: "var(--pf-border)", background: "var(--pf-surface)" }}
             >
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold uppercase tracking-wider">Refined Prose</span>
+                <span className="text-xs font-bold">Refined Prose</span>
                 {versions?.B && (
                   <div
                     className="inline-flex rounded-md border p-0.5 ml-1"
@@ -843,7 +838,7 @@ export default function EditorPage() {
                         className="px-2.5 py-0.5 rounded text-[11px] font-bold cursor-pointer transition-colors"
                         style={
                           activeVersion === v
-                            ? { background: "var(--pf-accent)", color: "#ffffff" }
+                            ? { background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }
                             : { color: "var(--pf-muted)" }
                         }
                       >
@@ -893,7 +888,7 @@ export default function EditorPage() {
                       }}
                     >
                       <div className="flex items-center justify-between gap-2 mb-2">
-                        <span className="text-[10px] font-bold uppercase tracking-wider pf-mono pf-muted">
+                        <span className="text-[11px] font-semibold pf-mono pf-muted">
                           ¶ {idx + 1} · {countWords(para)} words
                         </span>
                         {plan?.paragraph_regen ? (
@@ -929,9 +924,9 @@ export default function EditorPage() {
                   <div
                     className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 border"
                     style={{
-                      background: "var(--pf-espresso)",
-                      color: "#f4f1ea",
-                      borderColor: "var(--pf-espresso-border)",
+                      background: "var(--pf-accent-soft)",
+                      color: "var(--pf-accent)",
+                      borderColor: "var(--pf-border)",
                     }}
                   >
                     <span className="text-lg">✳</span>
@@ -980,12 +975,12 @@ export default function EditorPage() {
           <section className="pf-dark-card p-5 sm:p-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
               <div className="flex items-center gap-4">
-                <AnimatedRing percent={activeFidelity.phrases_rebuilt_pct} stroke="#f4f1ea" size={56} />
+                <AnimatedRing percent={activeFidelity.phrases_rebuilt_pct} stroke="var(--pf-espresso-ink)" size={56} />
                 <div>
-                  <div className="text-[11px] font-bold uppercase tracking-widest text-[#e5a6aa]">
+                  <div className="text-xs font-semibold" style={{ color: "var(--pf-espresso-rose)" }}>
                     Fidelity Shield Report · Option {activeVersion}
                   </div>
-                  <div className="text-lg sm:text-xl font-bold text-[#f4f1ea] mt-0.5">
+                  <div className="text-lg sm:text-xl font-bold mt-0.5" style={{ color: "var(--pf-espresso-ink)" }}>
                     {activeFidelity.phrases_rebuilt_pct.toFixed(1)}% of stiff phrasing rebuilt cleanly
                   </div>
                   <p className="text-xs mt-0.5" style={{ color: "var(--pf-espresso-muted)" }}>
@@ -1003,7 +998,7 @@ export default function EditorPage() {
                   <div className="text-[11px]" style={{ color: "var(--pf-espresso-muted)" }}>
                     Quotes Kept
                   </div>
-                  <div className="text-lg font-bold pf-mono text-[#f4f1ea] mt-0.5">
+                  <div className="text-lg font-bold pf-mono mt-0.5" style={{ color: "var(--pf-espresso-ink)" }}>
                     {activeFidelity.quotes_kept}/{activeFidelity.quotes_total}
                   </div>
                 </div>
@@ -1014,7 +1009,7 @@ export default function EditorPage() {
                   <div className="text-[11px]" style={{ color: "var(--pf-espresso-muted)" }}>
                     Numbers Kept
                   </div>
-                  <div className="text-lg font-bold pf-mono text-[#f4f1ea] mt-0.5">
+                  <div className="text-lg font-bold pf-mono mt-0.5" style={{ color: "var(--pf-espresso-ink)" }}>
                     {activeFidelity.numbers_kept}/{activeFidelity.numbers_total}
                   </div>
                 </div>
@@ -1025,7 +1020,7 @@ export default function EditorPage() {
                   <div className="text-[11px]" style={{ color: "var(--pf-espresso-muted)" }}>
                     Retention
                   </div>
-                  <div className="text-lg font-bold pf-mono text-[#6ee7b7] mt-0.5">
+                  <div className="text-lg font-bold pf-mono mt-0.5" style={{ color: "var(--pf-espresso-rose)" }}>
                     0 bytes
                   </div>
                 </div>
@@ -1034,12 +1029,10 @@ export default function EditorPage() {
 
             {activeFidelity.warnings.length > 0 && (
               <div
-                className="mt-4 pt-4 border-t text-xs space-y-1 text-[#fbbf24]"
-                style={{ borderColor: "var(--pf-espresso-border)" }}
+                className="mt-4 pt-4 border-t text-xs space-y-1"
+                style={{ borderColor: "var(--pf-espresso-border)", color: "var(--pf-espresso-pill)" }}
               >
-                <div className="font-bold uppercase tracking-wider text-[10px]">
-                  Fidelity Check Notes
-                </div>
+                <div className="font-bold text-xs">Fidelity Check Notes</div>
                 {activeFidelity.warnings.map((w, i) => (
                   <div key={i}>• {w}</div>
                 ))}

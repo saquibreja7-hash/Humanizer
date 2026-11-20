@@ -1,10 +1,8 @@
 "use client";
 
 import { Suspense, useCallback, useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import AnimatedRing from "@/components/AnimatedRing";
 import {
   PLANS,
   PLAN_ORDER,
@@ -39,7 +37,7 @@ function BillingInner() {
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(
     params.get("purchased") === "1"
-      ? "Plan upgraded! Your fresh word credits are active immediately."
+      ? "Plan upgraded. Your fresh word credits are active immediately."
       : null,
   );
 
@@ -92,9 +90,9 @@ function BillingInner() {
             order_id: data.orderId,
             name: "ProseFlow",
             description: `${PLANS[plan].name} plan (${interval})`,
-            theme: { color: "#7c3539" },
+            theme: { color: "var(--pf-accent)" },
             handler: () => {
-              setNotice("Payment received — your plan will activate as soon as the webhook arrives.");
+              setNotice("Payment received. Your plan will activate as soon as the webhook arrives.");
               void load();
             },
           });
@@ -113,7 +111,7 @@ function BillingInner() {
     try {
       const res = await fetch("/api/billing/cancel", { method: "POST" });
       if (res.ok) {
-        setNotice("Subscription cancelled — you are now on the Free plan. No further charges.");
+        setNotice("Subscription cancelled. You are now on the Free plan.");
         setConfirmCancel(false);
         void load();
       } else {
@@ -132,139 +130,93 @@ function BillingInner() {
   const ledger = me?.credits.recent_ledger ?? [];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-8">
-      {/* Deep Espresso Account Balance Hero Card with Editorial Backdrop */}
-      <section
-        className="relative rounded-2xl overflow-hidden border pf-espresso-band shadow-xl shadow-black/20"
-        style={{ borderColor: "var(--pf-espresso-border)" }}
-      >
-        <Image
-          src="/images/trust-banner.jpg"
-          alt="Archival cream cotton paper stack bound with oxblood ribbon on a dark walnut desk"
-          fill
-          priority
-          sizes="(max-width: 1280px) 100vw, 1280px"
-          className="object-cover object-right opacity-45"
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(95deg, rgba(36,16,14,0.97) 0%, rgba(36,16,14,0.88) 55%, rgba(36,16,14,0.55) 100%)",
-          }}
-        />
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-8">
+      {/* Clean White Balance Summary */}
+      <section className="pf-card p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="max-w-xl">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-[-0.03em]">
+            {planDetails?.name ?? "Free"} Plan
+          </h1>
+          <p className="pf-muted text-sm mt-1.5 leading-relaxed">
+            Transparent word credits with USD and INR checkout. Cancel anytime, backed by our 7-day
+            refund guarantee.
+          </p>
 
-        <div className="relative z-10 p-6 sm:p-8 lg:p-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-          <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-[#e5a6aa]">
-              <span>✳ Subscription &amp; Word Credits</span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-[-0.03em] text-[#f4f1ea] mt-2">
-              {planDetails?.name ?? "Free"} Plan
-            </h1>
-            <p className="text-sm mt-2 leading-relaxed" style={{ color: "#d5c7c2" }}>
-              Simple, transparent word credits with instant global USD and India INR checkout.
-              Cancel in one click anytime, backed by our 7-day refund guarantee.
-            </p>
-
-            <div className="mt-5 flex flex-wrap items-center gap-3">
-              <Link href="/app" className="pf-btn pf-btn-primary text-xs px-4 py-2">
-                ← Back to Studio
-              </Link>
-              <Link
-                href="/refunds"
-                className="text-xs font-semibold text-[#e5a6aa] hover:underline px-2 py-1"
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <Link href="/app" className="pf-btn pf-btn-primary text-xs px-4 py-2">
+              Back to Studio
+            </Link>
+            <Link href="/refunds" className="text-xs font-semibold pf-link">
+              7-day refund policy
+            </Link>
+            {currentPlan !== "free" && !confirmCancel && (
+              <button
+                type="button"
+                onClick={() => setConfirmCancel(true)}
+                className="text-xs font-semibold pf-muted hover:text-[var(--pf-bad)] transition-colors cursor-pointer"
               >
-                7-day refund policy →
-              </Link>
-              {currentPlan !== "free" && !confirmCancel && (
-                <button
-                  type="button"
-                  onClick={() => setConfirmCancel(true)}
-                  className="text-xs font-semibold text-[#bca7a2] hover:text-[#f87171] transition-colors cursor-pointer px-2 py-1"
-                >
-                  Cancel subscription
-                </button>
-              )}
-            </div>
-
-            {confirmCancel && (
-              <div
-                className="mt-4 rounded-xl border p-4 text-xs flex flex-wrap items-center justify-between gap-3"
-                style={{
-                  background: "rgba(36,16,14,0.92)",
-                  borderColor: "rgba(248,113,113,0.45)",
-                }}
-              >
-                <span className="text-[#f4f1ea]">
-                  Switch back to the Free plan immediately? No further renewals will be billed.
-                </span>
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setConfirmCancel(false)}
-                    className="px-3 py-1.5 rounded-md border text-[#f4f1ea] cursor-pointer"
-                    style={{ borderColor: "var(--pf-espresso-border)" }}
-                  >
-                    Keep plan
-                  </button>
-                  <button
-                    type="button"
-                    disabled={busy === "cancel"}
-                    onClick={() => void cancel()}
-                    className="px-3 py-1.5 rounded-md font-semibold text-white cursor-pointer"
-                    style={{ background: "#9f2525" }}
-                  >
-                    {busy === "cancel" ? "Cancelling..." : "Confirm cancel"}
-                  </button>
-                </div>
-              </div>
+                Cancel subscription
+              </button>
             )}
           </div>
 
-          {/* Right: Live Ring Gauge + Balance Card */}
-          <div
-            className="rounded-xl border p-5 sm:p-6 min-w-[280px] backdrop-blur-md"
-            style={{
-              background: "rgba(36, 16, 14, 0.85)",
-              borderColor: "var(--pf-espresso-border)",
-            }}
-          >
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <div className="text-[11px] uppercase tracking-wider font-semibold" style={{ color: "var(--pf-espresso-muted)" }}>
-                  Available Balance
-                </div>
-                <div className="text-3xl font-bold pf-mono text-[#f4f1ea] mt-1">
-                  {balance.toLocaleString()}
-                </div>
-                <div className="text-xs mt-1" style={{ color: "var(--pf-espresso-muted)" }}>
-                  of {cap.toLocaleString()} monthly words
-                </div>
+          {confirmCancel && (
+            <div
+              className="mt-4 rounded-xl border p-4 text-xs flex flex-wrap items-center justify-between gap-3"
+              style={{
+                background: "var(--pf-surface-pure)",
+                borderColor: "var(--pf-bad)",
+              }}
+            >
+              <span>Switch back to Free immediately? No further renewals will be billed.</span>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setConfirmCancel(false)}
+                  className="pf-btn pf-btn-ghost text-xs px-3 py-1.5"
+                >
+                  Keep plan
+                </button>
+                <button
+                  type="button"
+                  disabled={busy === "cancel"}
+                  onClick={() => void cancel()}
+                  className="pf-btn text-xs px-3 py-1.5"
+                  style={{ background: "var(--pf-bad)", color: "var(--pf-btn-ink)" }}
+                >
+                  {busy === "cancel" ? "Cancelling..." : "Confirm cancel"}
+                </button>
               </div>
-              <AnimatedRing percent={pct} stroke="#f4f1ea" size={58} />
             </div>
-            <div className="mt-4 h-2 rounded-full overflow-hidden bg-white/10">
-              <div
-                className="h-full rounded-full transition-all duration-500"
-                style={{ width: `${pct}%`, background: "#c96d72" }}
-              />
-            </div>
-            <div className="mt-2.5 flex items-center justify-between text-[11px]" style={{ color: "var(--pf-espresso-muted)" }}>
-              <span>{pct}% remaining</span>
-              <span>0 bytes text logged</span>
-            </div>
+          )}
+        </div>
+
+        <div
+          className="rounded-xl border p-5 min-w-[260px]"
+          style={{ background: "var(--pf-surface-pure)", borderColor: "var(--pf-border)" }}
+        >
+          <div className="text-xs font-semibold pf-muted">Available balance</div>
+          <div className="text-3xl font-bold pf-mono mt-1">{balance.toLocaleString()}</div>
+          <div className="text-xs pf-muted mt-0.5">of {cap.toLocaleString()} monthly words</div>
+          <div className="mt-3.5 h-2 rounded-full overflow-hidden" style={{ background: "var(--pf-surface-2)" }}>
+            <div
+              className="h-full rounded-full transition-opacity duration-500"
+              style={{ width: `${pct}%`, background: "var(--pf-accent)" }}
+            />
+          </div>
+          <div className="mt-2 flex items-center justify-between text-[11px] pf-muted">
+            <span>{pct}% remaining</span>
+            <span>0 bytes text logged</span>
           </div>
         </div>
       </section>
 
-      {/* Alerts */}
       {notice && (
         <div
           className="rounded-xl border px-4 py-3 text-sm font-medium flex items-center gap-2.5"
           style={{
-            background: "color-mix(in srgb, var(--pf-good) 12%, var(--pf-surface-pure))",
-            borderColor: "color-mix(in srgb, var(--pf-good) 35%, var(--pf-border))",
+            background: "var(--pf-surface-pure)",
+            borderColor: "var(--pf-good)",
             color: "var(--pf-good)",
           }}
         >
@@ -277,8 +229,8 @@ function BillingInner() {
           role="alert"
           className="rounded-xl border px-4 py-3 text-sm font-medium flex items-center gap-2.5"
           style={{
-            background: "color-mix(in srgb, var(--pf-bad) 10%, var(--pf-surface-pure))",
-            borderColor: "color-mix(in srgb, var(--pf-bad) 35%, var(--pf-border))",
+            background: "var(--pf-surface-pure)",
+            borderColor: "var(--pf-bad)",
             color: "var(--pf-bad)",
           }}
         >
@@ -287,20 +239,19 @@ function BillingInner() {
         </div>
       )}
 
-      {/* Plans Header + Currency & Interval Controls */}
+      {/* Plans Header + Controls */}
       <section className="space-y-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-bold tracking-[-0.025em]">Choose your writing tier</h2>
+            <h2 className="text-2xl font-bold tracking-[-0.025em]">Choose your plan</h2>
             <p className="pf-muted text-sm mt-1">
               {currency === "INR"
-                ? "India checkout via Razorpay (UPI, RuPay, Visa, Mastercard, NetBanking)."
-                : "Global checkout via Dodo Payments (Cards, Apple Pay, Google Pay, VAT/GST handled)."}
+                ? "India checkout via Razorpay (UPI, cards, NetBanking)."
+                : "Global checkout via Dodo Payments (cards, Apple Pay, VAT/GST handled)."}
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-2.5">
-            {/* Currency Switch */}
             <div
               className="inline-flex rounded-lg border p-1 gap-1"
               style={{ borderColor: "var(--pf-border)", background: "var(--pf-surface)" }}
@@ -313,7 +264,7 @@ function BillingInner() {
                   className="px-3 py-1.5 rounded-md text-xs font-semibold cursor-pointer transition-colors"
                   style={
                     currency === c
-                      ? { background: "var(--pf-espresso)", color: "#f4f1ea" }
+                      ? { background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }
                       : { color: "var(--pf-muted)" }
                   }
                 >
@@ -322,7 +273,6 @@ function BillingInner() {
               ))}
             </div>
 
-            {/* Interval Switch */}
             <div
               className="inline-flex rounded-lg border p-1 gap-1"
               style={{ borderColor: "var(--pf-border)", background: "var(--pf-surface)" }}
@@ -335,19 +285,19 @@ function BillingInner() {
                   className="px-3 py-1.5 rounded-md text-xs font-semibold cursor-pointer transition-colors"
                   style={
                     interval === i
-                      ? { background: "var(--pf-accent)", color: "#ffffff" }
+                      ? { background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }
                       : { color: "var(--pf-muted)" }
                   }
                 >
-                  {i === "monthly" ? "Monthly" : "Annual · Save 33%"}
+                  {i === "monthly" ? "Monthly" : "Annual (-35%)"}
                 </button>
               ))}
             </div>
           </div>
         </div>
 
-        {/* 4 Plan Cards */}
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
+        {/* Side-by-side payment tiles (2-col on mobile, 4-col on desktop) */}
+        <div className="grid grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-5 items-stretch">
           {PLAN_ORDER.map((id) => {
             const p = PLANS[id];
             const isCurrent = currentPlan === id;
@@ -357,102 +307,73 @@ function BillingInner() {
             return (
               <div
                 key={id}
-                className={`rounded-2xl border p-6 flex flex-col justify-between transition-all ${
-                  featured ? "pf-dark-card" : "pf-card-pure pf-card-hover"
-                }`}
+                className="pf-card-pure pf-card-hover p-4 sm:p-6 flex flex-col justify-between"
                 style={
-                  isCurrent && !featured
-                    ? { borderColor: "var(--pf-accent)", borderWidth: 2 }
+                  isCurrent || featured
+                    ? {
+                        borderColor: "var(--pf-accent)",
+                        borderWidth: 2,
+                        background: featured
+                          ? "color-mix(in srgb, var(--pf-accent-soft) 24%, var(--pf-surface-pure))"
+                          : undefined,
+                      }
                     : undefined
                 }
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2">
-                    <h3
-                      className={`text-lg font-bold ${featured ? "text-[#f4f1ea]" : ""}`}
-                    >
-                      {p.name}
-                    </h3>
+                  <div className="flex items-center justify-between gap-1.5 flex-wrap">
+                    <h3 className="text-base sm:text-lg font-bold">{p.name}</h3>
                     {isCurrent ? (
                       <span
-                        className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider"
-                        style={{
-                          background: featured ? "#dfdacc" : "var(--pf-accent-soft)",
-                          color: featured ? "#1a1311" : "var(--pf-accent)",
-                        }}
+                        className="px-2 py-0.5 rounded text-[10px] font-semibold"
+                        style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }}
                       >
                         Current
                       </span>
                     ) : featured ? (
                       <span
-                        className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider"
-                        style={{ background: "var(--pf-accent)", color: "#ffffff" }}
+                        className="px-2 py-0.5 rounded text-[10px] font-semibold"
+                        style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}
                       >
-                        Most Popular
+                        Popular
                       </span>
                     ) : null}
                   </div>
 
-                  <div className="mt-4 flex items-baseline gap-1">
-                    <span
-                      className={`text-3xl font-bold pf-mono tracking-tight ${
-                        featured ? "text-[#f4f1ea]" : ""
-                      }`}
-                    >
+                  <div className="mt-3 sm:mt-4 flex items-baseline gap-1">
+                    <span className="text-2xl sm:text-3xl font-bold pf-mono tracking-tight">
                       {formatPrice(price, currency)}
                     </span>
-                    <span
-                      className="text-xs"
-                      style={{ color: featured ? "var(--pf-espresso-muted)" : "var(--pf-muted)" }}
-                    >
-                      / month
-                    </span>
+                    <span className="text-xs pf-muted">/ mo</span>
                   </div>
-                  <div
-                    className="text-[11px] mt-1 min-h-[16px]"
-                    style={{ color: featured ? "var(--pf-espresso-muted)" : "var(--pf-muted)" }}
-                  >
+                  <div className="text-[11px] mt-1 min-h-[16px] pf-muted">
                     {price === 0
-                      ? "Free forever · 500 starter words"
+                      ? "Free forever"
                       : interval === "annual"
-                        ? `Billed ${annualTotal(p, currency)} yearly`
-                        : "Billed monthly · cancel anytime"}
+                        ? `${annualTotal(p, currency)} / year`
+                        : "Billed monthly"}
                   </div>
 
-                  <ul className="mt-5 space-y-2.5 text-xs leading-relaxed">
+                  <ul className="mt-4 space-y-2 text-xs leading-relaxed">
                     {p.features.map((feat) => (
                       <li key={feat} className="flex items-start gap-2">
-                        <span
-                          className="font-bold mt-0.5"
-                          style={{ color: featured ? "#e5a6aa" : "var(--pf-accent)" }}
-                        >
-                          ✓
-                        </span>
-                        <span style={{ color: featured ? "#e7dcd7" : "var(--pf-text)" }}>
-                          {feat}
-                        </span>
+                        <span className="font-bold mt-0.5 pf-accent">✓</span>
+                        <span>{feat}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="mt-6 pt-4 border-t" style={{ borderColor: featured ? "var(--pf-espresso-border)" : "var(--pf-border)" }}>
+                <div className="mt-5 pt-4 border-t" style={{ borderColor: "var(--pf-border)" }}>
                   {id === "free" ? (
-                    <div
-                      className="text-center text-xs py-2.5 font-semibold"
-                      style={{ color: "var(--pf-muted)" }}
-                    >
-                      {isCurrent ? "Active free tier" : "Included by default"}
+                    <div className="text-center text-xs py-2 font-semibold pf-muted">
+                      {isCurrent ? "Active free tier" : "Default tier"}
                     </div>
                   ) : isCurrent ? (
                     <button
                       type="button"
                       disabled
-                      className="pf-btn w-full py-2.5 text-xs opacity-65"
-                      style={{
-                        background: featured ? "rgba(255,255,255,0.12)" : "var(--pf-surface)",
-                        color: featured ? "#f4f1ea" : "var(--pf-text)",
-                      }}
+                      className="pf-btn pf-btn-ghost w-full py-2 text-xs opacity-65"
                     >
                       Active plan
                     </button>
@@ -461,9 +382,11 @@ function BillingInner() {
                       type="button"
                       disabled={busy !== null}
                       onClick={() => void upgrade(id)}
-                      className="pf-btn pf-btn-primary w-full py-2.5 text-xs"
+                      className={`pf-btn w-full py-2 text-xs whitespace-nowrap ${
+                        featured ? "pf-btn-primary" : "pf-btn-ghost"
+                      }`}
                     >
-                      {busy === id ? "Opening checkout..." : `Upgrade to ${p.name} →`}
+                      {busy === id ? "Opening..." : `Upgrade to ${p.name}`}
                     </button>
                   )}
                 </div>
@@ -480,13 +403,13 @@ function BillingInner() {
           style={{ borderColor: "var(--pf-border)", background: "var(--pf-surface)" }}
         >
           <div>
-            <h2 className="text-base font-bold">Credit Activity Ledger</h2>
+            <h2 className="text-base font-bold">Credit activity</h2>
             <p className="pf-muted text-xs mt-0.5">
-              Only anonymous word counts and timestamps are recorded — your drafts are never saved.
+              Only anonymous word counts and timestamps are recorded. Drafts are never saved.
             </p>
           </div>
           <span className="pf-badge pf-mono text-[11px]" style={{ background: "var(--pf-surface-pure)" }}>
-            {ledger.length} recent entries
+            {ledger.length} entries
           </span>
         </div>
 
@@ -494,7 +417,7 @@ function BillingInner() {
           <div className="p-8 text-center text-sm pf-muted">
             No credit transactions yet. Run your first refinement in the{" "}
             <Link href="/app" className="pf-link">
-              Writing Studio
+              Studio
             </Link>
             .
           </div>
@@ -502,10 +425,7 @@ function BillingInner() {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs sm:text-sm">
               <thead>
-                <tr
-                  className="border-b text-[11px] uppercase tracking-wider pf-muted"
-                  style={{ borderColor: "var(--pf-border)" }}
-                >
+                <tr className="border-b text-xs pf-muted" style={{ borderColor: "var(--pf-border)" }}>
                   <th className="py-3 px-5 font-semibold">Activity</th>
                   <th className="py-3 px-5 font-semibold">Words</th>
                   <th className="py-3 px-5 font-semibold text-right">Date</th>
@@ -513,7 +433,7 @@ function BillingInner() {
               </thead>
               <tbody className="divide-y" style={{ borderColor: "var(--pf-border)" }}>
                 {ledger.map((row) => (
-                  <tr key={row.id} className="hover:bg-black/[0.02]">
+                  <tr key={row.id}>
                     <td className="py-3.5 px-5 font-medium capitalize">
                       {row.reason.replace(/_/g, " ")}
                     </td>

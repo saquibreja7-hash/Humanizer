@@ -21,7 +21,7 @@ function SimulateInner() {
       <div className="max-w-lg mx-auto px-5 py-16 text-center">
         <p className="font-semibold">Unknown plan selected.</p>
         <Link href="/app/billing" className="pf-btn pf-btn-primary text-xs mt-4">
-          ← Back to Billing
+          Back to Billing
         </Link>
       </div>
     );
@@ -55,21 +55,20 @@ function SimulateInner() {
 
   return (
     <div className="max-w-xl mx-auto px-5 py-12 sm:py-16">
-      <div className="pf-card-pure overflow-hidden shadow-xl shadow-black/[0.06]">
-        <div className="pf-espresso-band p-6 sm:p-7">
+      <div className="pf-card-pure overflow-hidden">
+        <div className="p-6 sm:p-7 border-b" style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}>
           <span
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-widest"
-            style={{ background: "var(--pf-accent)", color: "#ffffff" }}
+            className="inline-flex items-center px-2.5 py-1 rounded text-xs font-semibold"
+            style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }}
           >
-            ✳ Dev Billing Simulator
+            Dev Billing Simulator
           </span>
-          <h1 className="text-2xl font-bold text-[#f4f1ea] mt-3">
+          <h1 className="text-2xl font-bold mt-3">
             Confirm {details.name} Plan Upgrade
           </h1>
-          <p className="text-xs sm:text-sm mt-1.5 leading-relaxed" style={{ color: "var(--pf-espresso-muted)" }}>
+          <p className="pf-muted text-xs sm:text-sm mt-1.5 leading-relaxed">
             Sandbox preview mode: no live payment gateway is charged. Completing this step runs the
-            exact same subscription activation and credit-grant pipeline as a live Dodo / Razorpay
-            webhook.
+            same activation and credit-grant pipeline as a live webhook.
           </p>
         </div>
 
@@ -107,10 +106,7 @@ function SimulateInner() {
             <div
               role="alert"
               className="rounded-lg border px-3.5 py-2.5 text-xs"
-              style={{
-                borderColor: "color-mix(in srgb, var(--pf-bad) 40%, var(--pf-border))",
-                color: "var(--pf-bad)",
-              }}
+              style={{ borderColor: "var(--pf-bad)", color: "var(--pf-bad)" }}
             >
               {error}
             </div>
@@ -123,7 +119,7 @@ function SimulateInner() {
               disabled={busy}
               className="pf-btn pf-btn-primary flex-1 py-3 text-sm"
             >
-              {busy ? "Activating plan..." : "Complete simulated payment →"}
+              {busy ? "Activating plan..." : "Complete simulated payment"}
             </button>
             <Link href="/app/billing" className="pf-btn pf-btn-ghost py-3 text-sm">
               Cancel

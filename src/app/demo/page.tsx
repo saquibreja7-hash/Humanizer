@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { BRAND } from "@/lib/brand";
-import PublicHeader, { BrandAsterisk } from "@/components/PublicHeader";
+import PublicHeader from "@/components/PublicHeader";
 import PublicFooter from "@/components/PublicFooter";
 import BeforeAfter from "@/components/BeforeAfter";
 import Reveal from "@/components/Reveal";

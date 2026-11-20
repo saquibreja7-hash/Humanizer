@@ -13,14 +13,14 @@ export default function PublicFooter() {
           <div className="font-bold text-lg flex items-center gap-2">
             <span
               className="inline-flex items-center justify-center w-5 h-5 rounded"
-              style={{ background: "var(--pf-accent)", color: "#fff" }}
+              style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}
             >
               <BrandAsterisk size={11} />
             </span>
             {BRAND.name.toLowerCase()}.
           </div>
           <p className="pf-muted mt-2.5 leading-relaxed">
-            {BRAND.tagline}. Clear, authentic prose — with every fact, quote, and figure preserved.
+            {BRAND.tagline}. Clear, authentic prose with every fact, quote, and figure preserved.
           </p>
         </div>
         <div>

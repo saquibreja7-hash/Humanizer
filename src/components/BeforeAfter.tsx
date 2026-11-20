@@ -96,9 +96,9 @@ export default function BeforeAfter() {
       >
         <div className="flex items-center gap-3 flex-wrap">
           <div className="flex items-center gap-1.5" aria-hidden="true">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#7c3539" }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#a8918c" }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#cfc8ba" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--pf-accent)" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--pf-espresso-muted)" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--pf-border)" }} />
           </div>
           <div className="flex flex-wrap gap-1.5">
             {SAMPLES.map((s) => {
@@ -108,10 +108,10 @@ export default function BeforeAfter() {
                   key={s.id}
                   type="button"
                   onClick={() => setSampleId(s.id)}
-                  className="px-3 py-1 rounded-md text-xs font-semibold transition-all cursor-pointer"
+                  className="px-3 py-1 rounded-md text-xs font-semibold transition-colors cursor-pointer"
                   style={
                     active
-                      ? { background: "var(--pf-accent)", color: "#ffffff" }
+                      ? { background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }
                       : { background: "var(--pf-surface-pure)", color: "var(--pf-muted)", border: "1px solid var(--pf-border)" }
                   }
                 >
@@ -161,14 +161,14 @@ export default function BeforeAfter() {
         >
           <div className="p-6 md:p-7 flex flex-col">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-bold uppercase tracking-wider pf-muted">
-                Before · Raw AI Draft
+              <span className="text-xs font-semibold pf-muted">
+                Before: Raw AI Draft
               </span>
               <span
                 className="text-[11px] font-semibold px-2.5 py-0.5 rounded"
                 style={{ background: "var(--pf-surface-2)", color: "var(--pf-muted)" }}
               >
-                Flat cadence · Clichés
+                Flat cadence, clichés
               </span>
             </div>
             <p className="pf-serif text-[16px] leading-[1.78] pf-muted flex-1">{sample.before}</p>
@@ -186,8 +186,8 @@ export default function BeforeAfter() {
             style={{ background: "color-mix(in srgb, var(--pf-accent-soft) 32%, var(--pf-surface-pure))" }}
           >
             <div className="flex items-center justify-between gap-2 mb-4">
-              <span className="text-xs font-bold uppercase tracking-wider pf-accent">
-                After · Refined with ProseFlow
+              <span className="text-xs font-semibold pf-accent">
+                After: Refined with ProseFlow
               </span>
               <div
                 className="inline-flex rounded-md p-0.5 border text-[11px] font-semibold"
@@ -198,10 +198,10 @@ export default function BeforeAfter() {
                     key={opt}
                     type="button"
                     onClick={() => setVariant(opt)}
-                    className="px-2.5 py-0.5 rounded cursor-pointer transition-all"
+                    className="px-2.5 py-0.5 rounded cursor-pointer transition-colors"
                     style={
                       variant === opt
-                        ? { background: "var(--pf-accent)", color: "#ffffff" }
+                        ? { background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }
                         : { color: "var(--pf-muted)" }
                     }
                   >
@@ -223,11 +223,11 @@ export default function BeforeAfter() {
       ) : (
         <div className="p-6 md:p-8 grid md:grid-cols-2 gap-8">
           <div>
-            <div className="text-xs font-bold uppercase tracking-wider pf-muted mb-1">
-              Before · Uniform AI Sentence Lengths
+            <div className="text-xs font-semibold pf-muted mb-1">
+              Before: Uniform AI Sentence Lengths
             </div>
             <p className="text-xs pf-muted mb-5">
-              Every sentence clusters tightly around 15–18 words, creating a monotone rhythm.
+              Every sentence clusters tightly around 15 to 18 words, creating a monotone rhythm.
             </p>
             <div className="space-y-3">
               {sample.beforeLens.map((len, i) => (
@@ -235,8 +235,8 @@ export default function BeforeAfter() {
                   <span className="w-8 pf-mono pf-muted">S{i + 1}</span>
                   <div className="flex-1 h-3 rounded overflow-hidden" style={{ background: "var(--pf-surface-2)" }}>
                     <div
-                      className="h-full rounded transition-all duration-500"
-                      style={{ width: `${Math.min(100, (len / 38) * 100)}%`, background: "#9b8f84" }}
+                      className="h-full rounded transition-opacity duration-500"
+                      style={{ width: `${Math.min(100, (len / 38) * 100)}%`, background: "var(--pf-muted)" }}
                     />
                   </div>
                   <span className="w-10 text-right pf-mono pf-muted">{len}w</span>
@@ -246,11 +246,11 @@ export default function BeforeAfter() {
           </div>
 
           <div>
-            <div className="text-xs font-bold uppercase tracking-wider pf-accent mb-1">
-              After · Natural Editorial Cadence
+            <div className="text-xs font-semibold pf-accent mb-1">
+              After: Natural Editorial Cadence
             </div>
             <p className="text-xs pf-muted mb-5">
-              ProseFlow mixes short punchy lines with longer flowing thoughts—just like real editors write.
+              ProseFlow mixes short, direct lines with longer flowing thoughts, just like real editors write.
             </p>
             <div className="space-y-3">
               {sample.afterLens.map((len, i) => (
@@ -258,7 +258,7 @@ export default function BeforeAfter() {
                   <span className="w-8 pf-mono pf-muted">S{i + 1}</span>
                   <div className="flex-1 h-3 rounded overflow-hidden" style={{ background: "var(--pf-surface-2)" }}>
                     <div
-                      className="h-full rounded transition-all duration-500"
+                      className="h-full rounded transition-opacity duration-500"
                       style={{ width: `${Math.min(100, (len / 38) * 100)}%`, background: "var(--pf-accent)" }}
                     />
                   </div>
@@ -276,7 +276,7 @@ export default function BeforeAfter() {
         style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
       >
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-bold uppercase tracking-wider text-[11px] pf-muted mr-1">
+          <span className="font-semibold text-[11px] pf-muted mr-1">
             Fidelity Shield
           </span>
           <span
@@ -293,7 +293,7 @@ export default function BeforeAfter() {
           </span>
         </div>
         <a href="/login?mode=signup" className="font-semibold pf-accent hover:underline">
-          Try with your own draft →
+          Try with your own draft
         </a>
       </div>
     </div>

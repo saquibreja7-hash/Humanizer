@@ -19,15 +19,8 @@ export default function PricingSection() {
   return (
     <section id="pricing" className="max-w-6xl mx-auto px-5 py-20 md:py-24">
       <div className="text-center max-w-2xl mx-auto mb-12">
-        <span
-          className="pf-badge mb-4 uppercase tracking-wider text-[11px]"
-          style={{ background: "var(--pf-surface-pure)", color: "var(--pf-accent)" }}
-        >
-          ✳ Transparent pricing
-        </span>
         <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.03em]">
-          Simple pricing{" "}
-          <span className="pf-muted font-medium">that scales with your writing</span>
+          Simple pricing that scales with your writing
         </h2>
         <p className="pf-muted mt-4 text-base md:text-lg">
           Every plan includes zero text retention, Fidelity Shield fact checks, and one-click cancellation.
@@ -101,33 +94,30 @@ export default function PricingSection() {
                 isPro
                   ? {
                       background: "var(--pf-espresso)",
-                      color: "#f4f1ea",
+                      color: "var(--pf-espresso-ink)",
                       borderColor: "var(--pf-accent)",
                       borderWidth: 2,
                     }
                   : undefined
               }
             >
-              {isPro && (
-                <span
-                  className="pf-badge absolute -top-3.5 left-1/2 -translate-x-1/2 shadow-sm uppercase tracking-wider text-[10px]"
-                  style={{
-                    background: "var(--pf-accent)",
-                    color: "#ffffff",
-                    borderColor: "var(--pf-accent)",
-                  }}
-                >
-                  Most popular
-                </span>
-              )}
-
               <div className="flex items-center justify-between gap-2">
-                <h3 className="text-lg font-bold">{plan.name}</h3>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-lg font-bold">{plan.name}</h3>
+                  {isPro && (
+                    <span
+                      className="text-[10px] font-semibold px-2 py-0.5 rounded"
+                      style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}
+                    >
+                      Popular
+                    </span>
+                  )}
+                </div>
                 <span
                   className="text-[10px] font-semibold px-2 py-0.5 rounded pf-mono"
                   style={
                     isPro
-                      ? { background: "rgba(255,255,255,0.08)", color: "#d7c3be" }
+                      ? { background: "rgba(255,255,255,0.08)", color: "var(--pf-espresso-soft)" }
                       : { background: "var(--pf-surface-2)", color: "var(--pf-muted)" }
                   }
                 >
@@ -170,7 +160,7 @@ export default function PricingSection() {
                       className="mt-0.5 inline-flex items-center justify-center w-4 h-4 rounded shrink-0 text-[10px] font-bold"
                       style={
                         isPro
-                          ? { background: "var(--pf-accent)", color: "#ffffff" }
+                          ? { background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }
                           : { background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }
                       }
                     >

@@ -110,10 +110,6 @@ export default function HomePage() {
           <div className="relative max-w-6xl mx-auto px-5 pt-14 md:pt-20 pb-0">
             {/* Headline & CTAs */}
             <div className="max-w-3xl mx-auto text-center pf-fade-in">
-              <div className="pf-eyebrow mb-4">
-                Natural Voice Studio · Zero Text Retention
-              </div>
-
               <h1 className="text-4xl sm:text-6xl md:text-[66px] font-bold tracking-[-0.035em] leading-[1.03]">
                 Smarter{" "}
                 <span className="pf-muted font-medium">Natural</span>
@@ -122,8 +118,7 @@ export default function HomePage() {
               </h1>
 
               <p className="pf-muted mt-5 text-base md:text-lg leading-relaxed max-w-xl mx-auto">
-                Gain complete, confident control over every draft. Turn stiff AI phrasing into
-                clear, authentic prose—with every fact, quote, and figure preserved.
+                Turn stiff AI drafts into clear prose, keeping every fact and quote intact.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -140,7 +135,7 @@ export default function HomePage() {
             <div className="mt-8 md:mt-6 grid lg:grid-cols-12 gap-6 items-end relative">
               {/* Left editorial blurb */}
               <div className="lg:col-span-4 pb-8 md:pb-12 order-2 lg:order-1">
-                <div className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider pf-muted mb-3">
+                <div className="inline-flex items-center gap-1.5 text-xs font-semibold pf-muted mb-3">
                   <BrandAsterisk size={11} />
                   <span>Natural Voice Engine</span>
                 </div>
@@ -182,7 +177,7 @@ export default function HomePage() {
                     <span>Phrasing Rebuilt</span>
                     <span
                       className="px-2 py-0.5 rounded text-[10px] font-semibold"
-                      style={{ background: "var(--pf-accent)", color: "#fff" }}
+                      style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}
                     >
                       5 passes
                     </span>
@@ -191,13 +186,13 @@ export default function HomePage() {
                     <div>
                       <div className="text-3xl font-bold tracking-tight pf-mono text-white">96.4%</div>
                       <div className="mt-1 inline-flex items-center gap-1.5 text-[11px]">
-                        <span className="px-1.5 py-0.5 rounded font-semibold" style={{ background: "rgba(124,53,57,0.5)", color: "#f6c9cc" }}>
+                        <span className="px-1.5 py-0.5 rounded font-semibold" style={{ background: "rgba(124,53,57,0.5)", color: "var(--pf-espresso-pill)" }}>
                           ~7.4s
                         </span>
                         <span style={{ color: "var(--pf-espresso-muted)" }}>parallel cloud stream</span>
                       </div>
                     </div>
-                    <AnimatedRing percent={96.4} stroke="#f4f1ea" />
+                    <AnimatedRing percent={96.4} stroke="var(--pf-espresso-ink)" />
                   </div>
                 </div>
 
@@ -206,7 +201,7 @@ export default function HomePage() {
                     <span>Fidelity Shield &amp; Privacy</span>
                     <span
                       className="px-2 py-0.5 rounded text-[10px] font-semibold"
-                      style={{ background: "var(--pf-accent)", color: "#fff" }}
+                      style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}
                     >
                       RAM only
                     </span>
@@ -215,13 +210,13 @@ export default function HomePage() {
                     <div>
                       <div className="text-3xl font-bold tracking-tight pf-mono text-white">100% Kept</div>
                       <div className="mt-1 inline-flex items-center gap-1.5 text-[11px]">
-                        <span className="px-1.5 py-0.5 rounded font-semibold" style={{ background: "rgba(124,53,57,0.5)", color: "#f6c9cc" }}>
+                        <span className="px-1.5 py-0.5 rounded font-semibold" style={{ background: "rgba(124,53,57,0.5)", color: "var(--pf-espresso-pill)" }}>
                           0 bytes
                         </span>
                         <span style={{ color: "var(--pf-espresso-muted)" }}>draft text stored in DB</span>
                       </div>
                     </div>
-                    <AnimatedRing percent={100} stroke="#c96d72" />
+                    <AnimatedRing percent={100} stroke="var(--pf-accent)" />
                   </div>
                 </div>
               </div>
@@ -233,20 +228,19 @@ export default function HomePage() {
         <section id="about" className="pf-espresso-band pt-20 md:pt-24 pb-16 md:pb-20 scroll-mt-16">
           <div className="max-w-5xl mx-auto px-5 text-center">
             <Reveal>
-              <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#e5a6aa] mb-6">
-                About {BRAND.name}
-              </div>
-
-              <h2 className="text-2xl sm:text-4xl md:text-[42px] font-medium leading-[1.2] tracking-[-0.025em] max-w-4xl mx-auto text-[#f4f1ea]">
+              <h2
+                className="text-2xl sm:text-4xl md:text-[42px] font-medium leading-[1.2] tracking-[-0.025em] max-w-4xl mx-auto"
+                style={{ color: "var(--pf-espresso-ink)" }}
+              >
                 {BRAND.name}{" "}
                 <span
                   className="inline-flex items-center align-middle mx-1 rounded-md overflow-hidden border"
                   style={{ borderColor: "var(--pf-espresso-border)" }}
                   aria-hidden="true"
                 >
-                  <span className="px-1.5 py-1 bg-[#24100e] text-[#f4f1ea]"><BrandAsterisk size={14} /></span>
-                  <span className="px-1.5 py-1 bg-[#7c3539] text-white"><BrandAsterisk size={14} /></span>
-                  <span className="px-1.5 py-1 bg-[#dfdacc] text-[#1a1311]"><BrandAsterisk size={14} /></span>
+                  <span className="px-1.5 py-1" style={{ background: "var(--pf-espresso-deep)", color: "var(--pf-espresso-ink)" }}><BrandAsterisk size={14} /></span>
+                  <span className="px-1.5 py-1" style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}><BrandAsterisk size={14} /></span>
+                  <span className="px-1.5 py-1" style={{ background: "var(--pf-bg)", color: "var(--pf-text)" }}><BrandAsterisk size={14} /></span>
                 </span>{" "}
                 helps writers eliminate mechanical phrasing, restore authentic rhythm,{" "}
                 <span style={{ color: "var(--pf-espresso-muted)" }}>
@@ -266,7 +260,10 @@ export default function HomePage() {
                   { big: "0 bytes", sub: "Draft Text Ever Stored" },
                 ].map((stat) => (
                   <div key={stat.sub} className="px-6" style={{ borderColor: "var(--pf-espresso-border)" }}>
-                    <div className="text-3xl md:text-4xl font-semibold tracking-tight text-[#f4f1ea] pf-mono">
+                    <div
+                      className="text-3xl md:text-4xl font-semibold tracking-tight pf-mono"
+                      style={{ color: "var(--pf-espresso-ink)" }}
+                    >
                       {stat.big}
                     </div>
                     <div className="text-xs mt-2" style={{ color: "var(--pf-espresso-muted)" }}>
@@ -277,10 +274,10 @@ export default function HomePage() {
               </div>
             </Reveal>
 
-            {/* Bespoke Sculpted Oxblood Glass Prism Architectural Visual */}
+            {/* Bespoke Writer Desk Visual */}
             <Reveal delayMs={200} className="mt-14">
               <div
-                className="relative rounded-2xl overflow-hidden border group shadow-2xl shadow-black/40"
+                className="relative rounded-2xl overflow-hidden border"
                 style={{ borderColor: "var(--pf-espresso-border)" }}
               >
                 <Image
@@ -288,7 +285,7 @@ export default function HomePage() {
                   alt="Open cream linen notebook with an oxblood-burgundy fountain pen on a dark walnut writer desk in warm sunlight"
                   width={1280}
                   height={714}
-                  className="w-full h-[220px] sm:h-[320px] md:h-[400px] object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+                  className="w-full h-[220px] sm:h-[320px] md:h-[400px] object-cover"
                 />
                 <div
                   className="absolute inset-0 pointer-events-none"
@@ -299,15 +296,15 @@ export default function HomePage() {
                 />
                 <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex flex-wrap items-end justify-between gap-3 text-left">
                   <div>
-                    <div className="text-[11px] font-bold uppercase tracking-widest text-[#e5a6aa]">
+                    <div className="text-xs font-semibold" style={{ color: "var(--pf-espresso-rose)" }}>
                       Iterative Base-Model Engine
                     </div>
-                    <div className="text-lg sm:text-xl font-medium text-[#f4f1ea] mt-0.5">
+                    <div className="text-lg sm:text-xl font-medium mt-0.5" style={{ color: "var(--pf-espresso-ink)" }}>
                       Clear human cadence on every page.
                     </div>
                   </div>
                   <a href="#demo" className="pf-btn pf-btn-primary text-xs px-4 py-2">
-                    Try the live studio ↓
+                    Try the live studio
                   </a>
                 </div>
               </div>
@@ -319,7 +316,6 @@ export default function HomePage() {
         <section id="demo" className="max-w-5xl mx-auto px-5 py-20 md:py-24 scroll-mt-16">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-10">
-              <div className="pf-eyebrow mb-3">Interactive Studio</div>
               <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.03em]">
                 See the difference line by line
               </h2>
@@ -342,7 +338,6 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto px-5">
             <Reveal>
               <div className="max-w-2xl">
-                <div className="pf-eyebrow mb-3">Workflow</div>
                 <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em]">
                   Three calm steps from rough draft to natural prose.
                 </h2>
@@ -356,7 +351,7 @@ export default function HomePage() {
               {STEPS.map((s, idx) => (
                 <Reveal key={s.num} delayMs={idx * 90}>
                   <div className="py-7 md:px-7 first:md:pl-0 last:md:pr-0 flex flex-col h-full">
-                    <span className="pf-mono text-xs font-bold pf-accent tracking-wider">
+                    <span className="pf-mono text-xs font-bold pf-accent">
                       {s.num}
                     </span>
                     <h3 className="text-xl font-bold mt-3">{s.title}</h3>
@@ -372,7 +367,6 @@ export default function HomePage() {
         <section id="features" className="max-w-6xl mx-auto px-5 py-20 md:py-24 scroll-mt-16">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <div className="pf-eyebrow mb-3">Capabilities</div>
               <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.03em]">
                 Keep your facts. Keep your voice.
               </h2>
@@ -384,7 +378,7 @@ export default function HomePage() {
               <div className="pf-card-pure pf-card-hover p-6 md:p-7 h-full flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-bold uppercase tracking-wider pf-accent">
+                    <span className="text-xs font-semibold pf-accent">
                       Fidelity Shield
                     </span>
                     <span
@@ -399,7 +393,7 @@ export default function HomePage() {
                   </h3>
                   <p className="pf-muted mt-2.5 text-sm leading-relaxed max-w-xl">
                     After every pass, ProseFlow checks your rewritten draft against your source
-                    text—verifying quotes, dates, and numbers automatically. Want a different take
+                    text, verifying quotes, dates, and numbers automatically. Want a different take
                     on one section? Regenerate just that single paragraph in one click.
                   </p>
                 </div>
@@ -432,7 +426,7 @@ export default function HomePage() {
             <Reveal className="md:col-span-2" delayMs={110}>
               <div className="pf-dark-card pf-card-hover p-6 md:p-7 h-full flex flex-col justify-between">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider" style={{ color: "#e5a6aa" }}>
+                  <span className="text-xs font-semibold" style={{ color: "var(--pf-espresso-rose)" }}>
                     Privacy by Design
                   </span>
                   <h3 className="text-2xl font-bold mt-2 text-white">Zero text retention.</h3>
@@ -451,11 +445,11 @@ export default function HomePage() {
                   </div>
                   <div className="flex justify-between">
                     <span style={{ color: "var(--pf-espresso-muted)" }}>Stored in DB</span>
-                    <span className="font-bold" style={{ color: "#e5a6aa" }}>0 bytes</span>
+                    <span className="font-bold" style={{ color: "var(--pf-espresso-rose)" }}>0 bytes</span>
                   </div>
                   <div className="flex justify-between">
                     <span style={{ color: "var(--pf-espresso-muted)" }}>Model training</span>
-                    <span className="font-bold" style={{ color: "#e5a6aa" }}>Never</span>
+                    <span className="font-bold" style={{ color: "var(--pf-espresso-rose)" }}>Never</span>
                   </div>
                 </div>
               </div>
@@ -463,10 +457,10 @@ export default function HomePage() {
 
             <Reveal className="md:col-span-3" delayMs={60}>
               <div className="pf-card-pure pf-card-hover p-6 md:p-7 h-full">
-                <span className="text-xs font-bold uppercase tracking-wider pf-accent">
+                <span className="text-xs font-semibold pf-accent">
                   Dual Variations
                 </span>
-                <h3 className="text-xl font-bold mt-2">Compare Option A &amp; Option B side-by-side</h3>
+                <h3 className="text-xl font-bold mt-2">Compare Option A &amp; Option B side by side</h3>
                 <p className="pf-muted mt-2 text-sm leading-relaxed">
                   Human writing is never one-size-fits-all. Generate two distinct natural takes in
                   one run and pick the rhythm that sounds most like you.
@@ -476,15 +470,15 @@ export default function HomePage() {
                     className="rounded-lg border p-3"
                     style={{ background: "var(--pf-accent-soft)", borderColor: "var(--pf-accent)" }}
                   >
-                    <div className="font-bold pf-accent mb-1">Option A · Crisp</div>
-                    <div className="pf-muted leading-snug">Direct opening, varied mid-sentence turn…</div>
+                    <div className="font-bold pf-accent mb-1">Option A: Crisp</div>
+                    <div className="pf-muted leading-snug">Direct opening, varied mid-sentence turn.</div>
                   </div>
                   <div
                     className="rounded-lg border p-3"
                     style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
                   >
-                    <div className="font-bold mb-1">Option B · Conversational</div>
-                    <div className="pf-muted leading-snug">Warmer editorial flow with natural pacing…</div>
+                    <div className="font-bold mb-1">Option B: Conversational</div>
+                    <div className="pf-muted leading-snug">Warmer editorial flow with natural pacing.</div>
                   </div>
                 </div>
               </div>
@@ -492,14 +486,13 @@ export default function HomePage() {
 
             <Reveal className="md:col-span-3" delayMs={130}>
               <div className="pf-card-pure pf-card-hover p-6 md:p-7 h-full">
-                <span className="text-xs font-bold uppercase tracking-wider pf-accent">
+                <span className="text-xs font-semibold pf-accent">
                   Document Workflow
                 </span>
                 <h3 className="text-xl font-bold mt-2">Upload &amp; export formatted .docx files</h3>
                 <p className="pf-muted mt-2 text-sm leading-relaxed">
-                  Stop copy-pasting one paragraph at a time. Drop a 3,000-word Word document—we
-                  keep section headings untouched, refine body chunks in parallel, and export a
-                  clean .docx.
+                  Stop copy-pasting one paragraph at a time. Drop a 3,000-word Word document: section
+                  headings stay untouched, body chunks run in parallel, and export returns a clean .docx.
                 </p>
                 <div
                   className="mt-5 rounded-lg border p-3.5 text-xs flex items-center justify-between gap-3"
@@ -508,17 +501,17 @@ export default function HomePage() {
                   <div className="flex items-center gap-2.5">
                     <span
                       className="px-2 py-1 rounded font-bold pf-mono text-[11px]"
-                      style={{ background: "var(--pf-accent)", color: "#fff" }}
+                      style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}
                     >
                       DOCX
                     </span>
                     <div>
                       <div className="font-semibold">research-review-draft.docx</div>
-                      <div className="pf-muted">32 headings preserved · 14 blocks streamed</div>
+                      <div className="pf-muted">32 headings preserved, 14 blocks streamed</div>
                     </div>
                   </div>
                   <span className="font-semibold" style={{ color: "var(--pf-good)" }}>
-                    Ready ↓
+                    Ready
                   </span>
                 </div>
               </div>
@@ -527,24 +520,28 @@ export default function HomePage() {
             <Reveal className="md:col-span-6" delayMs={80}>
               <div className="pf-dark-card p-6 md:p-8 grid md:grid-cols-5 gap-6 items-center">
                 <div className="md:col-span-2">
-                  <span className="text-xs font-bold uppercase tracking-wider" style={{ color: "#e5a6aa" }}>
+                  <span className="text-xs font-semibold" style={{ color: "var(--pf-espresso-rose)" }}>
                     Developer REST API
                   </span>
                   <h3 className="text-2xl font-bold mt-2 text-white">
                     Embed natural voice refinement anywhere.
                   </h3>
                   <p className="mt-2.5 text-sm leading-relaxed" style={{ color: "var(--pf-espresso-muted)" }}>
-                    Generate scoped <code className="text-[#f4d4d6]">pf_sk_...</code> API keys in
+                    Generate scoped <code style={{ color: "var(--pf-espresso-pill)" }}>pf_sk_...</code> API keys in
                     seconds. Built for content platforms, editorial pipelines, and agency workflows
                     with predictable word-credit billing.
                   </p>
                   <a href="/docs" className="pf-btn pf-btn-primary mt-5 text-sm px-4 py-2.5">
-                    Read API Docs →
+                    Read API Docs
                   </a>
                 </div>
                 <div
-                  className="md:col-span-3 rounded-lg p-4 pf-mono text-xs text-[#f4f1ea] overflow-x-auto leading-relaxed border"
-                  style={{ background: "rgba(0,0,0,0.34)", borderColor: "var(--pf-espresso-border)" }}
+                  className="md:col-span-3 rounded-lg p-4 pf-mono text-xs overflow-x-auto leading-relaxed border"
+                  style={{
+                    background: "rgba(0,0,0,0.34)",
+                    borderColor: "var(--pf-espresso-border)",
+                    color: "var(--pf-espresso-ink)",
+                  }}
                 >
                   <div className="mb-2" style={{ color: "var(--pf-espresso-muted)" }}>
                     # POST /api/v1/rewrite
@@ -632,22 +629,26 @@ export default function HomePage() {
         <section className="pf-espresso-band py-20">
           <Reveal>
             <div className="max-w-3xl mx-auto px-5 text-center">
-              <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.03em] text-[#f4f1ea]">
+              <h2
+                className="text-3xl md:text-5xl font-bold tracking-[-0.03em]"
+                style={{ color: "var(--pf-espresso-ink)" }}
+              >
                 Your ideas. Your facts.{" "}
                 <span style={{ color: "var(--pf-espresso-muted)" }} className="font-medium">
                   Your natural voice.
                 </span>
               </h2>
               <p className="mt-4 text-base md:text-lg" style={{ color: "var(--pf-espresso-muted)" }}>
-                Start with 500 free words every month—no credit card required, zero drafts stored.
+                Start with 500 free words every month. Zero drafts stored.
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <a href="/login?mode=signup" className="pf-btn pf-btn-primary text-sm px-6 py-3.5">
-                  Get started free →
+                  Get started free
                 </a>
                 <a
                   href="/docs"
-                  className="pf-btn text-sm px-6 py-3.5 bg-[#f4f1ea] hover:bg-white text-[#1a1311]"
+                  className="pf-btn text-sm px-6 py-3.5"
+                  style={{ background: "var(--pf-espresso-ink)", color: "var(--pf-text)" }}
                 >
                   Explore Developer API
                 </a>

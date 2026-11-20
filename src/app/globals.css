@@ -9,7 +9,7 @@
 :root {
   --pf-bg: #dfdacc;
   --pf-surface: #f5f2ea;
-  --pf-surface-pure: #ffffff;
+  --pf-surface-pure: #fcfaf5;
   --pf-surface-2: #d4cfc2;
   --pf-border: #c6c0b2;
   --pf-text: #1a1311;
@@ -17,10 +17,17 @@
   --pf-accent: #7c3539;
   --pf-accent-hover: #65292c;
   --pf-accent-soft: #f1e3e4;
+  --pf-btn-ink: #fbf8f3;
   --pf-espresso: #341815;
   --pf-espresso-deep: #24100e;
+  --pf-espresso-card-top: #3a1b18;
+  --pf-espresso-card-bot: #2a1210;
   --pf-espresso-border: #4f2a26;
   --pf-espresso-muted: #a8918c;
+  --pf-espresso-ink: #f4f1ea;
+  --pf-espresso-rose: #e5a6aa;
+  --pf-espresso-soft: #d5c7c2;
+  --pf-espresso-pill: #f6c9cc;
   --pf-warm: #8e4c3f;
   --pf-warm-soft: #efe2de;
   --pf-good: #2d6a4f;
@@ -54,6 +61,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -62,6 +70,12 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+:focus-visible {
+  outline: 2px solid var(--pf-accent);
+  outline-offset: 2px;
 }
 
 .pf-serif {
@@ -103,15 +117,15 @@ body {
 
 .pf-espresso-band {
   background: var(--pf-espresso);
-  color: #f4f1ea;
+  color: var(--pf-espresso-ink);
 }
 
 .pf-dark-card {
-  background: linear-gradient(160deg, #3a1b18 0%, #2a1210 100%);
-  color: #f4f1ea;
+  background: linear-gradient(160deg, var(--pf-espresso-card-top) 0%, var(--pf-espresso-card-bot) 100%);
+  color: var(--pf-espresso-ink);
   border: 1px solid var(--pf-espresso-border);
   border-radius: 14px;
-  box-shadow: 0 18px 42px -18px rgba(26, 11, 10, 0.6);
+  box-shadow: 0 18px 42px -18px color-mix(in srgb, var(--pf-espresso-deep) 75%, transparent);
 }
 
 .pf-muted {
@@ -139,20 +153,20 @@ body {
 
 .pf-btn-primary {
   background: var(--pf-accent);
-  color: #ffffff;
+  color: var(--pf-btn-ink);
   padding: 0.7rem 1.45rem;
-  box-shadow: 0 6px 18px -6px rgba(124, 53, 57, 0.55);
+  box-shadow: 0 6px 18px -6px color-mix(in srgb, var(--pf-accent) 55%, transparent);
 }
 
 @media (prefers-color-scheme: dark) {
   .pf-btn-primary {
-    color: #1a0b0a;
+    color: var(--pf-espresso-deep);
   }
 }
 
 .pf-btn-primary:hover {
   background: var(--pf-accent-hover);
-  box-shadow: 0 10px 24px -6px rgba(124, 53, 57, 0.65);
+  box-shadow: 0 10px 24px -6px color-mix(in srgb, var(--pf-accent) 65%, transparent);
 }
 
 .pf-btn-primary:disabled {

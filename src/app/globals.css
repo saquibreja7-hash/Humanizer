@@ -7,31 +7,31 @@
 }
 
 :root {
-  --pf-bg: #dfdacc;
-  --pf-surface: #f5f2ea;
-  --pf-surface-pure: #fcfaf5;
-  --pf-surface-2: #d4cfc2;
-  --pf-border: #c6c0b2;
-  --pf-text: #1a1311;
-  --pf-muted: #766b64;
+  --pf-bg: #ffffff;
+  --pf-surface: #f7f6f5;
+  --pf-surface-pure: #ffffff;
+  --pf-surface-2: #eeecea;
+  --pf-border: #e3e0dd;
+  --pf-text: #181312;
+  --pf-muted: #5c5450;
   --pf-accent: #7c3539;
   --pf-accent-hover: #65292c;
-  --pf-accent-soft: #f1e3e4;
+  --pf-accent-soft: #f6eaea;
   --pf-btn-ink: #fbf8f3;
-  --pf-espresso: #341815;
-  --pf-espresso-deep: #24100e;
-  --pf-espresso-card-top: #3a1b18;
-  --pf-espresso-card-bot: #2a1210;
-  --pf-espresso-border: #4f2a26;
-  --pf-espresso-muted: #a8918c;
-  --pf-espresso-ink: #f4f1ea;
+  --pf-espresso: #2a1412;
+  --pf-espresso-deep: #1e0d0c;
+  --pf-espresso-card-top: #341815;
+  --pf-espresso-card-bot: #24100e;
+  --pf-espresso-border: #4a2723;
+  --pf-espresso-muted: #b5a39e;
+  --pf-espresso-ink: #f7f5f3;
   --pf-espresso-rose: #e5a6aa;
-  --pf-espresso-soft: #d5c7c2;
+  --pf-espresso-soft: #d9cecb;
   --pf-espresso-pill: #f6c9cc;
   --pf-warm: #8e4c3f;
-  --pf-warm-soft: #efe2de;
-  --pf-good: #2d6a4f;
-  --pf-warn: #9a4a18;
+  --pf-warm-soft: #f3e8e6;
+  --pf-good: #256045;
+  --pf-warn: #924616;
   --pf-bad: #9f2525;
 }
 
@@ -71,6 +71,12 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: clip;
+  caret-color: var(--pf-accent);
+}
+
+::selection {
+  background: var(--pf-accent-soft);
+  color: var(--pf-accent);
 }
 
 :focus-visible {
@@ -84,35 +90,33 @@ body {
 
 .pf-mono {
   font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
 }
 
 .pf-glass {
-  background: color-mix(in srgb, var(--pf-bg) 86%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: color-mix(in srgb, var(--pf-bg) 90%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .pf-card {
   background: var(--pf-surface);
   border: 1px solid var(--pf-border);
   border-radius: 14px;
-  box-shadow: 0 1px 2px rgba(26, 19, 17, 0.04);
 }
 
 .pf-card-pure {
   background: var(--pf-surface-pure);
   border: 1px solid var(--pf-border);
   border-radius: 14px;
-  box-shadow: 0 2px 6px rgba(26, 19, 17, 0.05);
 }
 
 .pf-card-hover {
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .pf-card-hover:hover {
   border-color: color-mix(in srgb, var(--pf-accent) 55%, var(--pf-border));
-  box-shadow: 0 10px 26px -16px rgba(52, 24, 21, 0.22);
 }
 
 .pf-espresso-band {

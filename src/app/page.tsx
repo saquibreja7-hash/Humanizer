@@ -3,7 +3,6 @@ import { BRAND } from "@/lib/brand";
 import BeforeAfter from "@/components/BeforeAfter";
 import PricingSection from "@/components/PricingSection";
 import Reveal from "@/components/Reveal";
-import AnimatedRing from "@/components/AnimatedRing";
 import PublicHeader, { BrandAsterisk } from "@/components/PublicHeader";
 import PublicFooter from "@/components/PublicFooter";
 
@@ -149,74 +148,57 @@ export default function HomePage() {
 
               {/* Center Hero Photograph rising flush out of the Espresso band */}
               <div className="lg:col-span-4 order-1 lg:order-2 flex justify-center relative">
-                {/* Floating architectural brand emblem chip */}
-                <div
-                  className="hidden md:flex pf-float absolute -top-2 -right-4 z-10 w-12 h-12 rounded-xl items-center justify-center border shadow-md"
-                  style={{ background: "var(--pf-surface-pure)", borderColor: "var(--pf-border)", color: "var(--pf-text)" }}
-                  aria-hidden="true"
-                >
-                  <BrandAsterisk size={20} />
-                </div>
-
                 <div className="relative w-[300px] sm:w-[360px] lg:w-[400px] -mb-1">
                   <Image
                     src="/images/hero-writing.jpg"
-                    alt="Hand holding a matte oxblood-burgundy fountain pen with brushed gold nib on warm limestone"
+                    alt="Hand holding a matte crimson fountain pen with brushed gold nib on white background"
                     width={840}
                     height={934}
                     priority
-                    className="w-full h-auto block pf-hero-photo-mask select-none"
+                    className="w-full h-auto block select-none"
                   />
                 </div>
               </div>
 
-              {/* Right floating Deep Espresso ring-gauge metric cards */}
+              {/* Right Deep Espresso capability cards */}
               <div className="lg:col-span-4 pb-8 md:pb-10 order-3 space-y-4">
                 <div className="pf-dark-card pf-card-hover p-5">
-                  <div className="flex items-center justify-between text-[11px]" style={{ color: "var(--pf-espresso-muted)" }}>
-                    <span>Phrasing Rebuilt</span>
+                  <div className="flex items-center justify-between text-xs" style={{ color: "var(--pf-espresso-muted)" }}>
+                    <span>Phrasing rebuilt</span>
                     <span
-                      className="px-2 py-0.5 rounded text-[10px] font-semibold"
+                      className="px-2 py-0.5 rounded text-[11px] font-semibold"
                       style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}
                     >
                       5 passes
                     </span>
                   </div>
-                  <div className="mt-2.5 flex items-center justify-between gap-4">
-                    <div>
-                      <div className="text-3xl font-bold tracking-tight pf-mono text-white">96.4%</div>
-                      <div className="mt-1 inline-flex items-center gap-1.5 text-[11px]">
-                        <span className="px-1.5 py-0.5 rounded font-semibold" style={{ background: "rgba(124,53,57,0.5)", color: "var(--pf-espresso-pill)" }}>
-                          ~7.4s
-                        </span>
-                        <span style={{ color: "var(--pf-espresso-muted)" }}>parallel cloud stream</span>
-                      </div>
+                  <div className="mt-2.5">
+                    <div className="text-3xl font-bold tracking-tight pf-mono" style={{ color: "var(--pf-espresso-ink)" }}>
+                      96.4%
                     </div>
-                    <AnimatedRing percent={96.4} stroke="var(--pf-espresso-ink)" />
+                    <div className="mt-1.5 text-xs" style={{ color: "var(--pf-espresso-muted)" }}>
+                      Rebuilt in ~7.4s via parallel cloud streaming
+                    </div>
                   </div>
                 </div>
 
                 <div className="pf-dark-card pf-card-hover p-5">
-                  <div className="flex items-center justify-between text-[11px]" style={{ color: "var(--pf-espresso-muted)" }}>
-                    <span>Fidelity Shield &amp; Privacy</span>
+                  <div className="flex items-center justify-between text-xs" style={{ color: "var(--pf-espresso-muted)" }}>
+                    <span>Fidelity Shield &amp; privacy</span>
                     <span
-                      className="px-2 py-0.5 rounded text-[10px] font-semibold"
+                      className="px-2 py-0.5 rounded text-[11px] font-semibold"
                       style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}
                     >
                       RAM only
                     </span>
                   </div>
-                  <div className="mt-2.5 flex items-center justify-between gap-4">
-                    <div>
-                      <div className="text-3xl font-bold tracking-tight pf-mono text-white">100% Kept</div>
-                      <div className="mt-1 inline-flex items-center gap-1.5 text-[11px]">
-                        <span className="px-1.5 py-0.5 rounded font-semibold" style={{ background: "rgba(124,53,57,0.5)", color: "var(--pf-espresso-pill)" }}>
-                          0 bytes
-                        </span>
-                        <span style={{ color: "var(--pf-espresso-muted)" }}>draft text stored in DB</span>
-                      </div>
+                  <div className="mt-2.5">
+                    <div className="text-3xl font-bold tracking-tight pf-mono" style={{ color: "var(--pf-espresso-ink)" }}>
+                      100% kept
                     </div>
-                    <AnimatedRing percent={100} stroke="var(--pf-accent)" />
+                    <div className="mt-1.5 text-xs" style={{ color: "var(--pf-espresso-muted)" }}>
+                      Every quote &amp; figure checked, 0 bytes saved
+                    </div>
                   </div>
                 </div>
               </div>

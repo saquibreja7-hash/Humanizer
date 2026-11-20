@@ -10,20 +10,20 @@ Never invent arbitrary hex colors, neon glows, or purple/cyan gradients. All sur
 
 | Token | Hex | Role |
 | :--- | :--- | :--- |
-| `--pf-bg` | `#DFDACC` | Primary Warm Limestone canvas |
-| `--pf-surface` | `#F5F2EA` | Warm Cream editorial paper cards & secondary bands |
-| `--pf-surface-pure` | `#FFFFFF` | Crisp elevated panels, inputs, and interactive controls |
-| `--pf-surface-2` | `#D4CFC2` | Recessed surface chips & keyboard-key accents |
-| `--pf-border` | `#C6C0B2` | 1px hairline architectural borders & dividers |
-| `--pf-text` | `#1A1311` | Primary espresso-black ink |
-| `--pf-muted` | `#766B64` | Warm Taupe secondary copy & metadata |
-| `--pf-accent` | `#7C3539` | Oxblood Burgundy primary CTAs, active states, & links |
+| `--pf-bg` | `#FFFFFF` | Primary Pure White canvas (clean, high-contrast editorial background) |
+| `--pf-surface` | `#F7F6F5` | Crisp Neutral Off-White secondary bands & table headers |
+| `--pf-surface-pure` | `#FFFFFF` | Elevated panels, inputs, and interactive controls |
+| `--pf-surface-2` | `#EEECEA` | Recessed surface chips & subtle dividers |
+| `--pf-border` | `#E3E0DD` | 1px hairline architectural borders & dividers |
+| `--pf-text` | `#181312` | Primary near-black ink (>= 16:1 contrast on white) |
+| `--pf-muted` | `#5C5450` | Secondary copy & metadata (>= 7:1 contrast on white) |
+| `--pf-accent` | `#7C3539` | Crimson / Oxblood primary CTAs, active states, & links |
 | `--pf-accent-hover` | `#65292C` | Hover state for primary actions |
-| `--pf-accent-soft` | `#F1E3E4` | Subtle blush-oxblood tint for selected states |
-| `--pf-espresso` | `#341815` | Deep Espresso dark editorial bands & high-contrast panels |
-| `--pf-espresso-deep` | `#24100E` | Deepest espresso gradient stop |
-| `--pf-espresso-border` | `#4F2A26` | Hairline borders inside dark Espresso sections |
-| `--pf-espresso-muted` | `#A8918C` | Secondary text on Deep Espresso backgrounds |
+| `--pf-accent-soft` | `#F6EAEA` | Subtle blush-crimson tint for selected states |
+| `--pf-espresso` | `#2A1412` | Deep Espresso dark editorial bands & high-contrast panels |
+| `--pf-espresso-deep` | `#1E0D0C` | Deepest espresso gradient stop |
+| `--pf-espresso-border` | `#4A2723` | Hairline borders inside dark Espresso sections |
+| `--pf-espresso-muted` | `#B5A39E` | Secondary text on Deep Espresso backgrounds |
 
 ---
 

@@ -1,0 +1,39 @@
+{
+  "name": "proseflow",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ProseFlow — natural writing & voice refiner. Turn stiff, robotic AI drafts into clear, authentic, human-sounding prose while preserving every fact, quote, and figure.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "e2e": "node scripts/e2e-smoke.mjs"
+  },
+  "dependencies": {
+    "docx": "^9.5.1",
+    "fast-xml-parser": "^5.2.5",
+    "jszip": "^3.10.1",
+    "next": "15.5.29",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "eslint": "^9.30.0",
+    "eslint-config-next": "15.5.29",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.8.3",
+    "vitest": "^5.1.1"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}

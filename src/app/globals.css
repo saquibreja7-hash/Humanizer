@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
+}
+
+:root {
+  --pf-bg: #faf8f4;
+  --pf-surface: #ffffff;
+  --pf-surface-2: #f4f0e8;
+  --pf-border: #e5dfd3;
+  --pf-text: #1f1b16;
+  --pf-muted: #6b6357;
+  --pf-accent: #b45309;
+  --pf-accent-soft: #fdf0e0;
+  --pf-good: #15803d;
+  --pf-warn: #a16207;
+  --pf-bad: #b91c1c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --pf-bg: #14130f;
+    --pf-surface: #1c1a15;
+    --pf-surface-2: #24211a;
+    --pf-border: #34302a;
+    --pf-text: #ece7dd;
+    --pf-muted: #a49b8c;
+    --pf-accent: #d97706;
+    --pf-accent-soft: #2b2117;
+    --pf-good: #4ade80;
+    --pf-warn: #facc15;
+    --pf-bad: #f87171;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--pf-bg);
+  color: var(--pf-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.pf-serif {
+  font-family: var(--font-serif);
+}
+
+.pf-card {
+  background: var(--pf-surface);
+  border: 1px solid var(--pf-border);
+  border-radius: 14px;
+}
+
+.pf-muted {
+  color: var(--pf-muted);
+}
+
+.pf-accent {
+  color: var(--pf-accent);
+}
+
+.pf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: transform 0.06s ease, opacity 0.15s ease, background 0.15s ease;
+  cursor: pointer;
+}
+
+.pf-btn:active {
+  transform: translateY(1px);
+}
+
+.pf-btn-primary {
+  background: var(--pf-accent);
+  color: #fff;
+  padding: 0.7rem 1.4rem;
+}
+
+.pf-btn-primary:hover {
+  opacity: 0.9;
+}
+
+.pf-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pf-btn-ghost {
+  background: transparent;
+  color: var(--pf-text);
+  border: 1px solid var(--pf-border);
+  padding: 0.7rem 1.4rem;
+}
+
+.pf-btn-ghost:hover {
+  background: var(--pf-surface-2);
+}
+
+.pf-input {
+  width: 100%;
+  background: var(--pf-surface);
+  border: 1px solid var(--pf-border);
+  border-radius: 10px;
+  padding: 0.65rem 0.9rem;
+  color: var(--pf-text);
+  outline: none;
+}
+
+.pf-input:focus {
+  border-color: var(--pf-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--pf-accent) 18%, transparent);
+}
+
+.pf-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--pf-border);
+}
+
+.pf-link {
+  color: var(--pf-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

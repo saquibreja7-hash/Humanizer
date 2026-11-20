@@ -101,12 +101,14 @@ body {
 
 .pf-card {
   background: var(--pf-surface);
+  color: var(--pf-text);
   border: 1px solid var(--pf-border);
   border-radius: 14px;
 }
 
 .pf-card-pure {
   background: var(--pf-surface-pure);
+  color: var(--pf-text);
   border: 1px solid var(--pf-border);
   border-radius: 14px;
 }
@@ -129,7 +131,6 @@ body {
   color: var(--pf-espresso-ink);
   border: 1px solid var(--pf-espresso-border);
   border-radius: 14px;
-  box-shadow: 0 18px 42px -18px color-mix(in srgb, var(--pf-espresso-deep) 75%, transparent);
 }
 
 .pf-muted {
@@ -214,15 +215,6 @@ body {
   border-radius: 6px;
   padding: 0.25rem 0.7rem;
   border: 1px solid var(--pf-border);
-}
-
-.pf-eyebrow {
-  display: inline-block;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--pf-accent);
 }
 
 .pf-link {

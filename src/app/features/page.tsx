@@ -31,8 +31,7 @@ export default function FeaturesPage() {
             Precision tools for natural, accurate prose.
           </h1>
           <p className="pf-muted mt-4 text-base max-w-xl">
-            Everything built to keep facts intact, preserve document formatting, and keep drafts
-            private.
+            Keep facts intact, preserve .docx formatting, and keep drafts private.
           </p>
         </section>
 

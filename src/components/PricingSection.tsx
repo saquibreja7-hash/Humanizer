@@ -79,8 +79,8 @@ export default function PricingSection() {
         </div>
       </div>
 
-      {/* Side-by-side 2-col on mobile/tablet, 4-col on desktop */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 items-stretch">
+      {/* Side-by-side horizontal row (swipeable on mobile, 4 equal columns on desktop) */}
+      <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-3 -mx-4 px-4 lg:mx-0 lg:px-0 lg:pb-0 lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible items-stretch">
         {PLAN_ORDER.map((id) => {
           const plan = PLANS[id];
           const monthly = planPrice(plan, interval, currency);
@@ -88,7 +88,7 @@ export default function PricingSection() {
           return (
             <div
               key={plan.id}
-              className="pf-card-pure pf-card-hover p-4 sm:p-6 flex flex-col"
+              className="pf-card-pure pf-card-hover p-5 sm:p-6 flex flex-col shrink-0 w-[265px] sm:w-[290px] lg:w-auto snap-start"
               style={
                 isPro
                   ? {

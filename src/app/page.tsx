@@ -63,8 +63,7 @@ export default function HomePage() {
         {/* Clean White Hero + Fountain Pen Visual */}
         <section className="max-w-5xl mx-auto px-5 pt-14 md:pt-20 pb-12 text-center">
           <h1 className="text-4xl sm:text-6xl font-bold tracking-[-0.035em] leading-[1.04]">
-            Smarter Natural{" "}
-            <span className="pf-muted font-medium">Writing Refinement</span>
+            Smarter Natural Writing Refinement
           </h1>
 
           <p className="pf-muted mt-5 text-base md:text-lg leading-relaxed max-w-md mx-auto">
@@ -132,7 +131,7 @@ export default function HomePage() {
                     className="px-1 rounded"
                     style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }}
                   >
-                    ultimately unlocking unprecedented value
+                    ultimately delivering unprecedented value
                   </mark>{" "}
                   across every department.
                 </p>

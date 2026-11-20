@@ -40,7 +40,7 @@ export default function PricingPage() {
             Pay only for the words you refine.
           </h1>
           <p className="pf-muted mt-4 text-base max-w-lg mx-auto">
-            500 free words every month. Upgrade in USD or INR, save 35% annually, cancel anytime.
+            500 free words monthly. USD or INR, cancel anytime.
           </p>
         </section>
 

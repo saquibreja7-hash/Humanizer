@@ -114,9 +114,8 @@ console.log(data.text, data.fidelity);`,
         <div className="max-w-xl">
           <h1 className="text-2xl sm:text-3xl font-bold tracking-[-0.03em]">API Keys</h1>
           <p className="pf-muted text-sm mt-1.5 leading-relaxed">
-            Authenticate calls to <code className="pf-mono text-xs">POST /api/v1/rewrite</code>{" "}
-            with Bearer <code className="pf-mono text-xs pf-accent">pf_sk_...</code> keys. Keys
-            are shown once and stored as SHA-256 hashes.
+            Use Bearer <code className="pf-mono text-xs pf-accent">pf_sk_...</code> keys for{" "}
+            <code className="pf-mono text-xs">POST /api/v1/rewrite</code>.
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-3">
             <button
@@ -162,7 +161,7 @@ console.log(data.text, data.fidelity);`,
           <div>
             <div className="font-bold text-sm">REST API keys require the Business &amp; API plan</div>
             <p className="pf-muted text-xs sm:text-sm mt-0.5">
-              Unlock 250,000 monthly words and scoped <code className="pf-mono">pf_sk_...</code> keys.
+              Includes 250,000 monthly words and scoped <code className="pf-mono">pf_sk_...</code> keys.
             </p>
           </div>
           <Link href="/app/billing" className="pf-btn pf-btn-primary text-xs px-5 py-2.5 shrink-0">
@@ -292,7 +291,7 @@ console.log(data.text, data.fidelity);`,
                             Revoke
                           </button>
                         ) : (
-                          <span className="text-xs pf-muted">—</span>
+                          <span className="text-xs pf-muted">Inactive</span>
                         )}
                       </td>
                     </tr>

@@ -21,7 +21,7 @@ export default function TermsPage() {
       <LegalCallout title="Key Ownership & Ethics Summary">
         You keep 100% ownership of your input drafts and refined prose. {BRAND.name} is designed
         for bloggers, researchers, marketers, founders, and multilingual writers polishing their own
-        work—never for plagiarism or academic dishonesty.
+        work, never for plagiarism or academic dishonesty.
       </LegalCallout>
 
       <section className="space-y-3">

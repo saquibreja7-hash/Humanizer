@@ -41,8 +41,7 @@ export default function AboutPage() {
                 Restoring human cadence to modern writing.
               </h1>
               <p className="pf-muted text-base leading-relaxed">
-                {BRAND.name} helps bloggers, researchers, marketers, founders, and ESL writers turn
-                stiff drafts into clear, natural prose with every fact preserved.
+                Turn stiff drafts into natural prose with every fact preserved.
               </p>
               <div className="flex flex-wrap gap-3 pt-1">
                 <Link href="/login?mode=signup" className="pf-btn pf-btn-primary text-sm px-5 py-2.5">

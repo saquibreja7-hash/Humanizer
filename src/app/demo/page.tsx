@@ -21,8 +21,7 @@ export default function DemoPage() {
             Compare original vs. refined prose.
           </h1>
           <p className="pf-muted mt-3 text-base max-w-lg mx-auto">
-            Switch writing genres, compare Option A and Option B, or inspect sentence length
-            variation below.
+            Switch genres, compare Option A and B, or inspect sentence rhythm.
           </p>
         </section>
 

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import AnimatedRing from "@/components/AnimatedRing";
+import { BrandAsterisk } from "@/components/PublicHeader";
 
 interface PlanDetails {
   name: string;
@@ -476,7 +477,7 @@ export default function EditorPage() {
               Writing Studio
             </h1>
             <p className="pf-muted text-xs sm:text-sm mt-1">
-              Paste a draft or drop a Word file. Everything runs in memory with zero text stored.
+              Paste a draft or drop a .docx file. Runs in memory.
             </p>
           </div>
 
@@ -568,7 +569,7 @@ export default function EditorPage() {
                       <span className="ml-1.5 opacity-75 pf-mono text-[10px]">
                         {MODE_META[m].passes}
                       </span>
-                      {!allowed && <span className="ml-1 text-[10px]">🔒</span>}
+                      {!allowed && <span className="ml-1 text-[10px] opacity-70">Pro</span>}
                     </button>
                   );
                 })}
@@ -655,7 +656,7 @@ export default function EditorPage() {
               type="button"
               onClick={() => void runRewrite()}
               disabled={running || inputWords === 0}
-              className="pf-btn pf-btn-primary px-6 py-3 text-sm min-w-[175px]"
+              className="pf-btn pf-btn-primary px-6 py-3 text-sm min-w-[165px] whitespace-nowrap"
             >
               {running ? (
                 <>
@@ -663,10 +664,10 @@ export default function EditorPage() {
                     className="inline-block w-4 h-4 rounded-full border-2 border-white/40 border-t-white animate-spin"
                     aria-hidden="true"
                   />
-                  <span>Refining...</span>
+                  <span>Refining…</span>
                 </>
               ) : (
-                <span>Refine Prose →</span>
+                <span>Refine prose</span>
               )}
             </button>
           </div>
@@ -929,7 +930,7 @@ export default function EditorPage() {
                       borderColor: "var(--pf-border)",
                     }}
                   >
-                    <span className="text-lg">✳</span>
+                    <BrandAsterisk size={20} />
                   </div>
                   <h2 className="text-base font-bold">Ready when your draft is</h2>
                   <p className="pf-muted text-xs sm:text-sm mt-1.5 leading-relaxed">

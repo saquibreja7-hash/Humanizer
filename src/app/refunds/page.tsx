@@ -20,7 +20,7 @@ export default function RefundsPage() {
     >
       <LegalCallout title="Plain-English Guarantee">
         Not happy with your upgrade? Request a full refund within <strong>7-day</strong> of your
-        initial charge or renewal—no forms, retention mazes, or awkward interviews.
+        initial charge or renewal, with no forms or retention hoops.
       </LegalCallout>
 
       <section className="space-y-3">

@@ -10,7 +10,7 @@ export default function PrivacyPage() {
       title="Privacy Policy"
       updated="November 2026"
       eyebrow="Zero Text Retention"
-      subtitle={`Plain-English privacy terms for ${BRAND.name}. Your writing stays strictly yours—never logged, never stored, and never used for training.`}
+      subtitle={`Plain-English privacy terms for ${BRAND.name}. Your writing stays yours, never logged or stored.`}
       highlights={[
         { value: "0 bytes", label: "Draft text stored in DB" },
         { value: "RAM only", label: "Discarded after response" },
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
         </p>
         <p className="pf-muted">
           Uploaded <code className="pf-mono">.docx</code> files are parsed in memory to extract
-          headings and paragraphs and discarded immediately—no uploaded document is ever archived on
+          headings and paragraphs and discarded immediately. No uploaded document is ever archived on
           our servers.
         </p>
       </section>

@@ -58,7 +58,7 @@ export default function PublicFooter() {
         className="border-t py-5 text-center text-xs pf-muted"
         style={{ borderColor: "var(--pf-border)" }}
       >
-        © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
+        © {new Date().getFullYear()} {BRAND.name}
       </div>
     </footer>
   );

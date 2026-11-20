@@ -138,8 +138,7 @@ function BillingInner() {
             {planDetails?.name ?? "Free"} Plan
           </h1>
           <p className="pf-muted text-sm mt-1.5 leading-relaxed">
-            Transparent word credits with USD and INR checkout. Cancel anytime, backed by our 7-day
-            refund guarantee.
+            Word credits in USD or INR. Cancel anytime with 7-day refunds.
           </p>
 
           <div className="mt-4 flex flex-wrap items-center gap-3">
@@ -296,8 +295,8 @@ function BillingInner() {
           </div>
         </div>
 
-        {/* Side-by-side payment tiles (2-col on mobile, 4-col on desktop) */}
-        <div className="grid grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-5 items-stretch">
+        {/* Side-by-side horizontal payment tiles (swipeable on mobile, 4 columns on desktop) */}
+        <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-3 -mx-4 px-4 xl:mx-0 xl:px-0 xl:pb-0 xl:grid xl:grid-cols-4 xl:gap-5 xl:overflow-visible items-stretch">
           {PLAN_ORDER.map((id) => {
             const p = PLANS[id];
             const isCurrent = currentPlan === id;
@@ -307,7 +306,7 @@ function BillingInner() {
             return (
               <div
                 key={id}
-                className="pf-card-pure pf-card-hover p-4 sm:p-6 flex flex-col justify-between"
+                className="pf-card-pure pf-card-hover p-5 sm:p-6 flex flex-col justify-between shrink-0 w-[265px] sm:w-[290px] xl:w-auto snap-start"
                 style={
                   isCurrent || featured
                     ? {

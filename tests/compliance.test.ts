@@ -23,6 +23,8 @@ const PUBLIC_FILES = [
   "src/components/PublicFooter.tsx",
   "src/components/BeforeAfter.tsx",
   "src/components/HeroLiveDemo.tsx",
+  "src/components/WipeCompare.tsx",
+  "src/components/UseCaseMarquee.tsx",
   "src/components/PricingSection.tsx",
   "src/components/LegalLayout.tsx",
   "src/lib/brand.ts",

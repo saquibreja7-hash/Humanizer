@@ -24,6 +24,11 @@ Never invent arbitrary hex colors, neon glows, or purple/cyan gradients. All sur
 | `--pf-espresso-deep` | `#1E0D0C` | Deepest espresso gradient stop |
 | `--pf-espresso-border` | `#4A2723` | Hairline borders inside dark Espresso sections |
 | `--pf-espresso-muted` | `#B5A39E` | Secondary text on Deep Espresso backgrounds |
+| `--pf-ink` / `--pf-ink-soft` | `#1F3A5F` / `#E8EEF5` | Second accent: deep ink blue for stats/CTA bands, code panels, "refined" text |
+| `--pf-gold` / `--pf-gold-soft` | `#C8962E` / `#FBF3E2` | Highlight: badges, "Most popular" plan glow, drag handles, warm tint bands |
+| `--pf-sage` / `--pf-sage-soft` | `#3F7D5C` / `#E7F2EC` | Success: checkmarks, "Quotes kept", Fidelity Shield panels |
+
+> Crimson stays the lead colour (primary buttons, links). Ink, gold and sage are supporting accents; section rhythm alternates white → tint band → ink band.
 
 ---
 

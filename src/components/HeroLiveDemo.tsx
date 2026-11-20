@@ -160,7 +160,7 @@ export default function HeroLiveDemo() {
                 : phase === "streaming"
                   ? `${45 + Math.min(55, (visibleWords / Math.max(1, words.length)) * 55)}%`
                   : "100%",
-            background: "var(--pf-accent)",
+            background: "linear-gradient(90deg, var(--pf-accent), var(--pf-gold))",
           }}
         />
       </div>
@@ -212,7 +212,7 @@ export default function HeroLiveDemo() {
 
         <div
           className="mt-3 pt-2.5 border-t flex items-center justify-between text-[11px] pf-mono"
-          style={{ borderColor: "var(--pf-border)", color: "var(--pf-good)" }}
+          style={{ borderColor: "var(--pf-border)", color: "var(--pf-sage)" }}
         >
           <span>✓ {sample.stats}</span>
         </div>

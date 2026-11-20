@@ -80,7 +80,7 @@ export default function PricingSection() {
       </div>
 
       {/* Side-by-side horizontal row (swipeable on mobile, 4 equal columns on desktop) */}
-      <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-3 -mx-4 px-4 lg:mx-0 lg:px-0 lg:pb-0 lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible items-stretch">
+      <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pt-2 pb-4 -mx-4 px-4 lg:mx-0 lg:px-0 lg:pb-0 lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible items-stretch">
         {PLAN_ORDER.map((id) => {
           const plan = PLANS[id];
           const monthly = planPrice(plan, interval, currency);
@@ -88,13 +88,15 @@ export default function PricingSection() {
           return (
             <div
               key={plan.id}
-              className="pf-card-pure pf-card-hover p-5 sm:p-6 flex flex-col shrink-0 w-[265px] sm:w-[290px] lg:w-auto snap-start"
+              className={`pf-card-pure pf-lift p-5 sm:p-6 flex flex-col shrink-0 w-[265px] sm:w-[290px] lg:w-auto snap-start relative ${
+                isPro ? "pf-glow" : ""
+              }`}
               style={
                 isPro
                   ? {
-                      borderColor: "var(--pf-accent)",
+                      borderColor: "var(--pf-gold)",
                       borderWidth: 2,
-                      background: "color-mix(in srgb, var(--pf-accent-soft) 24%, var(--pf-surface-pure))",
+                      background: "linear-gradient(180deg, var(--pf-gold-soft) 0%, var(--pf-surface-pure) 55%)",
                     }
                   : undefined
               }
@@ -103,10 +105,10 @@ export default function PricingSection() {
                 <h3 className="text-base sm:text-lg font-bold">{plan.name}</h3>
                 {isPro && (
                   <span
-                    className="text-[10px] font-semibold px-2 py-0.5 rounded"
-                    style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}
+                    className="text-[10px] font-bold px-2 py-0.5 rounded-full"
+                    style={{ background: "var(--pf-gold)", color: "#1b1406" }}
                   >
-                    Popular
+                    ★ Most popular
                   </span>
                 )}
               </div>
@@ -133,7 +135,7 @@ export default function PricingSection() {
                   <li key={f} className="flex items-start gap-2">
                     <span
                       className="mt-0.5 inline-flex items-center justify-center w-4 h-4 rounded shrink-0 text-[10px] font-bold"
-                      style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }}
+                      style={{ background: "var(--pf-sage-soft)", color: "var(--pf-sage)" }}
                     >
                       ✓
                     </span>

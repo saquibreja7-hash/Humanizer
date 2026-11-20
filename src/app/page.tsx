@@ -6,30 +6,33 @@ import PricingSection from "@/components/PricingSection";
 import PublicHeader from "@/components/PublicHeader";
 import PublicFooter from "@/components/PublicFooter";
 import HeroLiveDemo from "@/components/HeroLiveDemo";
+import Reveal from "@/components/Reveal";
+import CountUp from "@/components/CountUp";
+import WipeCompare from "@/components/WipeCompare";
+import UseCaseMarquee from "@/components/UseCaseMarquee";
 
 const STEPS = [
   {
     num: "01",
     title: "Drop a draft or .docx",
     body: "Paste text or upload Word files. Headings stay untouched.",
+    color: "var(--pf-accent)",
+    soft: "var(--pf-accent-soft)",
   },
   {
     num: "02",
     title: "Multi-pass refinement",
     body: "Paragraphs run in parallel across 3 to 7 gentle passes.",
+    color: "var(--pf-ink)",
+    soft: "var(--pf-ink-soft)",
   },
   {
     num: "03",
     title: "Verify & export",
     body: "Check quotes and figures, then export cleanly to .docx.",
+    color: "var(--pf-sage)",
+    soft: "var(--pf-sage-soft)",
   },
-];
-
-const PERSONAS = [
-  { role: "Researchers", desc: "Citations, dates, and quotes stay locked." },
-  { role: "Bloggers", desc: "Natural pacing and varied sentence rhythm." },
-  { role: "Marketing Teams", desc: "Cleaner briefs, or automate via REST API." },
-  { role: "ESL Writers", desc: "Idiomatic English in your own voice." },
 ];
 
 const FAQ = [
@@ -61,8 +64,18 @@ export default function HomePage() {
       <PublicHeader />
 
       <main className="flex-1">
-        {/* Animated White Hero with Architectural Pulses + Fountain Pen + Live Streamer */}
+        {/* Hero */}
         <section className="relative overflow-hidden">
+          <div
+            className="pointer-events-none absolute -top-40 -right-40 w-[520px] h-[520px] rounded-full opacity-60"
+            style={{ background: "radial-gradient(circle, var(--pf-gold-soft) 0%, transparent 70%)" }}
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute top-40 -left-48 w-[480px] h-[480px] rounded-full opacity-60"
+            style={{ background: "radial-gradient(circle, var(--pf-ink-soft) 0%, transparent 70%)" }}
+            aria-hidden="true"
+          />
           <svg
             className="pointer-events-none absolute inset-0 w-full h-full"
             viewBox="0 0 1440 760"
@@ -76,18 +89,29 @@ export default function HomePage() {
               <path d="M1440 150 H1220 V270 H960" />
               <path d="M1440 430 H1180 V530 H960" />
             </g>
-            <g stroke="var(--pf-accent)" strokeWidth="1.8" strokeLinecap="round" opacity="0.65">
-              <path d="M0 160 H180 V280 H460" className="pf-flow-line" />
-              <path d="M1440 150 H1220 V270 H960" className="pf-flow-line-slow" />
-              <path d="M0 420 H220 V520 H440" className="pf-flow-line-slow" />
-              <path d="M1440 430 H1180 V530 H960" className="pf-flow-line" />
+            <g strokeWidth="1.8" strokeLinecap="round" opacity="0.75">
+              <path d="M0 160 H180 V280 H460" className="pf-flow-line" stroke="var(--pf-accent)" />
+              <path d="M1440 150 H1220 V270 H960" className="pf-flow-line-slow" stroke="var(--pf-gold)" />
+              <path d="M0 420 H220 V520 H440" className="pf-flow-line-slow" stroke="var(--pf-ink)" />
+              <path d="M1440 430 H1180 V530 H960" className="pf-flow-line" stroke="var(--pf-accent)" />
             </g>
           </svg>
 
           <div className="relative max-w-5xl mx-auto px-5 pt-14 md:pt-20 pb-14">
             <div className="text-center max-w-3xl mx-auto pf-fade-in">
-              <h1 className="text-4xl sm:text-6xl font-bold tracking-[-0.035em] leading-[1.04]">
-                Smarter Natural Writing Refinement
+              <span
+                className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full"
+                style={{ background: "var(--pf-gold-soft)", color: "var(--pf-gold-deep)" }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full pf-pulse-dot" style={{ background: "var(--pf-gold)" }} />
+                500 free words every month
+              </span>
+              <h1 className="mt-5 text-4xl sm:text-6xl font-bold tracking-[-0.035em] leading-[1.04]">
+                Smarter{" "}
+                <span className="pf-serif italic font-medium" style={{ color: "var(--pf-accent)" }}>
+                  natural
+                </span>{" "}
+                writing refinement
               </h1>
 
               <p className="pf-muted mt-5 text-base md:text-lg leading-relaxed max-w-md mx-auto">
@@ -98,8 +122,8 @@ export default function HomePage() {
                 <Link href="/login?mode=signup" className="pf-btn pf-btn-primary text-sm px-6 py-3">
                   Get started free
                 </Link>
-                <a href="#demo" className="pf-btn pf-btn-ghost text-sm px-6 py-3">
-                  See live demo
+                <a href="#compare" className="pf-btn pf-btn-ghost text-sm px-6 py-3">
+                  See it in action
                 </a>
               </div>
             </div>
@@ -125,244 +149,241 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Emulate-inspired Cliché Highlighter Comparison */}
+        {/* Stats band (ink blue) */}
+        <section className="pf-ink-band">
+          <div className="max-w-5xl mx-auto px-5 py-12 md:py-14 grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6">
+            {[
+              { node: <CountUp to={96.4} decimals={1} suffix="%" />, label: "Phrases rebuilt", color: "#f3d48f" },
+              { node: <CountUp to={100} suffix="%" />, label: "Quotes & numbers kept", color: "#a8dcbf" },
+              { node: <CountUp to={0} suffix=" bytes" />, label: "Of your text stored", color: "#f2b8bb" },
+              { node: <CountUp to={7} prefix="3–" />, label: "Gentle passes per draft", color: "#c4d6ee" },
+            ].map((s, i) => (
+              <Reveal key={s.label} delay={i * 90}>
+                <div className="text-3xl md:text-4xl font-bold tracking-tight" style={{ color: s.color }}>
+                  {s.node}
+                </div>
+                <div className="mt-1.5 text-sm" style={{ color: "var(--pf-ink-muted)" }}>
+                  {s.label}
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* Drag-to-compare wipe */}
+        <section id="compare" className="max-w-5xl mx-auto px-5 py-16 md:py-20 scroll-mt-16">
+          <Reveal className="max-w-2xl mb-8">
+            <span className="text-xs font-bold uppercase tracking-wider" style={{ color: "var(--pf-accent)" }}>
+              Before / after
+            </span>
+            <h2 className="mt-2 text-3xl md:text-4xl font-bold tracking-[-0.03em]">
+              AI drafts write in clichés.
+            </h2>
+            <p className="pf-muted mt-2.5 text-base">Drag the gold handle to watch them disappear.</p>
+          </Reveal>
+          <Reveal delay={120}>
+            <WipeCompare />
+          </Reveal>
+        </section>
+
+        {/* Interactive Studio Demo (gold tint band) */}
         <section
-          id="about"
+          id="demo"
+          className="py-16 md:py-20 scroll-mt-16"
+          style={{ background: "linear-gradient(180deg, var(--pf-gold-soft) 0%, var(--pf-bg) 100%)" }}
+        >
+          <div className="max-w-5xl mx-auto px-5">
+            <Reveal className="text-center max-w-xl mx-auto mb-10">
+              <span className="text-xs font-bold uppercase tracking-wider pf-gold-text">Try it</span>
+              <h2 className="mt-2 text-3xl md:text-4xl font-bold tracking-[-0.03em]">Compare line by line</h2>
+              <p className="pf-muted mt-2.5 text-base">Switch genres, Option A/B, or sentence rhythm.</p>
+            </Reveal>
+            <Reveal delay={100}>
+              <BeforeAfter />
+            </Reveal>
+          </div>
+        </section>
+
+        {/* 3 Steps */}
+        <section id="how" className="max-w-5xl mx-auto px-5 py-16 md:py-20">
+          <Reveal>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] mb-10 max-w-xl">
+              Three calm steps from draft to natural prose.
+            </h2>
+          </Reveal>
+          <div className="grid md:grid-cols-3 gap-5">
+            {STEPS.map((s, i) => (
+              <Reveal key={s.num} delay={i * 120}>
+                <div className="pf-card-pure pf-lift p-6 h-full relative overflow-hidden">
+                  <div className="absolute top-0 left-0 right-0 h-1" style={{ background: s.color }} />
+                  <span
+                    className="inline-flex items-center justify-center w-10 h-10 rounded-full pf-mono text-sm font-bold"
+                    style={{ background: s.soft, color: s.color }}
+                  >
+                    {s.num}
+                  </span>
+                  <h3 className="text-lg font-bold mt-4">{s.title}</h3>
+                  <p className="pf-muted mt-2 text-sm leading-relaxed">{s.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* Feature rows on tinted panels */}
+        <section
+          id="features"
           className="border-y py-16 md:py-20 scroll-mt-16"
           style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
         >
-          <div className="max-w-5xl mx-auto px-5">
-            <div className="max-w-2xl mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em]">
-                AI drafts write in clichés.
-              </h2>
-              <p className="pf-muted mt-2.5 text-base">
-                The same recycled openers and tidy three-part summaries give robotic text away in one sentence.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-5">
-              <div className="pf-card-pure p-6 sm:p-7">
-                <div className="text-xs font-semibold pf-muted mb-3">Raw AI Draft</div>
-                <p className="pf-serif text-[16px] leading-[1.78] pf-muted">
-                  <mark
-                    className="px-1 rounded"
-                    style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }}
-                  >
-                    In today&apos;s rapidly evolving landscape,
-                  </mark>{" "}
-                  remote work has transformed modern teams.{" "}
-                  <mark
-                    className="px-1 rounded"
-                    style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }}
-                  >
-                    It is of paramount importance
-                  </mark>{" "}
-                  to foster cross-functional alignment,{" "}
-                  <mark
-                    className="px-1 rounded"
-                    style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }}
-                  >
-                    ultimately delivering unprecedented value
-                  </mark>{" "}
-                  across every department.
+          <div className="max-w-5xl mx-auto px-5 space-y-16">
+            {/* Row 1: Fidelity Shield (sage) */}
+            <div className="grid md:grid-cols-12 gap-8 items-center">
+              <Reveal className="md:col-span-5 space-y-3">
+                <span className="text-xs font-bold uppercase tracking-wider" style={{ color: "var(--pf-sage)" }}>
+                  Fidelity Shield
+                </span>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.025em]">
+                  Never lose a quote or statistic.
+                </h2>
+                <p className="pf-muted text-sm md:text-base leading-relaxed">
+                  Quotes, dates, and numbers are checked automatically. Regenerate any paragraph in one click.
                 </p>
-              </div>
-
-              <div className="pf-card-pure p-6 sm:p-7" style={{ borderColor: "var(--pf-accent)" }}>
-                <div className="text-xs font-semibold pf-accent mb-3">Refined with {BRAND.name}</div>
-                <p className="pf-serif text-[16px] leading-[1.78]">
-                  Remote work changed how most teams run their day. People skip the commute and
-                  keep their own hours. The harder part is knowing when to log off, so clear habits
-                  matter more than long playbooks.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Interactive Studio Demo */}
-        <section id="demo" className="max-w-5xl mx-auto px-5 py-16 md:py-20 scroll-mt-16">
-          <div className="text-center max-w-xl mx-auto mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em]">
-              Compare line by line
-            </h2>
-            <p className="pf-muted mt-2.5 text-base">
-              Switch genres, Option A/B, or sentence rhythm.
-            </p>
-          </div>
-          <BeforeAfter />
-        </section>
-
-        {/* 3 Calm Steps (Hairline Editorial Index) */}
-        <section
-          id="how"
-          className="border-y py-16 md:py-20"
-          style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
-        >
-          <div className="max-w-5xl mx-auto px-5">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] mb-10">
-              Three calm steps from draft to natural prose.
-            </h2>
-
-            <div
-              className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x border-t border-b"
-              style={{ borderColor: "var(--pf-border)" }}
-            >
-              {STEPS.map((s) => (
-                <div key={s.num} className="py-7 md:px-7 first:md:pl-0 last:md:pr-0">
-                  <span className="pf-mono text-xs font-bold pf-accent">{s.num}</span>
-                  <h3 className="text-lg font-bold mt-2.5">{s.title}</h3>
-                  <p className="pf-muted mt-2 text-sm leading-relaxed">{s.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Alternating 2-Column Feature Rows (All-Light White Rhythm) */}
-        <section id="features" className="max-w-5xl mx-auto px-5 py-16 md:py-20 space-y-16 scroll-mt-16">
-          {/* Row 1: Fidelity Shield */}
-          <div className="grid md:grid-cols-12 gap-8 items-center">
-            <div className="md:col-span-5 space-y-3">
-              <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.025em]">
-                Never lose a quote or statistic.
-              </h2>
-              <p className="pf-muted text-sm md:text-base leading-relaxed">
-                Fidelity Shield checks quotes, dates, and numbers automatically. Regenerate any
-                paragraph in one click.
-              </p>
-            </div>
-            <div className="md:col-span-7 pf-card p-6 space-y-4">
-              <div className="flex flex-wrap gap-2 text-xs">
-                <span className="pf-badge" style={{ background: "var(--pf-surface-pure)", color: "var(--pf-good)" }}>
-                  ✓ 96.4% phrases rebuilt
-                </span>
-                <span className="pf-badge" style={{ background: "var(--pf-surface-pure)", color: "var(--pf-good)" }}>
-                  ✓ Quotes 3/3 kept
-                </span>
-                <span className="pf-badge" style={{ background: "var(--pf-surface-pure)", color: "var(--pf-good)" }}>
-                  ✓ Numbers 7/7 kept
-                </span>
-              </div>
-              <div
-                className="rounded-lg border p-4 text-xs flex items-center justify-between gap-3"
-                style={{ background: "var(--pf-surface-pure)", borderColor: "var(--pf-border)" }}
-              >
-                <span className="pf-muted">Paragraph 2 verified against source draft</span>
-                <span className="font-semibold pf-accent">↻ Regenerate paragraph</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Row 2: .docx & Option A/B */}
-          <div className="grid md:grid-cols-12 gap-8 items-center">
-            <div className="md:col-span-7 order-2 md:order-1 pf-card p-6 space-y-3">
-              <div
-                className="rounded-lg border p-4 text-xs flex items-center justify-between gap-3"
-                style={{ background: "var(--pf-surface-pure)", borderColor: "var(--pf-border)" }}
-              >
-                <div className="flex items-center gap-3">
-                  <span
-                    className="px-2 py-1 rounded font-bold pf-mono text-[11px]"
-                    style={{ background: "var(--pf-accent)", color: "var(--pf-btn-ink)" }}
+              </Reveal>
+              <Reveal delay={120} className="md:col-span-7">
+                <div className="rounded-2xl p-6 space-y-4 pf-lift" style={{ background: "var(--pf-sage-soft)" }}>
+                  <div className="flex flex-wrap gap-2 text-xs">
+                    {["96.4% phrases rebuilt", "Quotes 3/3 kept", "Numbers 7/7 kept"].map((b) => (
+                      <span
+                        key={b}
+                        className="pf-badge"
+                        style={{ background: "var(--pf-surface-pure)", color: "var(--pf-sage)", borderColor: "transparent" }}
+                      >
+                        ✓ {b}
+                      </span>
+                    ))}
+                  </div>
+                  <div
+                    className="rounded-lg p-4 text-xs flex items-center justify-between gap-3"
+                    style={{ background: "var(--pf-surface-pure)" }}
                   >
-                    DOCX
-                  </span>
-                  <div>
-                    <div className="font-semibold">research-review-draft.docx</div>
-                    <div className="pf-muted">32 headings preserved, 14 blocks streamed</div>
+                    <span className="pf-muted">Paragraph 2 verified against source draft</span>
+                    <span className="font-semibold" style={{ color: "var(--pf-sage)" }}>
+                      ↻ Regenerate
+                    </span>
                   </div>
                 </div>
-                <span className="font-semibold" style={{ color: "var(--pf-good)" }}>
-                  Ready
-                </span>
-              </div>
-              <div className="grid grid-cols-2 gap-3 text-xs">
-                <div
-                  className="rounded-lg border p-3.5"
-                  style={{ background: "var(--pf-accent-soft)", borderColor: "var(--pf-accent)" }}
-                >
-                  <div className="font-bold pf-accent mb-1">Option A: Crisp</div>
-                  <div className="pf-muted">Direct opening, varied mid-sentence turn.</div>
-                </div>
-                <div
-                  className="rounded-lg border p-3.5"
-                  style={{ background: "var(--pf-surface-pure)", borderColor: "var(--pf-border)" }}
-                >
-                  <div className="font-bold mb-1">Option B: Conversational</div>
-                  <div className="pf-muted">Warmer editorial flow with natural pacing.</div>
-                </div>
-              </div>
+              </Reveal>
             </div>
-            <div className="md:col-span-5 order-1 md:order-2 space-y-3">
-              <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.025em]">
-                Upload .docx and compare Option A &amp; B.
-              </h2>
-              <p className="pf-muted text-sm md:text-base leading-relaxed">
-                Drop a Word file, keep headings intact, compare two natural takes side by side, and
-                export a clean .docx.
-              </p>
-            </div>
-          </div>
 
-          {/* Row 3: Zero retention & REST API */}
-          <div className="grid md:grid-cols-12 gap-8 items-center">
-            <div className="md:col-span-5 space-y-3">
-              <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.025em]">
-                Zero text retention. Simple REST API.
-              </h2>
-              <p className="pf-muted text-sm md:text-base leading-relaxed">
-                Drafts run in memory only and never touch disk. Automate pipelines with scoped{" "}
-                <code className="pf-mono text-xs">pf_sk_...</code> keys.
-              </p>
-              <div className="pt-1">
-                <Link href="/docs" className="pf-btn pf-btn-ghost text-xs px-4 py-2">
-                  Read API Docs
-                </Link>
-              </div>
+            {/* Row 2: .docx & Option A/B (gold) */}
+            <div className="grid md:grid-cols-12 gap-8 items-center">
+              <Reveal delay={120} className="md:col-span-7 order-2 md:order-1">
+                <div className="rounded-2xl p-6 space-y-3 pf-lift" style={{ background: "var(--pf-gold-soft)" }}>
+                  <div
+                    className="rounded-lg p-4 text-xs flex items-center justify-between gap-3"
+                    style={{ background: "var(--pf-surface-pure)" }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span
+                        className="px-2 py-1 rounded font-bold pf-mono text-[11px]"
+                        style={{ background: "#1f3a5f", color: "#fff" }}
+                      >
+                        DOCX
+                      </span>
+                      <div>
+                        <div className="font-semibold">research-review-draft.docx</div>
+                        <div className="pf-muted">32 headings preserved, 14 blocks streamed</div>
+                      </div>
+                    </div>
+                    <span className="font-semibold" style={{ color: "var(--pf-sage)" }}>
+                      Ready
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3 text-xs">
+                    <div
+                      className="rounded-lg border-2 p-3.5"
+                      style={{ background: "var(--pf-surface-pure)", borderColor: "var(--pf-gold)" }}
+                    >
+                      <div className="font-bold pf-gold-text mb-1">Option A: Crisp</div>
+                      <div className="pf-muted">Direct opening, varied mid-sentence turn.</div>
+                    </div>
+                    <div className="rounded-lg p-3.5" style={{ background: "var(--pf-surface-pure)" }}>
+                      <div className="font-bold mb-1">Option B: Conversational</div>
+                      <div className="pf-muted">Warmer editorial flow with natural pacing.</div>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+              <Reveal className="md:col-span-5 order-1 md:order-2 space-y-3">
+                <span className="text-xs font-bold uppercase tracking-wider pf-gold-text">Word files</span>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.025em]">
+                  Upload .docx and compare Option A &amp; B.
+                </h2>
+                <p className="pf-muted text-sm md:text-base leading-relaxed">
+                  Keep headings intact, compare two natural takes side by side, and export a clean .docx.
+                </p>
+              </Reveal>
             </div>
-            <div
-              className="md:col-span-7 rounded-xl border p-5 pf-mono text-xs overflow-x-auto leading-relaxed"
-              style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
-            >
-              <pre className="m-0">{`curl -X POST https://proseflow.app/api/v1/rewrite \\
+
+            {/* Row 3: Zero retention & REST API (ink) */}
+            <div className="grid md:grid-cols-12 gap-8 items-center">
+              <Reveal className="md:col-span-5 space-y-3">
+                <span className="text-xs font-bold uppercase tracking-wider" style={{ color: "var(--pf-ink)" }}>
+                  Private by design
+                </span>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.025em]">
+                  Zero text retention. Simple REST API.
+                </h2>
+                <p className="pf-muted text-sm md:text-base leading-relaxed">
+                  Drafts run in memory only and never touch disk. Automate pipelines with scoped{" "}
+                  <code className="pf-mono text-xs">pf_sk_...</code> keys.
+                </p>
+                <div className="pt-1">
+                  <Link href="/docs" className="pf-btn pf-btn-ghost text-xs px-4 py-2">
+                    Read API Docs
+                  </Link>
+                </div>
+              </Reveal>
+              <Reveal delay={120} className="md:col-span-7">
+                <div
+                  className="rounded-2xl p-5 pf-mono text-xs overflow-x-auto leading-relaxed pf-lift"
+                  style={{ background: "var(--pf-ink-deep)", color: "#dbe5f2" }}
+                >
+                  <div className="flex gap-1.5 mb-4" aria-hidden="true">
+                    <span className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--pf-accent)" }} />
+                    <span className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--pf-gold)" }} />
+                    <span className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--pf-sage)" }} />
+                  </div>
+                  <pre className="m-0">
+                    <span style={{ color: "#f3d48f" }}>curl</span>
+                    {` -X POST https://proseflow.app/api/v1/rewrite \\
   -H "Authorization: Bearer pf_sk_live_..." \\
-  -H "Content-Type: application/json" \\
   -d '{"text": "Your rough draft...", "mode": "standard"}'
 
-// 200 OK · 0 bytes stored
+`}
+                    <span style={{ color: "#a8dcbf" }}>{"// 200 OK · 0 bytes stored"}</span>
+                    {`
 {
   "text": "Clear, natural prose...",
   "fidelity": { "phrases_rebuilt_pct": 96.2, "quotes_kept": 2 }
-}`}</pre>
+}`}
+                  </pre>
+                </div>
+              </Reveal>
             </div>
           </div>
         </section>
 
-        {/* Built For Real Writers */}
-        <section
-          className="border-t py-16"
-          style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
-        >
-          <div className="max-w-5xl mx-auto px-5">
-            <div className="text-center max-w-xl mx-auto mb-10">
-              <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.025em]">
-                Built for real writers
-              </h2>
-              <p className="pf-muted mt-2 text-sm">
-                For bloggers, researchers, marketers, founders, and ESL writers.
-              </p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {PERSONAS.map((p) => (
-                <div key={p.role} className="pf-card-pure p-5">
-                  <h3 className="font-bold text-base">{p.role}</h3>
-                  <p className="pf-muted text-sm mt-2 leading-relaxed">{p.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Built for real writers: scrolling use cases */}
+        <section className="py-16">
+          <Reveal className="text-center max-w-xl mx-auto mb-8 px-5">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.025em]">Built for real writers</h2>
+            <p className="pf-muted mt-2 text-sm">
+              For bloggers, researchers, marketers, founders, and ESL writers.
+            </p>
+          </Reveal>
+          <UseCaseMarquee />
         </section>
 
         {/* Pricing */}
@@ -370,17 +391,20 @@ export default function HomePage() {
 
         {/* FAQ */}
         <section className="max-w-3xl mx-auto px-5 py-16">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.025em]">
-              Frequently asked questions
-            </h2>
-          </div>
+          <Reveal className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.025em]">Frequently asked questions</h2>
+          </Reveal>
           <div className="divide-y border-t border-b" style={{ borderColor: "var(--pf-border)" }}>
             {FAQ.map((item) => (
               <details key={item.q} className="pf-faq py-5 group">
                 <summary className="font-semibold cursor-pointer flex items-center justify-between gap-4 list-none">
                   <span>{item.q}</span>
-                  <span className="pf-faq-icon pf-muted font-mono text-lg shrink-0">+</span>
+                  <span
+                    className="pf-faq-icon font-mono text-lg shrink-0 w-7 h-7 rounded-full inline-flex items-center justify-center"
+                    style={{ background: "var(--pf-accent-soft)", color: "var(--pf-accent)" }}
+                  >
+                    +
+                  </span>
                 </summary>
                 <p className="pf-muted mt-3 text-sm leading-relaxed pr-6">{item.a}</p>
               </details>
@@ -388,27 +412,43 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Clean White/Neutral Bottom CTA */}
-        <section
-          className="border-t py-16"
-          style={{ background: "var(--pf-surface)", borderColor: "var(--pf-border)" }}
-        >
-          <div className="max-w-3xl mx-auto px-5 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em]">
-              Your ideas. Your voice.
+        {/* Bottom CTA (ink band) */}
+        <section className="pf-ink-band relative overflow-hidden">
+          <div
+            className="pointer-events-none absolute -bottom-32 -right-24 w-[420px] h-[420px] rounded-full opacity-25"
+            style={{ background: "radial-gradient(circle, var(--pf-gold) 0%, transparent 65%)" }}
+            aria-hidden="true"
+          />
+          <Reveal className="relative max-w-3xl mx-auto px-5 py-16 md:py-20 text-center">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.03em]">
+              Your ideas.{" "}
+              <span className="pf-serif italic font-medium" style={{ color: "#f3d48f" }}>
+                Your voice.
+              </span>
             </h2>
-            <p className="pf-muted mt-3 text-base">
+            <p className="mt-3 text-base" style={{ color: "var(--pf-ink-muted)" }}>
               Start with 500 free words every month. Zero drafts stored.
             </p>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-              <Link href="/login?mode=signup" className="pf-btn pf-btn-primary text-sm px-6 py-3">
+              <Link
+                href="/login?mode=signup"
+                className="pf-btn text-sm px-6 py-3"
+                style={{ background: "var(--pf-gold)", color: "#1b1406" }}
+              >
                 Get started free
               </Link>
-              <Link href="/docs" className="pf-btn pf-btn-ghost text-sm px-6 py-3">
+              <Link
+                href="/docs"
+                className="pf-btn text-sm px-6 py-3 border"
+                style={{ borderColor: "var(--pf-ink-border)", color: "#f3f6fa" }}
+              >
                 Explore API
               </Link>
             </div>
-          </div>
+            <p className="mt-6 text-xs" style={{ color: "var(--pf-ink-muted)" }}>
+              {BRAND.refundWindowDays}-day refunds · Cancel in one click
+            </p>
+          </Reveal>
         </section>
       </main>
 

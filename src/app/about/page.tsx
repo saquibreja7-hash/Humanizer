@@ -78,18 +78,12 @@ export default function AboutPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto px-5 py-16 sm:py-22">
           <div className="max-w-2xl">
-            <span
-              className="inline-flex items-center gap-2 px-3 py-1 rounded text-[11px] font-bold uppercase tracking-widest mb-5"
-              style={{ background: "#dfdacc", color: "#1a1311" }}
-            >
-              <BrandAsterisk size={11} />
-              <span>About {BRAND.name}</span>
-            </span>
+            <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#e5a6aa] mb-4">
+              About {BRAND.name}
+            </div>
 
             <h1 className="text-3xl sm:text-5xl font-bold tracking-[-0.035em] leading-[1.08] text-[#f4f1ea]">
-              Restoring{" "}
-              <span className="pf-serif italic font-normal text-[#dfdacc]">human cadence</span>{" "}
-              to modern writing.
+              Restoring human cadence to modern writing.
             </h1>
 
             <p className="mt-4 text-sm sm:text-base leading-relaxed" style={{ color: "#d5c7c2" }}>
@@ -118,10 +112,9 @@ export default function AboutPage() {
         {/* Why We Built ProseFlow */}
         <section className="max-w-6xl mx-auto px-5 py-16 md:py-20 grid lg:grid-cols-12 gap-10 items-center">
           <Reveal className="lg:col-span-6 space-y-5">
-            <div className="pf-eyebrow">01 · Editorial Philosophy</div>
+            <div className="pf-eyebrow">Editorial Philosophy</div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-[-0.03em] leading-[1.12]">
-              Good writing breathes.{" "}
-              <span className="pf-serif italic font-normal">Mechanical drafts don&apos;t.</span>
+              Good writing breathes. Mechanical drafts don&apos;t.
             </h2>
             <p className="pf-muted text-[15px] leading-relaxed">
               Modern drafts often arrive with predictable sentence lengths, stiff transitions, and
@@ -205,7 +198,7 @@ export default function AboutPage() {
         {/* Built For Real Writers */}
         <section className="max-w-6xl mx-auto px-5 py-16 md:py-20">
           <Reveal className="text-center max-w-2xl mx-auto mb-12">
-            <div className="pf-eyebrow mb-3">03 · Writers</div>
+            <div className="pf-eyebrow mb-3">Writers</div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-[-0.03em]">
               Who writes with {BRAND.name}
             </h2>

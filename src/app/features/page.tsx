@@ -81,18 +81,12 @@ export default function FeaturesPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto px-5 py-16 sm:py-20">
           <div className="max-w-2xl">
-            <span
-              className="inline-flex items-center gap-2 px-3 py-1 rounded text-[11px] font-bold uppercase tracking-widest mb-5"
-              style={{ background: "#dfdacc", color: "#1a1311" }}
-            >
-              <BrandAsterisk size={11} />
-              <span>Studio Capabilities</span>
-            </span>
+            <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#e5a6aa] mb-4">
+              Studio Capabilities
+            </div>
 
             <h1 className="text-3xl sm:text-5xl font-bold tracking-[-0.035em] leading-[1.08] text-[#f4f1ea]">
-              Precision tools for{" "}
-              <span className="pf-serif italic font-normal text-[#dfdacc]">natural, accurate</span>{" "}
-              prose.
+              Precision tools for natural, accurate prose.
             </h1>
 
             <p className="mt-4 text-sm sm:text-base leading-relaxed" style={{ color: "#d5c7c2" }}>

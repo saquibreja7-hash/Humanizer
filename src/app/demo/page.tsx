@@ -56,17 +56,12 @@ export default function DemoPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto px-5 py-16 sm:py-20">
           <div className="max-w-2xl">
-            <span
-              className="inline-flex items-center gap-2 px-3 py-1 rounded text-[11px] font-bold uppercase tracking-widest mb-5"
-              style={{ background: "#dfdacc", color: "#1a1311" }}
-            >
-              <BrandAsterisk size={11} />
-              <span>Interactive Studio Demo</span>
-            </span>
+            <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#e5a6aa] mb-4">
+              Interactive Studio
+            </div>
 
             <h1 className="text-3xl sm:text-5xl font-bold tracking-[-0.035em] leading-[1.08] text-[#f4f1ea]">
-              See how 5 parallel passes{" "}
-              <span className="pf-serif italic font-normal text-[#dfdacc]">reshape stiff prose.</span>
+              See how 5 parallel passes reshape stiff prose.
             </h1>
 
             <p className="mt-4 text-sm sm:text-base leading-relaxed" style={{ color: "#d5c7c2" }}>
@@ -94,10 +89,9 @@ export default function DemoPage() {
         {/* Interactive Before/After Studio */}
         <section id="interactive-studio" className="max-w-5xl mx-auto px-5 py-16 md:py-20 scroll-mt-20">
           <Reveal className="text-center max-w-2xl mx-auto mb-10">
-            <div className="pf-eyebrow mb-3">01 · Line-by-Line Comparison</div>
+            <div className="pf-eyebrow mb-3">Line-by-Line Comparison</div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em]">
-              Compare original vs.{" "}
-              <span className="pf-serif italic font-normal">refined output</span>
+              Compare original vs. refined output
             </h2>
             <p className="pf-muted mt-2.5 text-sm sm:text-base">
               Notice how short and long sentences mix naturally while numbers, quotes, and meaning stay locked.

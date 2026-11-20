@@ -165,14 +165,11 @@ function LoginForm() {
         {/* Bottom Editorial Story & Micro Before/After Card */}
         <div className="relative z-10 p-6 sm:p-8 lg:p-12 space-y-6">
           <div className="max-w-lg">
-            <div className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-[#e5a6aa] mb-3">
-              <BrandAsterisk size={11} />
-              <span>Natural Voice Studio</span>
+            <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#e5a6aa] mb-3">
+              Natural Voice Studio
             </div>
             <h1 className="text-2xl sm:text-4xl font-semibold tracking-[-0.03em] leading-[1.12] text-[#f4f1ea]">
-              A quiet desk for{" "}
-              <span className="pf-serif italic font-normal text-[#dfdacc]">authentic</span>,
-              human-sounding prose.
+              A quiet desk for authentic, human-sounding prose.
             </h1>
             <p className="mt-3 text-sm sm:text-[15px] leading-relaxed" style={{ color: "#d5c7c2" }}>
               Turn stiff first drafts, essays, and Word documents into natural, readable writing—with
@@ -286,12 +283,9 @@ function LoginForm() {
         {/* Center Auth Card */}
         <div className="relative z-10 w-full max-w-md mx-auto my-8 pf-fade-in">
           <div className="mb-6">
-            <span
-              className="pf-badge uppercase tracking-wider text-[11px] mb-3"
-              style={{ background: "var(--pf-surface-pure)", color: "var(--pf-accent)" }}
-            >
-              ✳ {mode === "signup" ? "Free Starter Studio" : "Writer Sign In"}
-            </span>
+            <div className="pf-eyebrow mb-2.5">
+              {mode === "signup" ? "Free Starter Studio" : "Writer Sign In"}
+            </div>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-[-0.03em]">
               {mode === "signup" ? "Create your free account" : "Welcome back"}
             </h2>

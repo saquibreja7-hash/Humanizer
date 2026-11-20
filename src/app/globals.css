@@ -93,13 +93,12 @@ body {
 }
 
 .pf-card-hover {
-  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .pf-card-hover:hover {
-  transform: translateY(-3px);
   border-color: color-mix(in srgb, var(--pf-accent) 55%, var(--pf-border));
-  box-shadow: 0 18px 38px -18px rgba(52, 24, 21, 0.26);
+  box-shadow: 0 10px 26px -16px rgba(52, 24, 21, 0.22);
 }
 
 .pf-espresso-band {

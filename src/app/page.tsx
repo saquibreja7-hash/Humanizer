@@ -145,9 +145,9 @@ export default function HomePage() {
                   <span>Natural Voice Engine</span>
                 </div>
                 <p className="text-xl md:text-[22px] font-medium leading-snug tracking-[-0.02em]">
-                  {BRAND.name} helps writers eliminate robotic phrasing, restore natural cadence,{" "}
+                  {BRAND.name} helps writers remove stiff phrasing, restore natural cadence,{" "}
                   <span className="pf-muted">
-                    and keep every citation, quote, and figure locked with effortless precision.
+                    and keep every citation, quote, and figure locked in place.
                   </span>
                 </p>
               </div>
@@ -300,10 +300,10 @@ export default function HomePage() {
                 <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex flex-wrap items-end justify-between gap-3 text-left">
                   <div>
                     <div className="text-[11px] font-bold uppercase tracking-widest text-[#e5a6aa]">
-                      Iterative Base-Model Craft
+                      Iterative Base-Model Engine
                     </div>
                     <div className="text-lg sm:text-xl font-medium text-[#f4f1ea] mt-0.5">
-                      Craft effortless human cadence on every page.
+                      Clear human cadence on every page.
                     </div>
                   </div>
                   <a href="#demo" className="pf-btn pf-btn-primary text-xs px-4 py-2">
@@ -319,10 +319,9 @@ export default function HomePage() {
         <section id="demo" className="max-w-5xl mx-auto px-5 py-20 md:py-24 scroll-mt-16">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-10">
-              <div className="pf-eyebrow mb-3">01 · Interactive Studio</div>
+              <div className="pf-eyebrow mb-3">Interactive Studio</div>
               <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.03em]">
-                See the difference{" "}
-                <span className="pf-serif italic font-normal">line by line</span>
+                See the difference line by line
               </h2>
               <p className="pf-muted mt-3 text-base">
                 Switch writing genres, compare Option A vs Option B, or inspect the sentence rhythm graph.
@@ -343,10 +342,9 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto px-5">
             <Reveal>
               <div className="max-w-2xl">
-                <div className="pf-eyebrow mb-3">02 · Workflow</div>
+                <div className="pf-eyebrow mb-3">Workflow</div>
                 <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em]">
-                  Three calm steps from rough draft to{" "}
-                  <span className="pf-serif italic font-normal">natural prose.</span>
+                  Three calm steps from rough draft to natural prose.
                 </h2>
               </div>
             </Reveal>
@@ -374,10 +372,9 @@ export default function HomePage() {
         <section id="features" className="max-w-6xl mx-auto px-5 py-20 md:py-24 scroll-mt-16">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <div className="pf-eyebrow mb-3">03 · Capabilities</div>
+              <div className="pf-eyebrow mb-3">Capabilities</div>
               <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.03em]">
-                Keep your facts.{" "}
-                <span className="pf-serif italic font-normal">Keep your voice.</span>
+                Keep your facts. Keep your voice.
               </h2>
             </div>
           </Reveal>

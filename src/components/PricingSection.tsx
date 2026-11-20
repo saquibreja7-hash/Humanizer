@@ -88,15 +88,13 @@ export default function PricingSection() {
           return (
             <div
               key={plan.id}
-              className={`pf-card-pure pf-lift p-5 sm:p-6 flex flex-col shrink-0 w-[265px] sm:w-[290px] lg:w-auto snap-start relative ${
-                isPro ? "pf-glow" : ""
-              }`}
+              className="pf-card-pure pf-card-hover p-5 sm:p-6 flex flex-col shrink-0 w-[265px] sm:w-[290px] lg:w-auto snap-start relative"
               style={
                 isPro
                   ? {
-                      borderColor: "var(--pf-gold)",
+                      borderColor: "var(--pf-accent)",
                       borderWidth: 2,
-                      background: "linear-gradient(180deg, var(--pf-gold-soft) 0%, var(--pf-surface-pure) 55%)",
+                      background: "color-mix(in srgb, var(--pf-accent-soft) 18%, var(--pf-surface-pure))",
                     }
                   : undefined
               }
@@ -105,10 +103,10 @@ export default function PricingSection() {
                 <h3 className="text-base sm:text-lg font-bold">{plan.name}</h3>
                 {isPro && (
                   <span
-                    className="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                    style={{ background: "var(--pf-gold)", color: "#1b1406" }}
+                    className="text-[10px] font-semibold px-2 py-0.5 rounded"
+                    style={{ background: "var(--pf-gold-soft)", color: "var(--pf-gold-deep)" }}
                   >
-                    ★ Most popular
+                    Popular
                   </span>
                 )}
               </div>

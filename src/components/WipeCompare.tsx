@@ -64,8 +64,12 @@ export default function WipeCompare() {
         style={{ left: `${pos}%`, background: "var(--pf-gold)" }}
       >
         <div
-          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold shadow-lg"
-          style={{ background: "var(--pf-gold)", color: "#fff" }}
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold border"
+          style={{
+            background: "var(--pf-surface-pure)",
+            borderColor: "var(--pf-gold)",
+            color: "var(--pf-gold-deep)",
+          }}
         >
           ⇆
         </div>
